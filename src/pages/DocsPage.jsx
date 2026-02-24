@@ -83,15 +83,56 @@ const DocsPage = () => {
             Módulo de Visão Computacional (Python)
           </h2>
           <p className="mb-4">
-            [COLE AQUI A EXPLICAÇÃO DO SEU CÓDIGO PYTHON: Como você configurou
-            as CNNs, a detecção de face e a validação do usuário.]
+            [ 1. Módulo de Visão Computacional (Python - recognition.py) Este
+            guião é o "cérebro" do sistema, responsável por processar as
+            imagens, identificar rostos e gerir os acessos. Ele está dividido
+            nas seguintes componentes principais:
+            <br />
+            <br />
+            Captura de Vídeo Assíncrona (VideoStream): A classe VideoStream
+            liga-se ao IP da câmara (ESP-CAM) e obtém o fluxo de vídeo (MJPEG)
+            através da biblioteca requests. Este processo corre numa thread
+            separada (segundo plano), garantindo que a captura de frames não
+            bloqueia o processamento da interface nem da Inteligência
+            Artificial, resultando num sistema muito mais fluido e sem atrasos.
+            <br />
+            <br />
+            Inteligência Artificial e Reconhecimento: No loop_principal, o
+            sistema utiliza a biblioteca face_recognition (baseada em dlib) para
+            detetar a localização dos rostos na imagem e extrair os seus
+            "encodings" (vetores faciais). Estes vetores são então comparados
+            com a lista de utilizadores conhecidos guardada em ficheiro
+            (encodings.pickle). Se a distância matemática entre o rosto detetado
+            e um rosto conhecido for inferior a 0.5 (alta confiança), o sistema
+            reconhece o utilizador e liberta o acesso, iniciando um período de
+            "cooldown" (pausa) para não registar a mesma pessoa repetidamente em
+            curtos espaços de tempo.
+            <br />
+            <br />
+            Base de Dados e Auditoria SQLite: A função iniciar_banco cria uma
+            base de dados local (totem_banco.db) com duas tabelas: Usuarios e
+            Logs_Acesso. Sempre que um utilizador é reconhecido, a função
+            registrar_acesso_db é chamada, guardando não só o nome e a hora, mas
+            também o nível de confiança da IA e uma fotografia exata do momento
+            do acesso, servindo como auditoria de segurança.
+            <br />
+            <br />
+            Interface Gráfica (OpenCV) e API Web (Flask): O sistema desenha a
+            sua própria interface em ecrã inteiro com a biblioteca OpenCV,
+            possuindo botões interativos para registar novos utilizadores no
+            próprio local. Adicionalmente, o módulo levanta um servidor web em
+            Flask na porta 5000. Esta API permite o registo remoto de rostos
+            (/api/cadastrar_direto), a visualização do relatório de acessos em
+            formato JSON (/api/relatorio) e também a retransmissão do vídeo
+            processado (com os quadrados à volta das caras) através da rota
+            /video_feed. ]
           </p>
 
           <div className="bg-slate-950 rounded-xl border border-slate-800 overflow-hidden">
             <div className="flex items-center px-4 py-2 bg-slate-900 border-b border-slate-800 text-sm text-slate-400">
               <Code className="h-4 w-4 mr-2" /> recognition.py
             </div>
-            <pre className="p-4 overflow-x-auto text-sm text-blue-300 font-mono">
+            <pre className="p-4 overflow-auto max-h-[500px] text-sm text-green-300 font-mono">
               <code>
                 {`import cv2
 import face_recognition
@@ -698,16 +739,56 @@ if __name__ == "__main__":
             Firmware do ESP32/ESP-CAM (C/C++)
           </h2>
           <p className="mb-4">
-            [COLE AQUI A EXPLICAÇÃO DO SEU CÓDIGO C++: Como a câmera captura a
-            imagem, aciona relés (se houver) e se comunica com o
-            servidor/backend.]
+            [ 1. Módulo de Visão Computacional (Python - recognition.py) Este
+            guião é o "cérebro" do sistema, responsável por processar as
+            imagens, identificar rostos e gerir os acessos. Ele está dividido
+            nas seguintes componentes principais:
+            <br />
+            <br />
+            Captura de Vídeo Assíncrona (VideoStream): A classe VideoStream
+            liga-se ao IP da câmara (ESP-CAM) e obtém o fluxo de vídeo (MJPEG)
+            através da biblioteca requests. Este processo corre numa thread
+            separada (segundo plano), garantindo que a captura de frames não
+            bloqueia o processamento da interface nem da Inteligência
+            Artificial, resultando num sistema muito mais fluido e sem atrasos.
+            <br />
+            <br />
+            Inteligência Artificial e Reconhecimento: No loop_principal, o
+            sistema utiliza a biblioteca face_recognition (baseada em dlib) para
+            detetar a localização dos rostos na imagem e extrair os seus
+            "encodings" (vetores faciais). Estes vetores são então comparados
+            com a lista de utilizadores conhecidos guardada em ficheiro
+            (encodings.pickle). Se a distância matemática entre o rosto detetado
+            e um rosto conhecido for inferior a 0.5 (alta confiança), o sistema
+            reconhece o utilizador e liberta o acesso, iniciando um período de
+            "cooldown" (pausa) para não registar a mesma pessoa repetidamente em
+            curtos espaços de tempo.
+            <br />
+            <br />
+            Base de Dados e Auditoria SQLite: A função iniciar_banco cria uma
+            base de dados local (totem_banco.db) com duas tabelas: Usuarios e
+            Logs_Acesso. Sempre que um utilizador é reconhecido, a função
+            registrar_acesso_db é chamada, guardando não só o nome e a hora, mas
+            também o nível de confiança da IA e uma fotografia exata do momento
+            do acesso, servindo como auditoria de segurança.
+            <br />
+            <br />
+            Interface Gráfica (OpenCV) e API Web (Flask): O sistema desenha a
+            sua própria interface em ecrã inteiro com a biblioteca OpenCV,
+            possuindo botões interativos para registar novos utilizadores no
+            próprio local. Adicionalmente, o módulo levanta um servidor web em
+            Flask na porta 5000. Esta API permite o registo remoto de rostos
+            (/api/cadastrar_direto), a visualização do relatório de acessos em
+            formato JSON (/api/relatorio) e também a retransmissão do vídeo
+            processado (com os quadrados à volta das caras) através da rota
+            /video_feed. ]
           </p>
 
           <div className="bg-slate-950 rounded-xl border border-slate-800 overflow-hidden">
             <div className="flex items-center px-4 py-2 bg-slate-900 border-b border-slate-800 text-sm text-slate-400">
               <Code className="h-4 w-4 mr-2" /> main.cpp
             </div>
-            <pre className="p-4 overflow-x-auto text-sm text-green-300 font-mono">
+            <pre className="p-4 overflow-auto max-h-[500px] text-sm text-green-300 font-mono">
               <code>
                 {`#include "esp_camera.h"
 #include <WiFi.h>
