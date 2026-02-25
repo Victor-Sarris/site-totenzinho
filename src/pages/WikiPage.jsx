@@ -19,7 +19,7 @@ const OverlayDesenvolvimento = () => (
       </p>
 
       <Link
-        to="/"
+        to="/site-totenzinho"
         className="inline-flex items-center justify-center w-full px-6 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium transition-colors"
       >
         Voltar ao Início
