@@ -8,7 +8,7 @@ import Navbar from "../components/Navbar.jsx";
 function App() {
   return (
     <>
-      <BrowserRouter>
+      <HashRouter>
         <Navbar />
         <div className="pt-16">
           <Routes>
@@ -17,7 +17,7 @@ function App() {
             <Route path="/wiki" element={<WikiPage />} />
           </Routes>
         </div>
-      </BrowserRouter>
+      </HashRouter>
     </>
   );
 }
