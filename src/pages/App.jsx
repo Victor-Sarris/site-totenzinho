@@ -1,5 +1,6 @@
 import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
+import Index from "./Index.jsx";
 import Home from "./home.jsx";
 import DocsPage from "./DocsPage.jsx";
 import WikiPage from "./WikiPage.jsx";
@@ -12,6 +13,7 @@ function App() {
         <Navbar />
         <div className="pt-16">
           <Routes>
+            <Route path="/" element={<Index />} />
             <Route path="/site-totenzinho" element={<Home />} />
             <Route path="/documentacao" element={<DocsPage />} />
             <Route path="/wiki" element={<WikiPage />} />
