@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FileText, Box, Camera, Cpu, Settings, Wrench } from "lucide-react";
-
+import Diagrama from ".././assets/img/Networkdiagraexample.png";
 // ===================== Componente de desenvolvimento =====================
 const OverlayDesenvolvimento = () => (
   <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 backdrop-blur-sm px-4">
@@ -87,29 +87,62 @@ const WikiPage = () => {
               1. Introdução
             </h3>
             <p className="mb-4 leading-relaxed">
-              [COLE SEU TEXTO AQUI: Descreva a motivação do projeto, o cenário
-              atual de controle de acesso e como o totem resolve esse problema
-              de forma barata e eficiente.]
+              [A motivação deste projeto surge da necessidade de tornar mais
+              eficiente e seguro o processo de controle de acesso em clínicas de
+              saúde. Atualmente, o credenciamento de pacientes é, em muitos
+              casos, realizado de forma manual, o que o torna suscetível a
+              falhas humanas, filas e retrabalho, além de gerar estresse para
+              pacientes e colaboradores.
+              <br />
+              <br />
+              Com o avanço da visão computacional e do reconhecimento facial —
+              especialmente por meio de técnicas modernas baseadas em embeddings
+              — tornou-se viável implementar sistemas capazes de realizar
+              verificações rápidas e precisas. Diante desse cenário, o projeto
+              propõe o desenvolvimento e a avaliação de um sistema automatizado
+              de check-in baseado em reconhecimento facial, com o objetivo de
+              reduzir o tempo de atendimento, aumentar a eficiência operacional
+              e validar, de forma científica, seu impacto no ambiente clínico.]
             </p>
 
             <h3 className="text-xl font-semibold text-white mt-8 mb-3">
               2. Componentes Utilizados
             </h3>
             <ul className="list-disc pl-5 mb-4 space-y-2">
-              <li>[COLE AQUI SEU TEXTO]</li>
-              <li>[COLE AQUI SEU TEXTO]</li>
-              <li>[COLE AQUI SEU TEXTO]</li>
+              <li>
+                SBC - Labrador (Unidade principal de processamento){" "}
+                <a
+                  className="to-blue-300"
+                  href="https://canisinc.com.br/labrador-32-bits"
+                >
+                  Link
+                </a>
+              </li>
+              <li>ESPCAM ov2640 (Cam para reconhecimento)</li>
+              <li>Painel IPS 7P (Interface interação usuário)</li>
+              <li>Case Totem (Modelo 3D)</li>
             </ul>
 
             <h3 className="text-xl font-semibold text-white mt-8 mb-3">
               3. Diagrama do Sistema
             </h3>
             <div className="w-full h-64 bg-slate-900 border border-slate-700 border-dashed rounded-lg flex items-center justify-center text-slate-500 mb-4">
-              [COLE A TAG DA SUA IMAGEM/DIAGRAMA AQUI: Ex: &lt;img
-              src="caminho-da-imagem.png" /&gt; ]
+              <img src={Diagrama} alt="" />
             </div>
             <p className="mb-4 leading-relaxed">
-              [COLE SEU TEXTO AQUI: Explicação do diagrama acima.]
+              A arquitetura de hardware do projeto é dividida em estágios de
+              captura e processamento. O nó de captura na borda da rede utiliza
+              um microcontrolador da família ESP32 (módulo ESP32-CAM), escolhido
+              devido à sua conectividade sem fio nativa, baixo consumo
+              energético e capacidade de integração com periféricos. O
+              microcontrolador é dedicado à captura do fluxo contínuo de vídeo e
+              à execução física dos comandos de bloqueio ou liberação de acesso.
+              Os dados capturados na borda são transmitidos a um microcomputador
+              local (placa Labrador), que atua como a unidade de processamento
+              intermediária. Este microcomputador é responsável por orquestrar a
+              comunicação de forma segura, recebendo o fluxo de imagem do
+              microcontrolador e repassando-o ao servidor central para
+              validação,
             </p>
           </div>
         </article>
