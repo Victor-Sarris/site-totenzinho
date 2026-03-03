@@ -5,6 +5,7 @@ import Home from "./home.jsx";
 import DocsPage from "./DocsPage.jsx";
 import WikiPage from "./WikiPage.jsx";
 import Navbar from "../components/Navbar.jsx";
+import Models3d from "./Models3d.jsx";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/site-totenzinho" element={<Home />} />
             <Route path="/documentacao" element={<DocsPage />} />
             <Route path="/wiki" element={<WikiPage />} />
+            <Route path="/models" element={<Models3d />} />
           </Routes>
         </div>
       </HashRouter>

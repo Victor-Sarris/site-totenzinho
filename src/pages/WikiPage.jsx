@@ -33,7 +33,7 @@ const OverlayDesenvolvimento = () => (
 const WikiPage = () => {
   return (
     <div className="min-h-screen bg-slate-900 text-slate-300 p-8 lg:p-12 font-sans">
-      <OverlayDesenvolvimento />
+      {/* <OverlayDesenvolvimento /> */}
       <div className="max-w-6xl mx-auto">
         {/* Header da Wiki */}
         <header className="mb-12 border-b border-slate-800 pb-8">
@@ -57,11 +57,13 @@ const WikiPage = () => {
           />
 
           {/* Card de Modelagem 3D */}
-          <WikiCard
-            icon={<Box className="text-emerald-400 h-6 w-6" />}
-            title="Modelagem e Impressão 3D"
-            description="Arquivos do Blender (.blend) e parâmetros fatiador (STL) para a impressão do case."
-          />
+          <Link to="/models" className="block cursor-pointer">
+            <WikiCard
+              icon={<Box className="text-emerald-400 h-6 w-6" />}
+              title="Modelagem e Impressão 3D"
+              description="Arquivos do Blender (.blend) e parâmetros fatiador (STL) para a impressão do case."
+            />
+          </Link>
 
           {/* Card de IA */}
           <WikiCard

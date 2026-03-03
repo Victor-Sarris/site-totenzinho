@@ -18,9 +18,6 @@ const TotemLandingPage = () => {
             </Link>
           </div>
           <nav className="hidden md:flex gap-6 text-sm font-medium text-slate-300">
-            <a href="#sobre" className="hover:text-white transition-colors">
-              Sobre
-            </a>
             <Link
               to="/documentacao"
               className="hover:text-white transition-colors"
