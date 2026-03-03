@@ -66,11 +66,13 @@ const WikiPage = () => {
           </Link>
 
           {/* Card de IA */}
-          <WikiCard
-            icon={<Camera className="text-blue-400 h-6 w-6" />}
-            title="Treinamento do Modelo"
-            description="Como o dataset foi organizado e os pesos da rede neural foram ajustados."
-          />
+          <Link to="/">
+            <WikiCard
+              icon={<Camera className="text-blue-400 h-6 w-6" />}
+              title="Organização de arquivos"
+              description="Como ficheiros foram organizados e os pesos da rede neural foram ajustados."
+            />
+          </Link>
         </div>
 
         {/* Área de Leitura de Artigo (Placeholder para o texto do TCC) */}
