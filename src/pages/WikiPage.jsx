@@ -33,7 +33,7 @@ const OverlayDesenvolvimento = () => (
 const WikiPage = () => {
   return (
     <div className="min-h-screen bg-slate-900 text-slate-300 p-8 lg:p-12 font-sans">
-      {/* <OverlayDesenvolvimento /> */}
+      <OverlayDesenvolvimento />
       <div className="max-w-6xl mx-auto">
         {/* Header da Wiki */}
         <header className="mb-12 border-b border-slate-800 pb-8">
