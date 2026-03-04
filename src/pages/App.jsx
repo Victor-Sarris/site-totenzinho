@@ -7,6 +7,7 @@ import WikiPage from "./WikiPage.jsx";
 import Navbar from "../components/Navbar.jsx";
 import Models3d from "./Models3d.jsx";
 import Organization from "./Organization.jsx";
+import Circuit from "./Circuit.jsx";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/wiki" element={<WikiPage />} />
             <Route path="/models" element={<Models3d />} />
             <Route path="/org" element={<Organization />} />
+            <Route path="/cir" element={<Circuit />} />
           </Routes>
         </div>
       </HashRouter>

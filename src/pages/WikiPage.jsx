@@ -50,11 +50,13 @@ const WikiPage = () => {
         {/* Grid de Artigos */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {/* Card de Hardware */}
-          <WikiCard
-            icon={<Cpu className="text-indigo-400 h-6 w-6" />}
-            title="Montagem do Circuito"
-            description="Esquema elétrico, pinagem do ESP-CAM e integração com o sistema de controle de acesso."
-          />
+          <Link to="/cir" className="block cursor-pointer">
+            <WikiCard
+              icon={<Cpu className="text-indigo-400 h-6 w-6" />}
+              title="Montagem do Circuito"
+              description="Esquema elétrico, pinagem do ESP-CAM e integração com o sistema de controle de acesso."
+            />
+          </Link>
 
           {/* Card de Modelagem 3D */}
           <Link to="/models" className="block cursor-pointer">

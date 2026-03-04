@@ -51,7 +51,7 @@ const Index = () => {
   }, [navigate]);
 
   return (
-    <div className="fixed inset-0 z-[100] bg-slate-950 flex flex-col items-center justify-center font-sans">
+    <div className="fixed inset-0 z-100 bg-slate-950 flex flex-col items-center justify-center font-sans">
       <div className="flex flex-col items-center">
         {/* Ícone com animação de pulso */}
         <div className="relative mb-6">
