@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, ExternalLink } from "lucide-react";
+import { Box, ExternalLink, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Models3d = () => {
@@ -30,6 +30,13 @@ const Models3d = () => {
     <div className="min-h-screen bg-slate-900 text-slate-300 p-8 lg:p-12 font-sans">
       <div className="max-w-7xl mx-auto">
         <header className="mb-12 border-b border-slate-800 pb-8">
+          <Link
+            to="/wiki"
+            className="inline-flex items-center gap-2 text-blue-500 hover:text-blue-400 mb-6 transition-colors text-sm font-medium"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Voltar para a Wiki
+          </Link>
           <h1 className="text-4xl font-bold text-white mb-4 flex items-center gap-3">
             <Box className="text-blue-500 h-10 w-10" />
             Galeria de Modelagem 3D
