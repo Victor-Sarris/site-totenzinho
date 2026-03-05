@@ -208,9 +208,21 @@ const Organization = () => {
             </pre>
           </div>
         </div>
-
+        <p className="mt-6">
+          O conteúdo dos Scripts de inicialização estão presentes na Wiki do
+          Repositório. Clique{" "}
+          <a
+            className="text-amber-300"
+            href="https://github.com/Victor-Sarris/Totem-Reconhecimento-Facial/wiki/05.-Cria%C3%A7%C3%A3o-de-AutoStart-File"
+            target="blank"
+            rel="external"
+          >
+            aqui
+          </a>{" "}
+          para acessar
+        </p>
         {/* Informações Adicionais */}
-        <div className="mt-12 bg-slate-800/50 rounded-xl p-8 border border-slate-700">
+        <div className="mt-6 bg-slate-800/50 rounded-xl p-8 border border-slate-700">
           <h2 className="text-2xl font-bold text-white mb-4">
             Sobre o Ambiente do Labrador
           </h2>
