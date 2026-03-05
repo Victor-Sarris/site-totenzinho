@@ -1,18 +1,18 @@
 import React from "react";
 import { Cpu, ArrowLeft, Zap, Wrench } from "lucide-react";
 import { Link } from "react-router-dom";
+import esp32ov2640 from "../assets/img/circuit/Ov2640.png";
 
 const Circuit = () => {
   // Lista de componentes do hardware
   const componentes = [
     {
-      id: "esp32cam",
+      id: "esp32cam ov2640",
       nome: "Módulo ESP32-CAM",
       descricao:
         "O 'coração' do hardware. Captura o vídeo em tempo real e envia via Wi-Fi para o servidor Python processar a IA.",
       // Substitua por algo como "/img/esp32cam.jpg" depois
-      imagem:
-        "https://placehold.co/600x400/1e293b/94a3b8?text=Imagem+ESP32-CAM",
+      imagem: "/img/ESP32.png",
     },
     {
       id: "ftdi",

@@ -12,18 +12,18 @@ const Models3d = () => {
         "Estrutura principal desenhada no Blender para acomodar o ESP32-CAM e os componentes de controle de acesso do totem.",
       // Copie apenas o 'src' do iframe fornecido pelo Sketchfab:
       embedUrl:
-        "https://sketchfab.com/models/7d38826c3a254b13beb0388611358954/embed?autospin=1&autostart=1&preload=1",
+        "https://sketchfab.com/models/7d38826c3a254b13beb0388611358954/embed?autospin=1&autostart=1&preload=1&ui_hint=2&ui_theme=dark",
       linkOriginal: "https://skfb.ly/pH6nB",
     },
-    {
-      id: "ac-controler",
-      titulo: "Case AC-CONTROLER",
-      descricao:
-        "Invólucro modelado para o controlador inteligente de ar condicionado, focado em ventilação para os sensores térmicos.",
-      embedUrl:
-        "https://sketchfab.com/models/98b19d5503564b94b8c1cf35df45c84b/embed?autospin=1&autostart=1&ui_hint=0",
-      linkOriginal: "https://skfb.ly/pH6nR",
-    },
+    // {
+    //   id: "ac-controler",
+    //   titulo: "Case AC-CONTROLER",
+    //   descricao:
+    //     "Invólucro modelado para o controlador inteligente de ar condicionado, focado em ventilação para os sensores térmicos.",
+    //   embedUrl:
+    //     "https://sketchfab.com/models/98b19d5503564b94b8c1cf35df45c84b/embed?autospin=1&autostart=1&ui_hint=0",
+    //   linkOriginal: "https://skfb.ly/pH6nR",
+    // },
   ];
 
   return (
@@ -47,7 +47,7 @@ const Models3d = () => {
           </p>
         </header>
 
-        <div className="grid lg:grid-cols-2 gap-10">
+        <div className="grid gap-10">
           {projetos3D.map((projeto) => (
             <div
               key={projeto.id}

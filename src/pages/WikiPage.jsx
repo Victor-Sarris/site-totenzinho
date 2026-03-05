@@ -1,6 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FileText, Box, Camera, Cpu, Settings, Wrench } from "lucide-react";
+import {
+  FileText,
+  Box,
+  Camera,
+  Cpu,
+  Settings,
+  Wrench,
+  Layers,
+  FileSpreadsheet,
+  Book,
+} from "lucide-react";
 import Diagrama from ".././assets/img/Networkdiagraexample.png";
 // ===================== Componente de desenvolvimento =====================
 const OverlayDesenvolvimento = () => (
@@ -46,7 +56,9 @@ const WikiPage = () => {
             Facial.
           </p>
         </header>
-
+        <h3 className="text-center font-bold text-2xl mb-12">
+          Recursos do projeto (Fornecidos pelo Autor).
+        </h3>
         {/* Grid de Artigos */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {/* Card de Hardware */}
@@ -73,6 +85,45 @@ const WikiPage = () => {
               icon={<Camera className="text-blue-400 h-6 w-6" />}
               title="Organização de arquivos"
               description="Como ficheiros foram organizados e os pesos da rede neural foram ajustados."
+            />
+          </Link>
+        </div>
+        <h3 className="text-center font-bold text-2xl">
+          Recursos do SBC LABRADOR (Fornecidos oficialmente pela org Caninos
+          Loucos).
+        </h3>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 mb-12">
+          <Link
+            to="https://canisinc.com.br/lojas/caninosloucos/conteudo/midias/folder-labrador32-v22.pdf"
+            rel="external"
+            target="blank"
+          >
+            <WikiCard
+              icon={<Book className="text-purple-400 h-6 w-6" />}
+              title="Folder de especificação"
+              description="Alguns dados e detalhes sobre o SBC Labrador e sua pinagem para projetos complexos"
+            />
+          </Link>
+          <Link
+            to="https://caninosloucos.octoserver.com.br/lojas/caninosloucos/conteudo/midias/labrador32-datasheet.pdf"
+            rel="external"
+            target="blank"
+          >
+            <WikiCard
+              icon={<FileSpreadsheet className="text-purple-400 h-6 w-6" />}
+              title="DATASHEAT - Caninos Loucos"
+              description="Documento sobre as métricas e questões de Hardware referentes ao SBC Labrador"
+            />
+          </Link>
+          <Link
+            to="https://caninosloucos.octoserver.com.br/lojas/caninosloucos/conteudo/midias/labrador-base-mv21-sch.pdf"
+            rel="external"
+            target="blank"
+          >
+            <WikiCard
+              icon={<Layers className="text-purple-400 h-6 w-6" />}
+              title="Schematics - Caninos Loucos"
+              description="Documento que apresenta detalhadamente o circuito Elétrico do SBC Labrador"
             />
           </Link>
         </div>
