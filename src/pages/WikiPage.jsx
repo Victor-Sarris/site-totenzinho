@@ -208,7 +208,7 @@ const WikiPage = () => {
 
 // Componente do Card da Wiki
 const WikiCard = ({ icon, title, description }) => (
-  <button className="text-left p-6 rounded-xl bg-slate-800 border border-slate-700 hover:border-blue-500 hover:bg-slate-800/80 transition-all group">
+  <button className="text-left p-6 rounded-xl bg-slate-800 border border-slate-700 hover:border-blue-500 hover:bg-slate-800/80 transition-all group cursor-pointer">
     <div className="mb-4 p-2 bg-slate-900 inline-block rounded-lg group-hover:scale-110 transition-transform">
       {icon}
     </div>
