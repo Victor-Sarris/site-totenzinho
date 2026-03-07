@@ -1,140 +1,12 @@
 import React from "react";
 import { Book, Code, Terminal, Cpu } from "lucide-react";
+// Importando o SyntaxHighlighter e o tema estilo VS Code
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 
-const DocsPage = () => {
-  return (
-    <div className="min-h-screen bg-slate-900 text-slate-300 flex font-sans">
-      {/* Sidebar de Navegação */}
-      <aside className="w-64 bg-slate-900 border-r border-slate-800 hidden md:block fixed h-full overflow-y-auto">
-        <div className="p-6">
-          <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-            <Book className="text-blue-500 h-5 w-5" />
-            Docs TotemID
-          </h2>
-          <nav className="space-y-1">
-            <div className="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-2 mt-4">
-              Visão Geral
-            </div>
-            <a
-              href="#intro"
-              className="block px-3 py-2 rounded-md bg-blue-500/10 text-blue-400 font-medium"
-            >
-              Introdução
-            </a>
-            <a
-              href="#arquitetura"
-              className="block px-3 py-2 rounded-md hover:bg-slate-800 transition-colors"
-            >
-              Arquitetura do Sistema
-            </a>
+// --- CÓDIGOS EXTRAÍDOS PARA MANTER O COMPONENTE LIMPO ---
 
-            <div className="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-2 mt-6">
-              Inteligência Artificial
-            </div>
-            <a
-              href="#mediapipe"
-              className="block px-3 py-2 rounded-md hover:bg-slate-800 transition-colors"
-            >
-              Setup MediaPipe/dlib
-            </a>
-            <a
-              href="#reconhecimento"
-              className="block px-3 py-2 rounded-md hover:bg-slate-800 transition-colors"
-            >
-              Script de Reconhecimento
-            </a>
-
-            <div className="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-2 mt-6">
-              Hardware Embarcado
-            </div>
-            <a
-              href="#esp32"
-              className="block px-3 py-2 rounded-md hover:bg-slate-800 transition-colors"
-            >
-              Código ESP32 / ESP-CAM
-            </a>
-            <a
-              href="#comunicacao"
-              className="block px-3 py-2 rounded-md hover:bg-slate-800 transition-colors"
-            >
-              Comunicação Serial/WiFi
-            </a>
-          </nav>
-        </div>
-      </aside>
-
-      {/* Área de Conteúdo Principal */}
-      <main className="flex-1 md:ml-64 p-8 lg:p-12 max-w-4xl">
-        <div className="mb-10" id="intro">
-          <h1 className="text-4xl font-bold text-white mb-4">
-            Documentação do Código
-          </h1>
-          <p className="text-lg text-slate-400 mb-6">
-            Abaixo estão os módulos principais do sistema. Utilize o menu
-            lateral para navegar entre a lógica de IA e o firmware do
-            microcontrolador.
-          </p>
-        </div>
-
-        {/* Seção de IA / Python */}
-        <section id="reconhecimento" className="mb-16">
-          <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
-            <Terminal className="text-cyan-400 h-6 w-6" />
-            Módulo de Visão Computacional (Python)
-          </h2>
-          <p className="mb-4">
-            [ 1. Módulo de Visão Computacional (Python - recognition.py) Este
-            guião é o "cérebro" do sistema, responsável por processar as
-            imagens, identificar rostos e gerir os acessos. Ele está dividido
-            nas seguintes componentes principais:
-            <br />
-            <br />
-            Captura de Vídeo Assíncrona (VideoStream): A classe VideoStream
-            liga-se ao IP da câmara (ESP-CAM) e obtém o fluxo de vídeo (MJPEG)
-            através da biblioteca requests. Este processo corre numa thread
-            separada (segundo plano), garantindo que a captura de frames não
-            bloqueia o processamento da interface nem da Inteligência
-            Artificial, resultando num sistema muito mais fluido e sem atrasos.
-            <br />
-            <br />
-            Inteligência Artificial e Reconhecimento: No loop_principal, o
-            sistema utiliza a biblioteca face_recognition (baseada em dlib) para
-            detetar a localização dos rostos na imagem e extrair os seus
-            "encodings" (vetores faciais). Estes vetores são então comparados
-            com a lista de utilizadores conhecidos guardada em ficheiro
-            (encodings.pickle). Se a distância matemática entre o rosto detetado
-            e um rosto conhecido for inferior a 0.5 (alta confiança), o sistema
-            reconhece o utilizador e liberta o acesso, iniciando um período de
-            "cooldown" (pausa) para não registar a mesma pessoa repetidamente em
-            curtos espaços de tempo.
-            <br />
-            <br />
-            Base de Dados e Auditoria SQLite: A função iniciar_banco cria uma
-            base de dados local (totem_banco.db) com duas tabelas: Usuarios e
-            Logs_Acesso. Sempre que um utilizador é reconhecido, a função
-            registrar_acesso_db é chamada, guardando não só o nome e a hora, mas
-            também o nível de confiança da IA e uma fotografia exata do momento
-            do acesso, servindo como auditoria de segurança.
-            <br />
-            <br />
-            Interface Gráfica (OpenCV) e API Web (Flask): O sistema desenha a
-            sua própria interface em ecrã inteiro com a biblioteca OpenCV,
-            possuindo botões interativos para registar novos utilizadores no
-            próprio local. Adicionalmente, o módulo levanta um servidor web em
-            Flask na porta 5000. Esta API permite o registo remoto de rostos
-            (/api/cadastrar_direto), a visualização do relatório de acessos em
-            formato JSON (/api/relatorio) e também a retransmissão do vídeo
-            processado (com os quadrados à volta das caras) através da rota
-            /video_feed. ]
-          </p>
-
-          <div className="bg-slate-950 rounded-xl border border-slate-800 overflow-hidden">
-            <div className="flex items-center px-4 py-2 bg-slate-900 border-b border-slate-800 text-sm text-slate-400">
-              <Code className="h-4 w-4 mr-2" /> recognition.py
-            </div>
-            <pre className="p-4 overflow-auto max-h-[500px] text-sm text-green-300 font-mono">
-              <code>
-                {`import cv2
+const pythonCode = `import cv2
 import face_recognition
 import pickle
 import numpy as np
@@ -300,8 +172,8 @@ class VideoStream:
                             self.stream.close()
                         break
                     self.bytes_buffer += chunk
-                    a = self.bytes_buffer.find(b"\xff\xd8")
-                    b = self.bytes_buffer.find(b"\xff\xd9")
+                    a = self.bytes_buffer.find(b"\\xff\\xd8")
+                    b = self.bytes_buffer.find(b"\\xff\\xd9")
                     if a != -1 and b != -1:
                         jpg = self.bytes_buffer[a : b + 2]
                         self.bytes_buffer = self.bytes_buffer[b + 2 :]
@@ -709,9 +581,9 @@ def video_feed():
                     continue
                 _, enc = cv2.imencode(".jpg", frame_atual)
             yield (
-                b"--frame\r\nContent-Type: image/jpeg\r\n\r\n"
+                b"--frame\\r\\nContent-Type: image/jpeg\\r\\n\\r\\n"
                 + bytearray(enc)
-                + b"\r\n"
+                + b"\\r\\n"
             )
 
     return Response(gen(), mimetype="multipart/x-mixed-replace; boundary=frame")
@@ -726,71 +598,9 @@ if __name__ == "__main__":
     app.run(
         host="0.0.0.0", port=5000, debug=False
     )  # mudar a porta se já tiver uma aplicacao rodando (que é o meu caso)
-`}
-              </code>
-            </pre>
-          </div>
-        </section>
+`;
 
-        {/* Seção do Embarcado / C++ */}
-        <section id="esp32" className="mb-16">
-          <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
-            <Cpu className="text-indigo-400 h-6 w-6" />
-            Firmware do ESP32/ESP-CAM (C/C++)
-          </h2>
-          <p className="mb-4">
-            [ 1. Módulo de Visão Computacional (Python - recognition.py) Este
-            guião é o "cérebro" do sistema, responsável por processar as
-            imagens, identificar rostos e gerir os acessos. Ele está dividido
-            nas seguintes componentes principais:
-            <br />
-            <br />
-            Captura de Vídeo Assíncrona (VideoStream): A classe VideoStream
-            liga-se ao IP da câmara (ESP-CAM) e obtém o fluxo de vídeo (MJPEG)
-            através da biblioteca requests. Este processo corre numa thread
-            separada (segundo plano), garantindo que a captura de frames não
-            bloqueia o processamento da interface nem da Inteligência
-            Artificial, resultando num sistema muito mais fluido e sem atrasos.
-            <br />
-            <br />
-            Inteligência Artificial e Reconhecimento: No loop_principal, o
-            sistema utiliza a biblioteca face_recognition (baseada em dlib) para
-            detetar a localização dos rostos na imagem e extrair os seus
-            "encodings" (vetores faciais). Estes vetores são então comparados
-            com a lista de utilizadores conhecidos guardada em ficheiro
-            (encodings.pickle). Se a distância matemática entre o rosto detetado
-            e um rosto conhecido for inferior a 0.5 (alta confiança), o sistema
-            reconhece o utilizador e liberta o acesso, iniciando um período de
-            "cooldown" (pausa) para não registar a mesma pessoa repetidamente em
-            curtos espaços de tempo.
-            <br />
-            <br />
-            Base de Dados e Auditoria SQLite: A função iniciar_banco cria uma
-            base de dados local (totem_banco.db) com duas tabelas: Usuarios e
-            Logs_Acesso. Sempre que um utilizador é reconhecido, a função
-            registrar_acesso_db é chamada, guardando não só o nome e a hora, mas
-            também o nível de confiança da IA e uma fotografia exata do momento
-            do acesso, servindo como auditoria de segurança.
-            <br />
-            <br />
-            Interface Gráfica (OpenCV) e API Web (Flask): O sistema desenha a
-            sua própria interface em ecrã inteiro com a biblioteca OpenCV,
-            possuindo botões interativos para registar novos utilizadores no
-            próprio local. Adicionalmente, o módulo levanta um servidor web em
-            Flask na porta 5000. Esta API permite o registo remoto de rostos
-            (/api/cadastrar_direto), a visualização do relatório de acessos em
-            formato JSON (/api/relatorio) e também a retransmissão do vídeo
-            processado (com os quadrados à volta das caras) através da rota
-            /video_feed. ]
-          </p>
-
-          <div className="bg-slate-950 rounded-xl border border-slate-800 overflow-hidden">
-            <div className="flex items-center px-4 py-2 bg-slate-900 border-b border-slate-800 text-sm text-slate-400">
-              <Code className="h-4 w-4 mr-2" /> main.cpp
-            </div>
-            <pre className="p-4 overflow-auto max-h-[500px] text-sm text-green-300 font-mono">
-              <code>
-                {`#include "esp_camera.h"
+const cppCode = `#include "esp_camera.h"
 #include <WiFi.h>
 #include "esp_timer.h"
 #include "img_converters.h"
@@ -829,8 +639,8 @@ const char* password = "evabarros2025";
 #define PCLK_GPIO_NUM     22
 
 static const char* _STREAM_CONTENT_TYPE = "multipart/x-mixed-replace;boundary=" PART_BOUNDARY;
-static const char* _STREAM_BOUNDARY = "\r\n--" PART_BOUNDARY "\r\n";
-static const char* _STREAM_PART = "Content-Type: image/jpeg\r\nContent-Length: %u\r\n\r\n";
+static const char* _STREAM_BOUNDARY = "\\r\\n--" PART_BOUNDARY "\\r\\n";
+static const char* _STREAM_PART = "Content-Type: image/jpeg\\r\\nContent-Length: %u\\r\\n\\r\\n";
 
 httpd_handle_t stream_httpd = NULL;
 
@@ -971,9 +781,226 @@ void loop() {
 
   digitalWrite(FLASH_GPIO_NUM, HIGH); // liga o flash
 }
-`}
-              </code>
-            </pre>
+`;
+
+const DocsPage = () => {
+  return (
+    <div className="min-h-screen bg-slate-900 text-slate-300 flex font-sans">
+      {/* Sidebar de Navegação */}
+      <aside className="w-64 bg-slate-900 border-r border-slate-800 hidden md:block fixed h-full overflow-y-auto">
+        <div className="p-6">
+          <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+            <Book className="text-blue-500 h-5 w-5" />
+            Docs TotemID
+          </h2>
+          <nav className="space-y-1">
+            <div className="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-2 mt-4">
+              Visão Geral
+            </div>
+            <a
+              href="#intro"
+              className="block px-3 py-2 rounded-md bg-blue-500/10 text-blue-400 font-medium"
+            >
+              Introdução
+            </a>
+            <a
+              href="#arquitetura"
+              className="block px-3 py-2 rounded-md hover:bg-slate-800 transition-colors"
+            >
+              Arquitetura do Sistema
+            </a>
+
+            <div className="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-2 mt-6">
+              Inteligência Artificial
+            </div>
+            <a
+              href="#mediapipe"
+              className="block px-3 py-2 rounded-md hover:bg-slate-800 transition-colors"
+            >
+              Setup MediaPipe/dlib
+            </a>
+            <a
+              href="#reconhecimento"
+              className="block px-3 py-2 rounded-md hover:bg-slate-800 transition-colors"
+            >
+              Script de Reconhecimento
+            </a>
+
+            <div className="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-2 mt-6">
+              Hardware Embarcado
+            </div>
+            <a
+              href="#esp32"
+              className="block px-3 py-2 rounded-md hover:bg-slate-800 transition-colors"
+            >
+              Código ESP32 / ESP-CAM
+            </a>
+            <a
+              href="#comunicacao"
+              className="block px-3 py-2 rounded-md hover:bg-slate-800 transition-colors"
+            >
+              Comunicação Serial/WiFi
+            </a>
+          </nav>
+        </div>
+      </aside>
+
+      {/* Área de Conteúdo Principal */}
+      <main className="flex-1 md:ml-64 p-8 lg:p-12 max-w-4xl">
+        <div className="mb-10" id="intro">
+          <h1 className="text-4xl font-bold text-white mb-4">
+            Documentação do Código
+          </h1>
+          <p className="text-lg text-slate-400 mb-6">
+            Abaixo estão os módulos principais do sistema. Utilize o menu
+            lateral para navegar entre a lógica de IA e o firmware do
+            microcontrolador.
+          </p>
+        </div>
+
+        {/* Seção de IA / Python */}
+        <section id="reconhecimento" className="mb-16">
+          <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
+            <Terminal className="text-cyan-400 h-6 w-6" />
+            Módulo de Visão Computacional (Python)
+          </h2>
+          <p className="mb-4">
+            [ 1. Módulo de Visão Computacional (Python - recognition.py) Este
+            guião é o "cérebro" do sistema, responsável por processar as
+            imagens, identificar rostos e gerir os acessos. Ele está dividido
+            nas seguintes componentes principais:
+            <br />
+            <br />
+            Captura de Vídeo Assíncrona (VideoStream): A classe VideoStream
+            liga-se ao IP da câmara (ESP-CAM) e obtém o fluxo de vídeo (MJPEG)
+            através da biblioteca requests. Este processo corre numa thread
+            separada (segundo plano), garantindo que a captura de frames não
+            bloqueia o processamento da interface nem da Inteligência
+            Artificial, resultando num sistema muito mais fluido e sem atrasos.
+            <br />
+            <br />
+            Inteligência Artificial e Reconhecimento: No loop_principal, o
+            sistema utiliza a biblioteca face_recognition (baseada em dlib) para
+            detetar a localização dos rostos na imagem e extrair os seus
+            "encodings" (vetores faciais). Estes vetores são então comparados
+            com a lista de utilizadores conhecidos guardada em ficheiro
+            (encodings.pickle). Se a distância matemática entre o rosto detetado
+            e um rosto conhecido for inferior a 0.5 (alta confiança), o sistema
+            reconhece o utilizador e liberta o acesso, iniciando um período de
+            "cooldown" (pausa) para não registar a mesma pessoa repetidamente em
+            curtos espaços de tempo.
+            <br />
+            <br />
+            Base de Dados e Auditoria SQLite: A função iniciar_banco cria uma
+            base de dados local (totem_banco.db) com duas tabelas: Usuarios e
+            Logs_Acesso. Sempre que um utilizador é reconhecido, a função
+            registrar_acesso_db é chamada, guardando não só o nome e a hora, mas
+            também o nível de confiança da IA e uma fotografia exata do momento
+            do acesso, servindo como auditoria de segurança.
+            <br />
+            <br />
+            Interface Gráfica (OpenCV) e API Web (Flask): O sistema desenha a
+            sua própria interface em ecrã inteiro com a biblioteca OpenCV,
+            possuindo botões interativos para registar novos utilizadores no
+            próprio local. Adicionalmente, o módulo levanta um servidor web em
+            Flask na porta 5000. Esta API permite o registo remoto de rostos
+            (/api/cadastrar_direto), a visualização do relatório de acessos em
+            formato JSON (/api/relatorio) e também a retransmissão do vídeo
+            processado (com os quadrados à volta das caras) através da rota
+            /video_feed. ]
+          </p>
+
+          <div className="bg-slate-950 rounded-xl border border-slate-800 overflow-hidden shadow-lg">
+            <div className="flex items-center px-4 py-3 bg-[#1e1e1e] border-b border-[#2d2d2d] text-sm text-slate-300">
+              <Code className="h-4 w-4 mr-2 text-cyan-400" /> recognition.py
+            </div>
+            {/* SyntaxHighlighter substituindo o antigo <pre><code> */}
+            <SyntaxHighlighter
+              language="python"
+              style={vscDarkPlus}
+              showLineNumbers={true}
+              customStyle={{
+                margin: 0,
+                padding: "1rem",
+                maxHeight: "500px",
+                fontSize: "0.875rem",
+              }}
+            >
+              {pythonCode}
+            </SyntaxHighlighter>
+          </div>
+        </section>
+
+        {/* Seção do Embarcado / C++ */}
+        <section id="esp32" className="mb-16">
+          <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
+            <Cpu className="text-indigo-400 h-6 w-6" />
+            Firmware do ESP32/ESP-CAM (C/C++)
+          </h2>
+          <p className="mb-4">
+            [ 1. Módulo de Visão Computacional (Python - recognition.py) Este
+            guião é o "cérebro" do sistema, responsável por processar as
+            imagens, identificar rostos e gerir os acessos. Ele está dividido
+            nas seguintes componentes principais:
+            <br />
+            <br />
+            Captura de Vídeo Assíncrona (VideoStream): A classe VideoStream
+            liga-se ao IP da câmara (ESP-CAM) e obtém o fluxo de vídeo (MJPEG)
+            através da biblioteca requests. Este processo corre numa thread
+            separada (segundo plano), garantindo que a captura de frames não
+            bloqueia o processamento da interface nem da Inteligência
+            Artificial, resultando num sistema muito mais fluido e sem atrasos.
+            <br />
+            <br />
+            Inteligência Artificial e Reconhecimento: No loop_principal, o
+            sistema utiliza a biblioteca face_recognition (baseada em dlib) para
+            detetar a localização dos rostos na imagem e extrair os seus
+            "encodings" (vetores faciais). Estes vetores são então comparados
+            com a lista de utilizadores conhecidos guardada em ficheiro
+            (encodings.pickle). Se a distância matemática entre o rosto detetado
+            e um rosto conhecido for inferior a 0.5 (alta confiança), o sistema
+            reconhece o utilizador e liberta o acesso, iniciando um período de
+            "cooldown" (pausa) para não registar a mesma pessoa repetidamente em
+            curtos espaços de tempo.
+            <br />
+            <br />
+            Base de Dados e Auditoria SQLite: A função iniciar_banco cria uma
+            base de dados local (totem_banco.db) com duas tabelas: Usuarios e
+            Logs_Acesso. Sempre que um utilizador é reconhecido, a função
+            registrar_acesso_db é chamada, guardando não só o nome e a hora, mas
+            também o nível de confiança da IA e uma fotografia exata do momento
+            do acesso, servindo como auditoria de segurança.
+            <br />
+            <br />
+            Interface Gráfica (OpenCV) e API Web (Flask): O sistema desenha a
+            sua própria interface em ecrã inteiro com a biblioteca OpenCV,
+            possuindo botões interativos para registar novos utilizadores no
+            próprio local. Adicionalmente, o módulo levanta um servidor web em
+            Flask na porta 5000. Esta API permite o registo remoto de rostos
+            (/api/cadastrar_direto), a visualização do relatório de acessos em
+            formato JSON (/api/relatorio) e também a retransmissão do vídeo
+            processado (com os quadrados à volta das caras) através da rota
+            /video_feed. ]
+          </p>
+
+          <div className="bg-slate-950 rounded-xl border border-slate-800 overflow-hidden shadow-lg">
+            <div className="flex items-center px-4 py-3 bg-[#1e1e1e] border-b border-[#2d2d2d] text-sm text-slate-300">
+              <Code className="h-4 w-4 mr-2 text-indigo-400" /> main.cpp
+            </div>
+            {/* SyntaxHighlighter para o C++ */}
+            <SyntaxHighlighter
+              language="cpp"
+              style={vscDarkPlus}
+              showLineNumbers={true}
+              customStyle={{
+                margin: 0,
+                padding: "1rem",
+                maxHeight: "500px",
+                fontSize: "0.875rem",
+              }}
+            >
+              {cppCode}
+            </SyntaxHighlighter>
           </div>
         </section>
       </main>
