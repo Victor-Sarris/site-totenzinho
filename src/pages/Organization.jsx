@@ -208,8 +208,10 @@ const Organization = () => {
         </div>
         <p className="mt-6">
           O conteúdo dos Scripts de inicialização{" "}
-          <span className="text-emerald-400">(iniciar.sh)</span> estão presentes
-          na Wiki do Repositório. Clique{" "}
+          <span className="bg-slate-800 text-emerald-400 px-1.5 py-0.5 rounded text-sm">
+            (iniciar.sh)
+          </span>{" "}
+          estão presentes na Wiki do Repositório. Clique{" "}
           <a
             className="text-amber-300"
             href="https://github.com/Victor-Sarris/Totem-Reconhecimento-Facial/wiki/05.-Cria%C3%A7%C3%A3o-de-AutoStart-File"

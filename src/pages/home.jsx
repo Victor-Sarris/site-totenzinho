@@ -39,7 +39,7 @@ const TotemLandingPage = () => {
         </div>
         <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
           Reconhecimento Facial <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
+          <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-cyan-300">
             Inteligente e Autônomo
           </span>
         </h1>
