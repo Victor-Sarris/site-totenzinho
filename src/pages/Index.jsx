@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-// Reutilizamos o ícone ScanFace para manter a consistência visual
 const ScanFace = (props) => (
   <svg
     viewBox="0 0 24 24"
@@ -27,23 +25,20 @@ const Index = () => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    // Simula o carregamento do sistema (barra de progresso)
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(interval);
           return 100;
         }
-        return prev + 2; // Aumenta 2% a cada 50ms
+        return prev + 2;
       });
     }, 50);
 
-    // Navega para a home após 2.5 segundos (quando chega a 100%)
     const timer = setTimeout(() => {
       navigate("/site-totenzinho");
     }, 2500);
 
-    // Limpa os temporizadores caso o componente seja desmontado antes
     return () => {
       clearInterval(interval);
       clearTimeout(timer);
@@ -67,7 +62,7 @@ const Index = () => {
         {/* Texto de estado estilo terminal */}
         <p className="text-slate-400 mb-8 font-mono text-sm tracking-widest uppercase flex items-center gap-2">
           <span className="inline-block h-2 w-2 bg-blue-500 rounded-full animate-ping"></span>
-          Inicializando Visão Computacional...
+          Buscando Documentação...
         </p>
 
         {/* Barra de progresso */}

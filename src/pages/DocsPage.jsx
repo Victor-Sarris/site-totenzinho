@@ -787,63 +787,6 @@ const DocsPage = () => {
   return (
     <div className="min-h-screen bg-slate-900 text-slate-300 flex font-sans">
       {/* Sidebar de Navegação */}
-      <aside className="w-64 bg-slate-900 border-r border-slate-800 hidden md:block fixed h-full overflow-y-auto">
-        <div className="p-6">
-          <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-            <Book className="text-blue-500 h-5 w-5" />
-            Docs TotemID
-          </h2>
-          <nav className="space-y-1">
-            <div className="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-2 mt-4">
-              Visão Geral
-            </div>
-            <a
-              href="#intro"
-              className="block px-3 py-2 rounded-md bg-blue-500/10 text-blue-400 font-medium"
-            >
-              Introdução
-            </a>
-            <a
-              href="#arquitetura"
-              className="block px-3 py-2 rounded-md hover:bg-slate-800 transition-colors"
-            >
-              Arquitetura do Sistema
-            </a>
-
-            <div className="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-2 mt-6">
-              Inteligência Artificial
-            </div>
-            <a
-              href="#mediapipe"
-              className="block px-3 py-2 rounded-md hover:bg-slate-800 transition-colors"
-            >
-              Setup MediaPipe/dlib
-            </a>
-            <a
-              href="#reconhecimento"
-              className="block px-3 py-2 rounded-md hover:bg-slate-800 transition-colors"
-            >
-              Script de Reconhecimento
-            </a>
-
-            <div className="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-2 mt-6">
-              Hardware Embarcado
-            </div>
-            <a
-              href="#esp32"
-              className="block px-3 py-2 rounded-md hover:bg-slate-800 transition-colors"
-            >
-              Código ESP32 / ESP-CAM
-            </a>
-            <a
-              href="#comunicacao"
-              className="block px-3 py-2 rounded-md hover:bg-slate-800 transition-colors"
-            >
-              Comunicação Serial/WiFi
-            </a>
-          </nav>
-        </div>
-      </aside>
 
       {/* Área de Conteúdo Principal */}
       <main className="flex-1 md:ml-64 p-8 lg:p-12 max-w-4xl">
@@ -865,7 +808,7 @@ const DocsPage = () => {
             Módulo de Visão Computacional (Python)
           </h2>
           <p className="mb-4">
-            [ 1. Módulo de Visão Computacional (Python - recognition.py) Este
+            [ 1. Módulo de Visão Computacional (Python - 03_reconhecer.py) Este
             guião é o "cérebro" do sistema, responsável por processar as
             imagens, identificar rostos e gerir os acessos. Ele está dividido
             nas seguintes componentes principais:
@@ -912,7 +855,7 @@ const DocsPage = () => {
 
           <div className="bg-slate-950 rounded-xl border border-slate-800 overflow-hidden shadow-lg">
             <div className="flex items-center px-4 py-3 bg-[#1e1e1e] border-b border-[#2d2d2d] text-sm text-slate-300">
-              <Code className="h-4 w-4 mr-2 text-cyan-400" /> recognition.py
+              <Code className="h-4 w-4 mr-2 text-cyan-400" /> 03_reconhecer.py
             </div>
             {/* SyntaxHighlighter substituindo o antigo <pre><code> */}
             <SyntaxHighlighter
@@ -938,7 +881,7 @@ const DocsPage = () => {
             Firmware do ESP32/ESP-CAM (C/C++)
           </h2>
           <p className="mb-4">
-            [ 1. Módulo de Visão Computacional (Python - recognition.py) Este
+            [ 1. Módulo de Visão Computacional (Python - 03_reconhecer.py) Este
             guião é o "cérebro" do sistema, responsável por processar as
             imagens, identificar rostos e gerir os acessos. Ele está dividido
             nas seguintes componentes principais:
@@ -985,7 +928,7 @@ const DocsPage = () => {
 
           <div className="bg-slate-950 rounded-xl border border-slate-800 overflow-hidden shadow-lg">
             <div className="flex items-center px-4 py-3 bg-[#1e1e1e] border-b border-[#2d2d2d] text-sm text-slate-300">
-              <Code className="h-4 w-4 mr-2 text-indigo-400" /> main.cpp
+              <Code className="h-4 w-4 mr-2 text-indigo-400" /> espcam.ino
             </div>
             {/* SyntaxHighlighter para o C++ */}
             <SyntaxHighlighter
