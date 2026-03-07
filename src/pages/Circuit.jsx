@@ -113,7 +113,7 @@ const Circuit = () => {
             {/* Imagem do diagrama/protótipo */}
             <div className="w-full lg:w-1/2 aspect-4/3 bg-slate-900 rounded-xl border border-slate-700 overflow-hidden relative">
               <img
-                src="https://placehold.co/800x600/0f172a/64748b?text=Foto+do+Prototipo\nou+Fritzing"
+                src="https://placehold.co/800x600/0f172a/64748b?text=Ainda+em+Desenvolvimento\nAguarde+mais+alguns+dias"
                 alt="Diagrama do Circuito"
                 className="w-full h-full object-cover"
               />
@@ -130,7 +130,7 @@ const Circuit = () => {
                 acesso.
               </p>
 
-              <ul className="space-y-3 mt-4">
+              {/* <ul className="space-y-3 mt-4">
                 <li className="flex gap-3 text-slate-300 bg-slate-900/50 p-3 rounded-lg border border-slate-700/50">
                   <span className="font-mono text-red-400 font-bold">5V</span>
                   <span>
@@ -156,7 +156,7 @@ const Circuit = () => {
                     Relé para enviar o sinal de abertura.
                   </span>
                 </li>
-              </ul>
+              </ul> */}
             </div>
           </div>
         </section>
