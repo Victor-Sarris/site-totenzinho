@@ -1,46 +1,48 @@
 import React from "react";
 import { Cpu, ArrowLeft, Zap, Wrench } from "lucide-react";
 import { Link } from "react-router-dom";
-import esp32ov2640 from "../assets/img/circuit/Ov2640.png";
+import Esp32ov2640 from "../assets/img/circuit/Ov2640.png";
+import Receptorov2640 from "../assets/img/circuit/Receptor.png";
+import Sbc from "../assets/img/circuit/Labrador.png";
+import Painel from "../assets/img/circuit/Painel7P.png";
+import Case from "../assets/img/circuit/Case.png";
 
 const Circuit = () => {
-  // Lista de componentes do hardware
   const componentes = [
     {
-      id: "esp32cam ov2640",
+      id: "Esp32cam ov2640",
       nome: "Módulo ESP32-CAM",
       descricao:
-        "O 'coração' do hardware. Captura o vídeo em tempo real e envia via Wi-Fi para o servidor Python processar a IA.",
-      // Substitua por algo como "/img/esp32cam.jpg" depois
-      imagem: "/img/ESP32.png",
+        "O 'olho' do TotemID. Responsável por capturar as imagens do usuário em tempo real usando o sensor OV2640 e enviá-las via Wi-Fi para o servidor Python, onde a IA realiza o reconhecimento. Também pode acionar o relé de acesso.",
+      imagem: Esp32ov2640,
     },
     {
-      id: "ftdi",
-      nome: "Conversor USB-TTL (FTDI)",
+      id: "Receptor ov2640",
+      nome: "Módulo ESP32-CAM",
       descricao:
-        "Necessário apenas para gravar o firmware (código C++) no ESP32-CAM, já que ele não possui porta USB nativa.",
-      imagem: "https://placehold.co/600x400/1e293b/94a3b8?text=Conversor+FTDI",
+        "Placa auxiliar essencial para o ESP32-CAM. Facilita a gravação do firmware via USB e garante uma alimentação de energia estável (5V) durante a operação contínua do hardware, evitando reinícios inesperados.",
+      imagem: Receptorov2640,
     },
     {
-      id: "rele",
-      nome: "Módulo Relé 5V (1 Canal)",
+      id: "SBC",
+      nome: "SBC - Labrador",
       descricao:
-        "Atua como o interruptor eletrônico. Quando o rosto é reconhecido, o ESP32 aciona o relé para abrir a fechadura/trava.",
-      imagem: "https://placehold.co/600x400/1e293b/94a3b8?text=Modulo+Rele",
+        "O 'cérebro' local do totem. Este Single Board Computer (computador de placa única) processa a interface do sistema, gerencia o painel de exibição e coordena a interação do usuário com o sistema de validação.",
+      imagem: Sbc,
     },
     {
-      id: "fonte",
-      nome: "Fonte de Alimentação 5V",
+      id: "Painel",
+      nome: "Painel IPS 7P",
       descricao:
-        "Fornece a energia necessária. O ESP32-CAM é sensível a quedas de tensão, então uma fonte de pelo menos 2A é recomendada.",
-      imagem: "https://placehold.co/600x400/1e293b/94a3b8?text=Fonte+5V+2A",
+        "A interface visual de comunicação. Uma tela IPS de 7 polegadas onde o usuário interage com o TotemID, visualizando instruções, o retorno da câmera e alertas de acesso liberado ou negado com alta nitidez.",
+      imagem: Painel,
     },
     {
-      id: "jumpers",
-      nome: "Jumpers Fêmea-Fêmea",
+      id: "CASE3D",
+      nome: "CASE 3D",
       descricao:
-        "Fios para conectar os pinos do ESP32-CAM ao Relé e à fonte de alimentação sem necessidade de solda inicial.",
-      imagem: "https://placehold.co/600x400/1e293b/94a3b8?text=Fios+Jumpers",
+        "A estrutura física protetora. Uma carcaça modelada e impressa em 3D, projetada sob medida para acomodar a eletrônica, organizar a fiação e fixar o painel, garantindo um acabamento profissional ao totem.",
+      imagem: Case,
     },
   ];
 
@@ -110,7 +112,6 @@ const Circuit = () => {
           <div className="bg-slate-800 border border-slate-700 rounded-2xl p-6 lg:p-8 flex flex-col lg:flex-row gap-8 items-center shadow-xl">
             {/* Imagem do diagrama/protótipo */}
             <div className="w-full lg:w-1/2 aspect-4/3 bg-slate-900 rounded-xl border border-slate-700 overflow-hidden relative">
-              {/* Substitua esta URL pela imagem do seu diagrama/foto do circuito */}
               <img
                 src="https://placehold.co/800x600/0f172a/64748b?text=Foto+do+Prototipo\nou+Fritzing"
                 alt="Diagrama do Circuito"

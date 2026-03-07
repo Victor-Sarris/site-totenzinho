@@ -46,6 +46,27 @@ const Organization = () => {
               <code className="text-slate-300">
                 {`/home/caninos/
 ├── `}
+                <span className="text-blue-400 font-bold">.config/</span>
+                {`                        `}
+                <span className="text-slate-500 italic">
+                  # Configurações ocultas do utilizador
+                </span>
+                {`
+│   └── `}
+                <span className="text-blue-400 font-bold">autostart/</span>
+                {`                  `}
+                <span className="text-slate-500 italic">
+                  # Programas iniciados com o ambiente gráfico
+                </span>
+                {`
+│       └── `}
+                <span className="text-slate-400">reconhecimento.desktop</span>
+                {`  `}
+                <span className="text-slate-500 italic">
+                  # Atalho para autostart do Reconhecimento Facial
+                </span>
+                {`
+├── `}
                 <span className="text-blue-400 font-bold">Desktop/</span>
                 {`                        `}
                 <span className="text-slate-500 italic">
@@ -57,16 +78,12 @@ const Organization = () => {
                   Reconhecimento-Facial/
                 </span>
                 {`          `}
-                <span className="text-slate-500 italic">
-                  # Repositório central do projeto de Reconhecimento Facial
-                </span>
+                <span className="text-slate-500 italic"></span>
                 {`
 │       ├── `}
                 <span className="text-blue-400 font-bold">Script/</span>
                 {`                   `}
-                <span className="text-slate-500 italic">
-                  # Lógica principal do sistema
-                </span>
+                <span className="text-slate-500 italic"></span>
                 {`
 │       │   ├── `}
                 <span className="text-blue-400 font-bold">dataset/</span>
@@ -121,30 +138,22 @@ const Organization = () => {
 │       ├── `}
                 <span className="text-slate-400">.gitignore</span>
                 {`              `}
-                <span className="text-slate-500 italic">
-                  # Ficheiro de exclusão para o controlo de versões Git
-                </span>
+                <span className="text-slate-500 italic"></span>
                 {`
 │       ├── `}
                 <span className="text-slate-400">LICENSE</span>
                 {`                 `}
-                <span className="text-slate-500 italic">
-                  # Licença de utilização e distribuição do código
-                </span>
+                <span className="text-slate-500 italic"></span>
                 {`
 │       ├── `}
                 <span className="text-slate-400">README.md</span>
                 {`               `}
-                <span className="text-slate-500 italic">
-                  # Documentação com instruções do projeto
-                </span>
+                <span className="text-slate-500 italic"></span>
                 {`
 │       └── `}
                 <span className="text-slate-400">requirements.txt</span>
                 {`        `}
-                <span className="text-slate-500 italic">
-                  # Lista de dependências Python para instalação
-                </span>
+                <span className="text-slate-500 italic"></span>
                 {`
 ├── `}
                 <span className="text-emerald-400">iniciar.sh</span>
@@ -170,47 +179,37 @@ const Organization = () => {
 ├── `}
                 <span className="text-slate-400">.~lock..iniciar.sh#</span>
                 {`               `}
-                <span className="text-slate-500 italic">
-                  # Ficheiro de bloqueio criado por editores de texto
-                </span>
+                <span className="text-slate-500 italic"></span>
                 {`
 ├── `}
                 <span className="text-slate-400">
                   .sudo_as_admin_successful
                 </span>
                 {`         `}
-                <span className="text-slate-500 italic">
-                  # Registo de que o utilizador já usou o comando sudo
-                </span>
+                <span className="text-slate-500 italic"></span>
                 {`
 ├── `}
                 <span className="text-slate-400">.Xauthority</span>
                 {`                       `}
-                <span className="text-slate-500 italic">
-                  # Credenciais para acesso seguro ao servidor gráfico X11
-                </span>
+                <span className="text-slate-500 italic"></span>
                 {`
 ├── `}
                 <span className="text-slate-400">.xsession-errors</span>
                 {`                  `}
-                <span className="text-slate-500 italic">
-                  # Registos de erros e avisos do ambiente de trabalho
-                </span>
+                <span className="text-slate-500 italic"></span>
                 {`
 └── `}
                 <span className="text-slate-400">.xsession-errors.old</span>
                 {`              `}
-                <span className="text-slate-500 italic">
-                  # Backup dos registos da sessão gráfica anterior
-                </span>
-                `
+                <span className="text-slate-500 italic"></span>
               </code>
             </pre>
           </div>
         </div>
         <p className="mt-6">
-          O conteúdo dos Scripts de inicialização estão presentes na Wiki do
-          Repositório. Clique{" "}
+          O conteúdo dos Scripts de inicialização{" "}
+          <span className="text-emerald-400">(iniciar.sh)</span> estão presentes
+          na Wiki do Repositório. Clique{" "}
           <a
             className="text-amber-300"
             href="https://github.com/Victor-Sarris/Totem-Reconhecimento-Facial/wiki/05.-Cria%C3%A7%C3%A3o-de-AutoStart-File"
