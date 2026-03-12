@@ -956,35 +956,80 @@ const DocsPage = () => {
           </h2>
           <div className="mb-4 text-justify">
             <p className="mb-4 text-justify">
-              <div className="font-bold text-blue-400 gap-2.5 text-[18px] mb-16">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Consequuntur quas, officia nobis aperiam incidunt aut officiis
-                culpa quod accusantium omnis in dolor iure voluptatem sunt ullam
-                voluptatum optio eum maxime.
-              </div>
-              <div className="mb-3.5">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Veritatis error corrupti quae perferendis numquam, dolor et
-                eveniet modi fugit doloremque hic, culpa laudantium illum?
-                Voluptatem qui voluptas dolore repellat ratione.
-              </div>
-              <div className="mb-3.5">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Perferendis ad rerum dolor iste sunt accusantium repellat?
-                Deleniti asperiores natus possimus! Amet, in nihil? Vero id
-                mollitia, et architecto tenetur repudiandae.
-              </div>
-              <div className="mb-3.5">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima
-                dignissimos ex alias maiores id. Facilis delectus architecto,
-                maiores quaerat ducimus error sit commodi praesentium, quos quod
-                ratione neque ex repellat. segurança.
-              </div>
-              <div className="mb-3.5">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Suscipit repellendus, neque veritatis autem nam odit. Ullam sunt
-                facilis minima amet provident quia culpa, voluptatem optio
-                reiciendis quod, sapiente, laboriosam itaque!
+              <div className="mb-4 text-justify">
+                <div className="mb-3.5 text-justify">
+                  <h4 className="font-bold text-indigo-400 gap-2.5 text-[18px]">
+                    2. Firmware de Captura na Borda (C++ - espcam.ino)
+                  </h4>
+                  <p className="mt-2 text-slate-400">
+                    Este código é compilado e gravado no microcontrolador
+                    ESP32-CAM. Ele atua como o "olho" do sistema (Edge Device),
+                    dedicado exclusivamente a capturar o ambiente em tempo real
+                    e fornecer as imagens para a rede. O firmware divide-se nas
+                    seguintes lógicas:
+                  </p>
+                </div>
+
+                <div className="mb-3.5">
+                  <span className="font-bold text-indigo-200">
+                    Configuração de Hardware e Pinagem:
+                  </span>{" "}
+                  O código define mapeamentos precisos de pinos{" "}
+                  <code>(GPIOs)</code> específicos para o modelo de placa{" "}
+                  <span className="font-bold text-orange-400">AI Thinker</span>.
+                  Uma etapa crítica de estabilidade no <code>setup()</code> é a
+                  desativação do "Brownout Detector"{" "}
+                  <code>(RTC_CNTL_BROWN_OUT_REG)</code>, o que impede que o
+                  ESP32 reinicie sozinho devido aos picos de consumo de corrente
+                  gerados pela inicialização do sensor de imagem e do Wi-Fi.
+                </div>
+
+                <div className="mb-3.5">
+                  <span className="font-bold text-indigo-200">
+                    Servidor de Streaming de Vídeo (MJPEG):
+                  </span>{" "}
+                  Através da biblioteca <code>esp_http_server.h</code>, o
+                  microcontrolador levanta um servidor web na porta 80. A função{" "}
+                  <span className="text-orange-400">stream_handler</span> é o
+                  coração deste processo: ela captura quadros (frames)
+                  ininterruptamente, os converte para JPEG e os transmite pela
+                  rota <code>/stream</code> usando a técnica de cabeçalho{" "}
+                  <span className="font-bold text-indigo-300">
+                    multipart/x-mixed-replace
+                  </span>
+                  . É exatamente esta rota que o nosso sistema em Python acessa
+                  para "puxar" o vídeo.
+                </div>
+
+                <div className="mb-3.5">
+                  <span className="font-bold text-indigo-200">
+                    Otimização de Memória (PSRAM):
+                  </span>{" "}
+                  Durante a inicialização da câmera{" "}
+                  <code>(esp_camera_init)</code>, o código verifica
+                  automaticamente se a placa possui memória PSRAM externa. Se
+                  possuir, ele aumenta a resolução do vídeo para{" "}
+                  <span className="font-bold text-green-400">VGA</span> e
+                  melhora a qualidade do JPEG. Caso não tenha, ele ajusta para
+                  resoluções menores (
+                  <span className="text-green-400">SVGA</span>) para não
+                  sobrecarregar a memória interna.
+                </div>
+
+                <div className="mb-3.5">
+                  <span className="font-bold text-indigo-200">
+                    Conectividade e Iluminação:
+                  </span>{" "}
+                  O ESP32-CAM conecta-se à rede Wi-Fi local configurada e
+                  imprime o seu endereço IP no Monitor Serial. Além disso, o
+                  pino responsável pelo{" "}
+                  <span className="font-bold text-yellow-200">
+                    Flash LED (GPIO 4)
+                  </span>{" "}
+                  foi configurado. Ele inicia desligado, mas o laço principal{" "}
+                  <code>loop()</code> contém a instrução para ativá-lo, o que
+                  pode ser útil para iluminar rostos em ambientes escuros.
+                </div>
               </div>
             </p>
           </div>
