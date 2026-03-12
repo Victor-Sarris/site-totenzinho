@@ -3,6 +3,7 @@ import { Book, Code, Terminal, Cpu, Copy, Check } from "lucide-react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { LuBrainCog } from "react-icons/lu";
+import SidebarDocs from "../components/SidebarDocs";
 
 // ===================== Componente de Bloco de Código com Copy =====================
 const CodeBlock = ({ language, code, fileName, iconColor }) => {
@@ -843,7 +844,7 @@ const DocsPage = () => {
   return (
     <div className="min-h-screen bg-slate-900 text-slate-300 flex font-sans">
       {/* Sidebar de Navegação */}
-
+      <SidebarDocs />
       {/* Área de Conteúdo Principal */}
       <main className="flex-1 md:ml-64 p-8 lg:p-12 max-w-4xl">
         <div className="mb-10" id="intro">
