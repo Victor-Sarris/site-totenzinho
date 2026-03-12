@@ -11,35 +11,12 @@ import {
   FileSpreadsheet,
   Book,
 } from "lucide-react";
+import { FcSportsMode, FcElectronics, FcWorkflow } from "react-icons/fc";
 import Diagrama from ".././assets/img/Wiki/Diagrama.png";
 import Fluxograma from ".././assets/img/Wiki/Fluxograma.png";
 import Arquitetura from ".././assets/img/Wiki/Arquitetura.png";
 
 // ===================== Componente de desenvolvimento =====================
-const OverlayDesenvolvimento = () => (
-  <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 backdrop-blur-sm px-4">
-    <div className="bg-slate-800 border border-slate-700 rounded-2xl p-8 max-w-md w-full text-center shadow-2xl">
-      <div className="flex justify-center mb-6">
-        <div className="p-4 bg-blue-500/20 rounded-full">
-          <Wrench className="h-10 w-10 text-blue-400" />
-        </div>
-      </div>
-
-      <h2 className="text-2xl font-bold text-white mb-3">Em Desenvolvimento</h2>
-      <p className="text-slate-400 mb-8 leading-relaxed">
-        A Wiki do projeto ainda está sendo construída. Volte em breve para
-        conferir os guias de montagem, modelagem 3D e referências teóricas!
-      </p>
-
-      <Link
-        to="/site-totenzinho"
-        className="inline-flex items-center justify-center w-full px-6 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium transition-colors"
-      >
-        Voltar ao Início
-      </Link>
-    </div>
-  </div>
-);
 
 const DiagramTabs = ({ diagramaImg }) => {
   const [abaAtiva, setAbaAtiva] = useState("arquitetura");
@@ -124,6 +101,17 @@ const DiagramTabs = ({ diagramaImg }) => {
     </div>
   );
 };
+
+// Componente do Card da Wiki
+const WikiCard = ({ icon, title, description }) => (
+  <button className="text-left p-6 rounded-xl bg-slate-800 border border-slate-700 hover:border-blue-500 hover:bg-slate-800/80 transition-all group cursor-pointer">
+    <div className="mb-4 p-2 bg-slate-900 inline-block rounded-lg group-hover:scale-110 transition-transform">
+      {icon}
+    </div>
+    <h3 className="text-lg font-bold text-white mb-2">{title}</h3>
+    <p className="text-sm text-slate-400">{description}</p>
+  </button>
+);
 
 // ===================== Fim do Componente de desenvolvimento =====================
 
@@ -226,7 +214,10 @@ const WikiPage = () => {
 
           <div className="prose prose-invert max-w-none text-slate-300">
             <h3 className="text-xl font-semibold text-white mt-6 mb-3">
-              1. Introdução
+              <p className="flex gap-3">
+                <FcSportsMode className="h-8.5 w-8.5" />
+                1. Introdução
+              </p>
             </h3>
             <p className="mb-4 leading-relaxed">
               A motivação deste projeto surge da necessidade de tornar mais
@@ -248,7 +239,10 @@ const WikiPage = () => {
             </p>
 
             <h3 className="text-xl font-semibold text-white mt-8 mb-3">
-              2. Componentes Utilizados
+              <p className="flex gap-3">
+                <FcElectronics className="h-8.5 w-8.5" />
+                2. Compentes Utilizados
+              </p>
             </h3>
             <ul className="list-disc pl-5 mb-4 space-y-2">
               <li>
@@ -266,7 +260,10 @@ const WikiPage = () => {
             </ul>
 
             <h3 className="text-xl font-semibold text-white mt-8 mb-3">
-              3. Diagrama do Sistema
+              <p className="flex gap-3">
+                <FcWorkflow className="h-8.5 w-8.5" />
+                3. Diagrama de Sistemas
+              </p>
             </h3>
             <DiagramTabs diagramaImg={Diagrama} />
             <p className="mb-4 leading-relaxed">
@@ -290,16 +287,5 @@ const WikiPage = () => {
     </div>
   );
 };
-
-// Componente do Card da Wiki
-const WikiCard = ({ icon, title, description }) => (
-  <button className="text-left p-6 rounded-xl bg-slate-800 border border-slate-700 hover:border-blue-500 hover:bg-slate-800/80 transition-all group cursor-pointer">
-    <div className="mb-4 p-2 bg-slate-900 inline-block rounded-lg group-hover:scale-110 transition-transform">
-      {icon}
-    </div>
-    <h3 className="text-lg font-bold text-white mb-2">{title}</h3>
-    <p className="text-sm text-slate-400">{description}</p>
-  </button>
-);
 
 export default WikiPage;
