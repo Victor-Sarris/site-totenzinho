@@ -1,8 +1,8 @@
 import React from "react";
-import { Book, Code, Terminal, Cpu } from "lucide-react";
-// Importando o SyntaxHighlighter e o tema estilo VS Code
+import { Book, Code, Terminal, Cpu, Copy, Check } from "lucide-react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { LuBrainCog } from "react-icons/lu";
 
 // --- CÓDIGOS EXTRAÍDOS PARA MANTER O COMPONENTE LIMPO ---
 
@@ -807,50 +807,80 @@ const DocsPage = () => {
             <Terminal className="text-cyan-400 h-6 w-6" />
             Módulo de Visão Computacional (Python)
           </h2>
-          <p className="mb-4">
-            [ 1. Módulo de Visão Computacional (Python - 03_reconhecer.py) Este
-            guião é o "cérebro" do sistema, responsável por processar as
-            imagens, identificar rostos e gerir os acessos. Ele está dividido
-            nas seguintes componentes principais:
-            <br />
-            <br />
-            Captura de Vídeo Assíncrona (VideoStream): A classe VideoStream
-            liga-se ao IP da câmara (ESP-CAM) e obtém o fluxo de vídeo (MJPEG)
-            através da biblioteca requests. Este processo corre numa thread
-            separada (segundo plano), garantindo que a captura de frames não
-            bloqueia o processamento da interface nem da Inteligência
-            Artificial, resultando num sistema muito mais fluido e sem atrasos.
-            <br />
-            <br />
-            Inteligência Artificial e Reconhecimento: No loop_principal, o
-            sistema utiliza a biblioteca face_recognition (baseada em dlib) para
-            detetar a localização dos rostos na imagem e extrair os seus
-            "encodings" (vetores faciais). Estes vetores são então comparados
-            com a lista de utilizadores conhecidos guardada em ficheiro
-            (encodings.pickle). Se a distância matemática entre o rosto detetado
-            e um rosto conhecido for inferior a 0.5 (alta confiança), o sistema
-            reconhece o utilizador e liberta o acesso, iniciando um período de
-            "cooldown" (pausa) para não registar a mesma pessoa repetidamente em
-            curtos espaços de tempo.
-            <br />
-            <br />
-            Base de Dados e Auditoria SQLite: A função iniciar_banco cria uma
-            base de dados local (totem_banco.db) com duas tabelas: Usuarios e
-            Logs_Acesso. Sempre que um utilizador é reconhecido, a função
-            registrar_acesso_db é chamada, guardando não só o nome e a hora, mas
-            também o nível de confiança da IA e uma fotografia exata do momento
-            do acesso, servindo como auditoria de segurança.
-            <br />
-            <br />
-            Interface Gráfica (OpenCV) e API Web (Flask): O sistema desenha a
-            sua própria interface em ecrã inteiro com a biblioteca OpenCV,
-            possuindo botões interativos para registar novos utilizadores no
-            próprio local. Adicionalmente, o módulo levanta um servidor web em
-            Flask na porta 5000. Esta API permite o registo remoto de rostos
-            (/api/cadastrar_direto), a visualização do relatório de acessos em
-            formato JSON (/api/relatorio) e também a retransmissão do vídeo
-            processado (com os quadrados à volta das caras) através da rota
-            /video_feed. ]
+          <p className="mb-4 text-justify">
+            <div className="mb-3.5 text-justify">
+              <h4 className="font-bold text-blue-400 gap-2.5 text-[18px]  ">
+                1. Módulo de Visão Computacional (Python - 03_reconhecer.py)
+                Este guião é o "cérebro" do sistema, responsável por processar
+                as imagens, identificar rostos e gerir os acessos. Ele está
+                dividido nas seguintes componentes principais:
+              </h4>
+            </div>
+            <div className="mb-3.5">
+              <span className="font-bold text-blue-200">
+                Captura de Vídeo Assíncrona (VideoStream):
+              </span>{" "}
+              A classe VideoStream liga-se ao IP da câmara{" "}
+              <span className="text-red-500">(ESP-CAM)</span> e obtém o fluxo de
+              vídeo (MJPEG) através da biblioteca requests. Este processo corre
+              numa thread separada (segundo plano), garantindo que a captura de
+              frames não bloqueia o processamento da interface nem da{" "}
+              <span className="text-blue-500 font-bold">
+                Inteligência Artificial
+              </span>
+              , resultando num sistema muito mais fluido e sem atrasos.
+            </div>
+
+            <div className="mb-3.5">
+              <span className="font-bold text-blue-200">
+                Inteligência Artificial e Reconhecimento:
+              </span>{" "}
+              No loop_principal, o sistema utiliza a biblioteca face_recognition{" "}
+              <span className="font-bold text-red-500">(baseada em dlib)</span>{" "}
+              para detetar a localização dos rostos na imagem e extrair os seus
+              "encodings" (vetores faciais). Estes vetores são então comparados
+              com a lista de utilizadores conhecidos guardada em ficheiro{" "}
+              <span className="font-bold text-red-500">(encodings.pickle)</span>
+              . Se a distância matemática entre o rosto detetado e um rosto
+              conhecido for inferior a 0.5 (alta confiança), o sistema reconhece
+              o utilizador e liberta o acesso, iniciando um período de
+              "cooldown" (pausa) para não registar a mesma pessoa repetidamente
+              em curtos espaços de tempo.
+            </div>
+            <div className="mb-3.5">
+              <span className="font-bold text-blue-200">
+                Base de Dados e Auditoria SQLite:
+              </span>{" "}
+              A função iniciar_banco cria uma base de dados local{" "}
+              <span className="font-bold text-amber-500">(totem_banco.db)</span>{" "}
+              com duas tabelas: Usuarios e Logs_Acesso. Sempre que um utilizador
+              é reconhecido, a função{" "}
+              <span className=" text-amber-500">registrar_acesso_db</span> é
+              chamada, guardando não só o nome e a hora, mas também o nível de
+              confiança da IA e uma fotografia exata do momento do acesso,
+              servindo como auditoria de segurança.
+            </div>
+            <div className="mb-3.5">
+              <span className="font-bold text-blue-200">
+                Interface Gráfica (OpenCV) e API Web (Flask):
+              </span>
+              O sistema desenha a sua própria interface em ecrã inteiro com a
+              biblioteca <span className="text-green-400">OpenCV</span>,
+              possuindo botões interativos para registar novos utilizadores no
+              próprio local. Adicionalmente, o módulo levanta um servidor web em{" "}
+              <span className="text-green-400">Flask</span> na porta 5000. Esta
+              API permite o registo remoto de rostos{" "}
+              <span className="font-bold text-green-400">
+                (/api/cadastrar_direto)
+              </span>
+              , a visualização do relatório de acessos em{" "}
+              <span className="text-green-400">
+                formato JSON (/api/relatorio)
+              </span>{" "}
+              e também a retransmissão do vídeo processado (com os quadrados à
+              volta das caras) através da rota{" "}
+              <span className="text-green-400">/video_feed</span>.
+            </div>
           </p>
 
           <div className="bg-slate-950 rounded-xl border border-slate-800 overflow-hidden shadow-lg">
