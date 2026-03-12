@@ -1,6 +1,49 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Camera, Cpu, Box, Github, Book, FileText } from "lucide-react";
+import { TbHandFingerDown } from "react-icons/tb";
+import {
+  FaInstagramSquare,
+  FaGithubSquare,
+  FaLinkedin,
+  FaDiscord,
+} from "react-icons/fa";
+// Componentes Auxiliares
+const ScanFace = (props) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <path d="M3 7V5a2 2 0 0 1 2-2h2" />
+    <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+    <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
+    <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+    <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+    <path d="M9 9h.01" />
+    <path d="M15 9h.01" />
+  </svg>
+);
+
+const FeatureCard = ({ icon, title, description }) => (
+  <div className="p-6 rounded-2xl bg-slate-800 border border-slate-700 hover:border-blue-500/50 transition-colors group">
+    <div className="mb-4 p-3 rounded-lg bg-slate-900 inline-block group-hover:scale-110 transition-transform">
+      {icon}
+    </div>
+    <h3 className="text-xl font-semibold mb-2 text-slate-100">{title}</h3>
+    <p className="text-slate-400 leading-relaxed">{description}</p>
+  </div>
+);
+
+const TechBadge = ({ name }) => (
+  <span className="px-4 py-2 rounded-full bg-slate-800 border border-slate-700 text-slate-300 text-sm font-medium hover:bg-slate-700 transition-colors cursor-default">
+    {name}
+  </span>
+);
 
 const TotemLandingPage = () => {
   return (
@@ -111,6 +154,76 @@ const TotemLandingPage = () => {
           </div>
         </div>
       </section>
+      <section className="py-16">
+        {" "}
+        {/* Adicionei um padding vertical para dar um respiro */}
+        <div className="flex flex-col items-center gap-6">
+          {" "}
+          {/* items-center centraliza tudo, gap-6 dá espaçamento */}
+          <img
+            src="https://avatars.githubusercontent.com/u/178488451?v=4"
+            alt="Victor Sarrís"
+            className="h-64 w-64 rounded-full border-4 border-blue-800 object-cover"
+            /* Mudei h-65/w-65 para 64 (padrão do Tailwind), aumentei a borda para 4 e adicionei object-cover */
+          />
+          <h1 className="font-bold text-center text-3xl text-blue-400">
+            Desenvolvedor: <span className="text-blue-200">Victor Sarrís</span>
+          </h1>
+          <div>
+            <p className="flex items-center justify-center gap-2 text-center font-bold text-lg text-slate-300">
+              Fique à vontade para conhecer minhas redes sociais
+              <TbHandFingerDown className="h-6 w-6 text-blue-400 animate-bounce" />{" "}
+              {/* Animação e cor no ícone */}
+            </p>
+            <div className="flex m-10 gap-5">
+              <a
+                href="https://www.instagram.com/v1ctor.zx7/"
+                target="blank"
+                rel="external"
+                className="flex pt-3 pb-3 pl-2 pr-2 cursor-pointer rounded-2xl hover:border border-amber-50 "
+              >
+                <p className="flex text-center gap-3">
+                  <FaInstagramSquare className="w-9 h-9" />
+                  Instagram
+                </p>
+              </a>
+              <a
+                href="https://github.com/Victor-Sarris"
+                target="blank"
+                rel="external"
+                className="flex pt-3 pb-3 pl-2 pr-2 cursor-pointer rounded-2xl hover:border border-amber-50 "
+              >
+                <p className="flex text-center gap-3">
+                  <FaGithubSquare className="w-9 h-9" />
+                  GitHub
+                </p>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/victorsarris/"
+                target="blank"
+                rel="external"
+                className="flex pt-3 pb-3 pl-2 pr-2 cursor-pointer rounded-2xl hover:border border-amber-50 "
+              >
+                <p className="flex text-center gap-3">
+                  <FaLinkedin className="w-9 h-9" />
+                  Linkedin
+                </p>
+              </a>
+              <a
+                href="1351690649803427991"
+                target="blank"
+                rel="external"
+                className="flex pt-3 pb-3 pl-2 pr-2 cursor-pointer rounded-2xl hover:border border-amber-50 "
+              >
+                <p className="flex text-center gap-3">
+                  <FaDiscord className="w-9 h-9" />
+                  Discrod
+                </p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Footer */}
       <footer className="py-8 border-t border-slate-800 bg-slate-900 text-center text-slate-500 text-sm flex flex-col items-center justify-center gap-2">
@@ -126,42 +239,5 @@ const TotemLandingPage = () => {
     </div>
   );
 };
-
-// Componentes Auxiliares
-const ScanFace = (props) => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    {...props}
-  >
-    <path d="M3 7V5a2 2 0 0 1 2-2h2" />
-    <path d="M17 3h2a2 2 0 0 1 2 2v2" />
-    <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
-    <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
-    <path d="M8 14s1.5 2 4 2 4-2 4-2" />
-    <path d="M9 9h.01" />
-    <path d="M15 9h.01" />
-  </svg>
-);
-
-const FeatureCard = ({ icon, title, description }) => (
-  <div className="p-6 rounded-2xl bg-slate-800 border border-slate-700 hover:border-blue-500/50 transition-colors group">
-    <div className="mb-4 p-3 rounded-lg bg-slate-900 inline-block group-hover:scale-110 transition-transform">
-      {icon}
-    </div>
-    <h3 className="text-xl font-semibold mb-2 text-slate-100">{title}</h3>
-    <p className="text-slate-400 leading-relaxed">{description}</p>
-  </div>
-);
-
-const TechBadge = ({ name }) => (
-  <span className="px-4 py-2 rounded-full bg-slate-800 border border-slate-700 text-slate-300 text-sm font-medium hover:bg-slate-700 transition-colors cursor-default">
-    {name}
-  </span>
-);
 
 export default TotemLandingPage;
