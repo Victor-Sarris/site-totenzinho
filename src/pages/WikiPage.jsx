@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   FileText,
@@ -11,31 +11,106 @@ import {
   FileSpreadsheet,
   Book,
 } from "lucide-react";
-import Diagrama from ".././assets/img/Networkdiagraexample.png";
+import { FcSportsMode, FcElectronics, FcWorkflow } from "react-icons/fc";
+import Diagrama from ".././assets/img/Wiki/Diagrama.png";
+import Fluxograma from ".././assets/img/Wiki/Fluxograma.png";
+import Arquitetura from ".././assets/img/Wiki/Arquitetura.png";
+
 // ===================== Componente de desenvolvimento =====================
-const OverlayDesenvolvimento = () => (
-  <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 backdrop-blur-sm px-4">
-    <div className="bg-slate-800 border border-slate-700 rounded-2xl p-8 max-w-md w-full text-center shadow-2xl">
-      <div className="flex justify-center mb-6">
-        <div className="p-4 bg-blue-500/20 rounded-full">
-          <Wrench className="h-10 w-10 text-blue-400" />
-        </div>
+
+const DiagramTabs = ({ diagramaImg }) => {
+  const [abaAtiva, setAbaAtiva] = useState("arquitetura");
+
+  return (
+    <div className="w-full mb-6">
+      {/* Botões de abas */}
+      <div className="flex space-x-2 mb-4 border-b border-slate-700 pb-4">
+        <button
+          onClick={() => setAbaAtiva("diagrama")}
+          className="`px-5 py-2.5 rounded-lg font-semibold transition-all duration-200 cursor-pointer flex gap-3 p-9 hover:border-blue-600 ${
+            abaAtiva === 'diagrama'
+              ? 'bg-blue-600 text-white shadow-lg shadow-blue-900/20'
+              : 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border border-slate-700'
+              `}"
+        >
+          Arquitetura
+        </button>
+        <button
+          onClick={() => setAbaAtiva("fluxograma")}
+          className="`px-5 py-2.5 rounded-lg font-semibold transition-all duration-200 cursor-pointer flex gap-3 p-9 hover:border-blue-600 ${
+            abaAtiva === 'fluxograma'
+              ? 'bg-blue-600 text-white shadow-lg shadow-blue-900/20'
+              : 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border border-slate-700'
+              }`"
+        >
+          Fluxograma
+        </button>
+        <button
+          onClick={() => setAbaAtiva("arquitetura")}
+          className="`px-5 py-2.5 rounded-lg font-semibold transition-all duration-200 cursor-pointer flex gap-3 p-9 hover:border-blue-600 ${
+            abaAtiva === 'arquitetura'
+              ? 'bg-blue-600 text-white shadow-lg shadow-blue-900/20'
+              : 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border border-slate-700'
+              }`"
+        >
+          Arquitetura
+        </button>
       </div>
+      {/* Área de exibição da imagem */}
+      <div className="w-full min-h-75 bg-slate-900 border border-slate-700 border-dashed rounded-xl flex items-center justify-center p-4">
+        {abaAtiva === "diagrama" && (
+          <div className="w-full flex flex-col items-center animate-in fade-in duration-300">
+            <img
+              src={Diagrama}
+              alt="Diagrama do Sistema"
+              className="max-h-full h-auto rounded"
+            />
+            <p className="text-slate-500 mt-4 text-sm font-medium">
+              Visão geral da arquitetura de hardware e software.
+            </p>
+          </div>
+        )}
 
-      <h2 className="text-2xl font-bold text-white mb-3">Em Desenvolvimento</h2>
-      <p className="text-slate-400 mb-8 leading-relaxed">
-        A Wiki do projeto ainda está sendo construída. Volte em breve para
-        conferir os guias de montagem, modelagem 3D e referências teóricas!
-      </p>
+        {abaAtiva === "fluxograma" && (
+          <div className="w-full flex flex-col items-center animate-in fade-in duration-300">
+            <img
+              src={Fluxograma}
+              alt="Fluxograma do Sistema"
+              className="max-w-full h-auto rounded"
+            />
+            <div className="text-slate-500 text-center py-12">
+              <Layers className="h-12 w-12 mx-auto mb-3 opacity-50" />
+              <p>Insira a imagem do seu Fluxograma aqui.</p>
+            </div>
+          </div>
+        )}
 
-      <Link
-        to="/site-totenzinho"
-        className="inline-flex items-center justify-center w-full px-6 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium transition-colors"
-      >
-        Voltar ao Início
-      </Link>
+        {abaAtiva === "arquitetura" && (
+          <div className="w-full flex flex-col items-center animate-in fade-in duration-300">
+            <img
+              src={Arquitetura}
+              alt="Arquitetura do Sistema"
+              className="max-h-full h-auto rounded"
+            />
+            <p className="text-slate-500 mt-4 text-sm font-medium">
+              Visão geral da arquitetura de hardware e software.
+            </p>
+          </div>
+        )}
+      </div>
     </div>
-  </div>
+  );
+};
+
+// Componente do Card da Wiki
+const WikiCard = ({ icon, title, description }) => (
+  <button className="text-left p-6 rounded-xl bg-slate-800 border border-slate-700 hover:border-blue-500 hover:bg-slate-800/80 transition-all group cursor-pointer">
+    <div className="mb-4 p-2 bg-slate-900 inline-block rounded-lg group-hover:scale-110 transition-transform">
+      {icon}
+    </div>
+    <h3 className="text-lg font-bold text-white mb-2">{title}</h3>
+    <p className="text-sm text-slate-400">{description}</p>
+  </button>
 );
 
 // ===================== Fim do Componente de desenvolvimento =====================
@@ -139,10 +214,13 @@ const WikiPage = () => {
 
           <div className="prose prose-invert max-w-none text-slate-300">
             <h3 className="text-xl font-semibold text-white mt-6 mb-3">
-              1. Introdução
+              <p className="flex gap-3">
+                <FcSportsMode className="h-8.5 w-8.5" />
+                1. Introdução
+              </p>
             </h3>
             <p className="mb-4 leading-relaxed">
-              [A motivação deste projeto surge da necessidade de tornar mais
+              A motivação deste projeto surge da necessidade de tornar mais
               eficiente e seguro o processo de controle de acesso em clínicas de
               saúde. Atualmente, o credenciamento de pacientes é, em muitos
               casos, realizado de forma manual, o que o torna suscetível a
@@ -157,11 +235,14 @@ const WikiPage = () => {
               propõe o desenvolvimento e a avaliação de um sistema automatizado
               de check-in baseado em reconhecimento facial, com o objetivo de
               reduzir o tempo de atendimento, aumentar a eficiência operacional
-              e validar, de forma científica, seu impacto no ambiente clínico.]
+              e validar, de forma científica, seu impacto no ambiente clínico.
             </p>
 
             <h3 className="text-xl font-semibold text-white mt-8 mb-3">
-              2. Componentes Utilizados
+              <p className="flex gap-3">
+                <FcElectronics className="h-8.5 w-8.5" />
+                2. Compentes Utilizados
+              </p>
             </h3>
             <ul className="list-disc pl-5 mb-4 space-y-2">
               <li>
@@ -179,11 +260,12 @@ const WikiPage = () => {
             </ul>
 
             <h3 className="text-xl font-semibold text-white mt-8 mb-3">
-              3. Diagrama do Sistema
+              <p className="flex gap-3">
+                <FcWorkflow className="h-8.5 w-8.5" />
+                3. Diagrama de Sistemas
+              </p>
             </h3>
-            <div className="w-full h-64 bg-slate-900 border border-slate-700 border-dashed rounded-lg flex items-center justify-center text-slate-500 mb-4">
-              <img src={Diagrama} alt="" />
-            </div>
+            <DiagramTabs diagramaImg={Diagrama} />
             <p className="mb-4 leading-relaxed">
               A arquitetura de hardware do projeto é dividida em estágios de
               captura e processamento. O nó de captura na borda da rede utiliza
@@ -205,16 +287,5 @@ const WikiPage = () => {
     </div>
   );
 };
-
-// Componente do Card da Wiki
-const WikiCard = ({ icon, title, description }) => (
-  <button className="text-left p-6 rounded-xl bg-slate-800 border border-slate-700 hover:border-blue-500 hover:bg-slate-800/80 transition-all group cursor-pointer">
-    <div className="mb-4 p-2 bg-slate-900 inline-block rounded-lg group-hover:scale-110 transition-transform">
-      {icon}
-    </div>
-    <h3 className="text-lg font-bold text-white mb-2">{title}</h3>
-    <p className="text-sm text-slate-400">{description}</p>
-  </button>
-);
 
 export default WikiPage;
