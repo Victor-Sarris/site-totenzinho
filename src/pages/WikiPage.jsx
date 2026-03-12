@@ -65,9 +65,6 @@ const DiagramTabs = ({ diagramaImg }) => {
               alt="Diagrama do Sistema"
               className="max-h-full h-auto rounded"
             />
-            <p className="text-slate-500 mt-4 text-sm font-medium">
-              Visão geral da arquitetura de hardware e software.
-            </p>
           </div>
         )}
 
@@ -78,10 +75,6 @@ const DiagramTabs = ({ diagramaImg }) => {
               alt="Fluxograma do Sistema"
               className="max-w-full h-auto rounded"
             />
-            <div className="text-slate-500 text-center py-12">
-              <Layers className="h-12 w-12 mx-auto mb-3 opacity-50" />
-              <p>Insira a imagem do seu Fluxograma aqui.</p>
-            </div>
           </div>
         )}
 
@@ -92,9 +85,6 @@ const DiagramTabs = ({ diagramaImg }) => {
               alt="Arquitetura do Sistema"
               className="max-h-full h-auto rounded"
             />
-            <p className="text-slate-500 mt-4 text-sm font-medium">
-              Visão geral da arquitetura de hardware e software.
-            </p>
           </div>
         )}
       </div>
