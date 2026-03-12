@@ -171,8 +171,7 @@ const TotemLandingPage = () => {
           </h1>
           <div>
             <p className="flex items-center justify-center gap-2 text-center font-bold text-lg text-slate-300">
-              Meu nome é Victor Sarrís. Fique à vontade para conhecer minhas
-              redes sociais
+              Fique à vontade para conhecer minhas redes sociais
               <TbHandFingerDown className="h-6 w-6 text-blue-400 animate-bounce" />{" "}
               {/* Animação e cor no ícone */}
             </p>
