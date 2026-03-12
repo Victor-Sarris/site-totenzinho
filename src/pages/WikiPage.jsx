@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   FileText,
@@ -11,7 +11,10 @@ import {
   FileSpreadsheet,
   Book,
 } from "lucide-react";
-import Diagrama from ".././assets/img/Networkdiagraexample.png";
+import Diagrama from ".././assets/img/Wiki/Diagrama.png";
+import Fluxograma from ".././assets/img/Wiki/Fluxograma.png";
+import Arquitetura from ".././assets/img/Wiki/Arquitetura.png";
+
 // ===================== Componente de desenvolvimento =====================
 const OverlayDesenvolvimento = () => (
   <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 backdrop-blur-sm px-4">
@@ -37,6 +40,90 @@ const OverlayDesenvolvimento = () => (
     </div>
   </div>
 );
+
+const DiagramTabs = ({ diagramaImg }) => {
+  const [abaAtiva, setAbaAtiva] = useState("arquitetura");
+
+  return (
+    <div className="w-full mb-6">
+      {/* Botões de abas */}
+      <div className="flex space-x-2 mb-4 border-b border-slate-700 pb-4">
+        <button
+          onClick={() => setAbaAtiva("diagrama")}
+          className="`px-5 py-2.5 rounded-lg font-semibold transition-all duration-200 cursor-pointer flex gap-3 p-9 hover:border-blue-600 ${
+            abaAtiva === 'diagrama'
+              ? 'bg-blue-600 text-white shadow-lg shadow-blue-900/20'
+              : 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border border-slate-700'
+              `}"
+        >
+          Arquitetura
+        </button>
+        <button
+          onClick={() => setAbaAtiva("fluxograma")}
+          className="`px-5 py-2.5 rounded-lg font-semibold transition-all duration-200 cursor-pointer flex gap-3 p-9 hover:border-blue-600 ${
+            abaAtiva === 'fluxograma'
+              ? 'bg-blue-600 text-white shadow-lg shadow-blue-900/20'
+              : 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border border-slate-700'
+              }`"
+        >
+          Fluxograma
+        </button>
+        <button
+          onClick={() => setAbaAtiva("arquitetura")}
+          className="`px-5 py-2.5 rounded-lg font-semibold transition-all duration-200 cursor-pointer flex gap-3 p-9 hover:border-blue-600 ${
+            abaAtiva === 'arquitetura'
+              ? 'bg-blue-600 text-white shadow-lg shadow-blue-900/20'
+              : 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border border-slate-700'
+              }`"
+        >
+          Arquitetura
+        </button>
+      </div>
+      {/* Área de exibição da imagem */}
+      <div className="w-full min-h-75 bg-slate-900 border border-slate-700 border-dashed rounded-xl flex items-center justify-center p-4">
+        {abaAtiva === "diagrama" && (
+          <div className="w-full flex flex-col items-center animate-in fade-in duration-300">
+            <img
+              src={Diagrama}
+              alt="Diagrama do Sistema"
+              className="max-h-full h-auto rounded"
+            />
+            <p className="text-slate-500 mt-4 text-sm font-medium">
+              Visão geral da arquitetura de hardware e software.
+            </p>
+          </div>
+        )}
+
+        {abaAtiva === "fluxograma" && (
+          <div className="w-full flex flex-col items-center animate-in fade-in duration-300">
+            <img
+              src={Fluxograma}
+              alt="Fluxograma do Sistema"
+              className="max-w-full h-auto rounded"
+            />
+            <div className="text-slate-500 text-center py-12">
+              <Layers className="h-12 w-12 mx-auto mb-3 opacity-50" />
+              <p>Insira a imagem do seu Fluxograma aqui.</p>
+            </div>
+          </div>
+        )}
+
+        {abaAtiva === "arquitetura" && (
+          <div className="w-full flex flex-col items-center animate-in fade-in duration-300">
+            <img
+              src={Arquitetura}
+              alt="Arquitetura do Sistema"
+              className="max-h-full h-auto rounded"
+            />
+            <p className="text-slate-500 mt-4 text-sm font-medium">
+              Visão geral da arquitetura de hardware e software.
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
 
 // ===================== Fim do Componente de desenvolvimento =====================
 
@@ -142,7 +229,7 @@ const WikiPage = () => {
               1. Introdução
             </h3>
             <p className="mb-4 leading-relaxed">
-              [A motivação deste projeto surge da necessidade de tornar mais
+              A motivação deste projeto surge da necessidade de tornar mais
               eficiente e seguro o processo de controle de acesso em clínicas de
               saúde. Atualmente, o credenciamento de pacientes é, em muitos
               casos, realizado de forma manual, o que o torna suscetível a
@@ -157,7 +244,7 @@ const WikiPage = () => {
               propõe o desenvolvimento e a avaliação de um sistema automatizado
               de check-in baseado em reconhecimento facial, com o objetivo de
               reduzir o tempo de atendimento, aumentar a eficiência operacional
-              e validar, de forma científica, seu impacto no ambiente clínico.]
+              e validar, de forma científica, seu impacto no ambiente clínico.
             </p>
 
             <h3 className="text-xl font-semibold text-white mt-8 mb-3">
@@ -181,9 +268,7 @@ const WikiPage = () => {
             <h3 className="text-xl font-semibold text-white mt-8 mb-3">
               3. Diagrama do Sistema
             </h3>
-            <div className="w-full h-64 bg-slate-900 border border-slate-700 border-dashed rounded-lg flex items-center justify-center text-slate-500 mb-4">
-              <img src={Diagrama} alt="" />
-            </div>
+            <DiagramTabs diagramaImg={Diagrama} />
             <p className="mb-4 leading-relaxed">
               A arquitetura de hardware do projeto é dividida em estágios de
               captura e processamento. O nó de captura na borda da rede utiliza
