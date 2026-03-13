@@ -152,6 +152,12 @@ const TotemLandingPage = () => {
             <TechBadge name="C / C++" />
             <TechBadge name="Blender" />
           </div>
+          <h4 className="mt-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            Link do repositório geral:{" "}
+            <a href="" className="text-blue-200 font-bold cursor-pointer">
+              face-recognion
+            </a>
+          </h4>
         </div>
       </section>
       <section className="py-16">
@@ -177,7 +183,7 @@ const TotemLandingPage = () => {
             </p>
             <div className="flex m-10 gap-5">
               <a
-                href="https://www.instagram.com/v1ctor.zx7/"
+                href="https://www.instagram.com/victorsax7_/"
                 target="blank"
                 rel="external"
                 className="flex pt-3 pb-3 pl-2 pr-2 cursor-pointer rounded-2xl hover:border border-amber-50 "
@@ -209,7 +215,7 @@ const TotemLandingPage = () => {
                   Linkedin
                 </p>
               </a>
-              <a
+              {/* <a
                 href="1351690649803427991"
                 target="blank"
                 rel="external"
@@ -219,7 +225,7 @@ const TotemLandingPage = () => {
                   <FaDiscord className="w-9 h-9" />
                   Discrod
                 </p>
-              </a>
+              </a> */}
             </div>
           </div>
         </div>
