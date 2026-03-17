@@ -12,6 +12,10 @@ import Circuit from "./Circuit.jsx";
 
 // Importacoes de paginas da documentacao
 import LibraryPage from "./DocsPage/LibraryPage.jsx";
+import Connection from "./DocsPage/ConnectionSsh.jsx";
+import RemoteLabrador from "./DocsPage/RemoteLabrador.jsx";
+import Venv from "./DocsPage/VenvCreat.jsx";
+import AutoStart from "./DocsPage/AutoStartFile.jsx";
 
 function App() {
   return (
@@ -33,6 +37,19 @@ function App() {
             <Route
               path="/documentacao/library-install"
               element={<LibraryPage />}
+            />
+            <Route
+              path="/documentacao/connection-ssh"
+              element={<Connection />}
+            />
+            <Route
+              path="/documentacao/remote-labrador"
+              element={<RemoteLabrador />}
+            />
+            <Route path="/documentacao/venv" element={<Venv />} />
+            <Route
+              path="/documentacao/auto-start-file"
+              element={<AutoStart />}
             />
           </Routes>
         </div>
