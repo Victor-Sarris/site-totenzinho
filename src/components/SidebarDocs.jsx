@@ -1,11 +1,19 @@
-import { Book, Code, Terminal, Cpu, ChevronRight } from "lucide-react";
+import React, { useState } from "react";
+import { Book, Terminal, Cpu, ChevronRight, ChevronDown } from "lucide-react";
 
 const SidebarDocs = () => {
+  const [isIntroOpen, setIsIntroOpen] = useState(true);
+
   const rolarParaSecao = (id) => {
     const elemento = document.getElementById(id);
     if (elemento) {
       elemento.scrollIntoView({ behavior: "smooth", block: "start" });
     }
+  };
+
+  const handleIntroClick = () => {
+    setIsIntroOpen(!isIntroOpen);
+    rolarParaSecao("intro");
   };
 
   return (
@@ -19,37 +27,45 @@ const SidebarDocs = () => {
         <p className="text-xs text-slate-500 mt-2">Guia de Módulos</p>
       </div>
 
-      {/* Links de Navegação */}
       <nav className="flex-1 space-y-2">
         <button
-          onClick={() => rolarParaSecao("intro")}
-          className="w-full text-left flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all duration-200 group border border-transparent hover:border-slate-700 cursor-pointer"
+          onClick={handleIntroClick}
+          className="w-full text-left flex items-center justify-between px-4 py-3 text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all duration-200 group border border-transparent hover:border-slate-700 cursor-pointer"
         >
-          <Book className="h-4 w-4 text-slate-500 group-hover:text-blue-400 transition-colors" />
-          <span className="font-medium text-sm">1. Introdução</span>
-          <ChevronRight className="h-4 w-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity text-slate-500" />
+          <div className="flex items-center gap-3">
+            <Book className="h-4 w-4 text-slate-500 group-hover:text-blue-400 transition-colors" />
+            <span className="font-medium text-sm">1. Introdução</span>
+          </div>
+          {isIntroOpen ? (
+            <ChevronDown className="h-4 w-4 text-slate-500 group-hover:text-white transition-colors" />
+          ) : (
+            <ChevronRight className="h-4 w-4 text-slate-500 group-hover:text-white transition-colors" />
+          )}
         </button>
 
-        <button
-          onClick={() => rolarParaSecao("reconhecimento")}
-          className="w-full text-left flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all duration-200 group border border-transparent hover:border-slate-700 cursor-pointer"
+        <div
+          className={`space-y-1 overflow-hidden transition-all duration-300 ease-in-out ${
+            isIntroOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
+          }`}
         >
-          <Terminal className="h-4 w-4 text-slate-500 group-hover:text-cyan-400 transition-colors" />
-          <span className="font-medium text-sm">2. IA (Python)</span>
-          <ChevronRight className="h-4 w-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity text-slate-500" />
-        </button>
+          <button
+            onClick={() => rolarParaSecao("reconhecimento")}
+            className="w-full text-left flex items-center gap-3 pl-10 pr-4 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800/30 rounded-xl transition-all duration-200 group border border-transparent hover:border-slate-700 cursor-pointer"
+          >
+            <Terminal className="h-4 w-4 text-slate-500 group-hover:text-cyan-400 transition-colors" />
+            <span className="font-medium text-sm">IA (Python)</span>
+          </button>
 
-        <button
-          onClick={() => rolarParaSecao("esp32")}
-          className="w-full text-left flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all duration-200 group border border-transparent hover:border-slate-700 cursor-pointer"
-        >
-          <Cpu className="h-4 w-4 text-slate-500 group-hover:text-indigo-400 transition-colors" />
-          <span className="font-medium text-sm">3. Firmware (C++)</span>
-          <ChevronRight className="h-4 w-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity text-slate-500" />
-        </button>
+          <button
+            onClick={() => rolarParaSecao("esp32")}
+            className="w-full text-left flex items-center gap-3 pl-10 pr-4 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800/30 rounded-xl transition-all duration-200 group border border-transparent hover:border-slate-700 cursor-pointer"
+          >
+            <Cpu className="h-4 w-4 text-slate-500 group-hover:text-indigo-400 transition-colors" />
+            <span className="font-medium text-sm">Firmware (C++)</span>
+          </button>
+        </div>
       </nav>
 
-      {/* Rodapé da Sidebar */}
       <div className="mt-auto pb-8 px-4 text-center">
         <p className="text-xs text-slate-600 font-medium">TotemID v1.0</p>
       </div>
