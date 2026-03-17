@@ -45,7 +45,7 @@ const SidebarDocs = () => {
           >
             <div className="flex items-center gap-3">
               <span className="font-semibold text-sm text-blue-400">
-                01. Introdução
+                Introdução
               </span>
             </div>
             {abertos.introducao ? (
@@ -56,7 +56,7 @@ const SidebarDocs = () => {
           </button>
 
           <div
-            className={`space-y-1 overflow-hidden transition-all duration-300 ease-in-out ${abertos.introducao ? "max-h-[500px] opacity-100 py-1" : "max-h-0 opacity-0"}`}
+            className={`space-y-1 overflow-hidden transition-all duration-300 ease-in-out ${abertos.introducao ? "max-h-125 opacity-100 py-1" : "max-h-0 opacity-0"}`}
           >
             {/* Tópicos de IA e Firmware */}
             <button
@@ -78,6 +78,24 @@ const SidebarDocs = () => {
 
         {/* 02. SSH */}
         <div className="flex flex-col">
+          <button
+            onClick={() => {
+              toggleMenu("ssh");
+              rolarParaSecao("ssh");
+            }}
+            className="w-full text-left flex items-center justify-between px-4 py-3 text-slate-300 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all duration-200 group border border-transparent hover:border-slate-700 cursor-pointer"
+          >
+            <div className="flex items-center gap-3 overflow-hidden">
+              <span className="font-semibold text-sm text-blue-400">
+                01. Instalacao de Bibliotecas
+              </span>
+            </div>
+            {abertos.ssh ? (
+              <ChevronDown className="h-4 w-4 text-slate-500 shrink-0" />
+            ) : (
+              <ChevronRight className="h-4 w-4 text-slate-500 shrink-0" />
+            )}
+          </button>
           <button
             onClick={() => {
               toggleMenu("ssh");
