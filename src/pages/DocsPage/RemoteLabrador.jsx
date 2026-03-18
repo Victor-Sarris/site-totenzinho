@@ -86,6 +86,19 @@ const RemoteLabrador = () => {
             Primeiramente, precisamos de um software para visualizar a tela do
             Labrador. Faça o download do cliente de acesso remoto.
           </p>
+          <p>
+            Clique{" "}
+            <a
+              className="text-red-500 font-bold"
+              target="blank"
+              rel="external"
+              href="https://youtu.be/9YCLG-LLUZI"
+            >
+              aqui
+            </a>{" "}
+            para acessar o vídeo complementar que eu mesmo fiz sobre a conexão
+            com VNCServer com o Labrador!
+          </p>
           <div className="space-y-8">
             <div className="bg-slate-800/30 p-4 rounded-xl border border-slate-800">
               <img

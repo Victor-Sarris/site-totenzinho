@@ -127,6 +127,10 @@ const LibraryPage = () => {
             <CodeBlock language="bash" code="pip install requests" />
             <CodeBlock language="bash" code="pip install flask" />
           </div>
+          <p>
+            Agora você tem as bibliotecas necessárias para rodar o projeto no
+            seu PC :)
+          </p>
         </section>
 
         {/* Instalação no Labrador */}
