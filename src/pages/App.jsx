@@ -1,4 +1,5 @@
 import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
+// Importacoes de Paginas principais
 import "./App.css";
 import Index from "./Index.jsx";
 import Home from "./home.jsx";
@@ -9,6 +10,13 @@ import Models3d from "./Models3d.jsx";
 import Organization from "./Organization.jsx";
 import Circuit from "./Circuit.jsx";
 
+// Importacoes de paginas da documentacao
+import LibraryPage from "./DocsPage/LibraryPage.jsx";
+import Connection from "./DocsPage/ConnectionSsh.jsx";
+import RemoteLabrador from "./DocsPage/RemoteLabrador.jsx";
+import Venv from "./DocsPage/VenvCreat.jsx";
+import AutoStart from "./DocsPage/AutoStartFile.jsx";
+
 function App() {
   return (
     <>
@@ -16,6 +24,7 @@ function App() {
         <Navbar />
         <div className="pt-16">
           <Routes>
+            {/* Paginas Principais */}
             <Route path="/" element={<Index />} />
             <Route path="/site-totenzinho" element={<Home />} />
             <Route path="/documentacao" element={<DocsPage />} />
@@ -23,6 +32,25 @@ function App() {
             <Route path="/models" element={<Models3d />} />
             <Route path="/org" element={<Organization />} />
             <Route path="/cir" element={<Circuit />} />
+
+            {/* Paginas de Documentacao */}
+            <Route
+              path="/documentacao/library-install"
+              element={<LibraryPage />}
+            />
+            <Route
+              path="/documentacao/connection-ssh"
+              element={<Connection />}
+            />
+            <Route
+              path="/documentacao/remote-labrador"
+              element={<RemoteLabrador />}
+            />
+            <Route path="/documentacao/venv" element={<Venv />} />
+            <Route
+              path="/documentacao/auto-start-file"
+              element={<AutoStart />}
+            />
           </Routes>
         </div>
       </HashRouter>

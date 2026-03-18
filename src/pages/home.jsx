@@ -234,7 +234,7 @@ const TotemLandingPage = () => {
       {/* Footer */}
       <footer className="py-8 border-t border-slate-800 bg-slate-900 text-center text-slate-500 text-sm flex flex-col items-center justify-center gap-2">
         <p>
-          Desenvolvido por <strong>Victor Sarrís</strong>
+          Desenvolvido por <strong>Victor Sarrís | 🔱🪽</strong>
         </p>
         <p>
           Estudante de Análise e Desenvolvimento de Sistemas (TADS) no IFPI |
