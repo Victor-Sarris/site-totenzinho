@@ -123,69 +123,75 @@ const SidebarDocs = () => {
 
         {/* 03. Controle Remoto */}
         <div className="flex flex-col">
-          <button
-            onClick={() => {
-              toggleMenu("remoto");
-              rolarParaSecao("remoto");
-            }}
-            className="w-full text-left flex items-center justify-between px-4 py-3 text-slate-300 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all duration-200 group border border-transparent hover:border-slate-700 cursor-pointer"
-          >
-            <div className="flex items-center gap-3 overflow-hidden">
-              <span className="font-semibold text-sm text-blue-400 ">
-                03. Como controlar o Labrador remotamente pelo seu PC pessoal
-              </span>
-            </div>
-            {abertos.remoto ? (
-              <ChevronDown className="h-4 w-4 text-slate-500 shrink-0" />
-            ) : (
-              <ChevronRight className="h-4 w-4 text-slate-500 shrink-0" />
-            )}
-          </button>
+          <Link to="/documentacao/remote-labrador">
+            <button
+              onClick={() => {
+                toggleMenu("remoto");
+                rolarParaSecao("remoto");
+              }}
+              className="w-full text-left flex items-center justify-between px-4 py-3 text-slate-300 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all duration-200 group border border-transparent hover:border-slate-700 cursor-pointer"
+            >
+              <div className="flex items-center gap-3 overflow-hidden">
+                <span className="font-semibold text-sm text-blue-400 ">
+                  03. Como controlar o Labrador remotamente pelo seu PC pessoal
+                </span>
+              </div>
+              {abertos.remoto ? (
+                <ChevronDown className="h-4 w-4 text-slate-500 shrink-0" />
+              ) : (
+                <ChevronRight className="h-4 w-4 text-slate-500 shrink-0" />
+              )}
+            </button>
+          </Link>
         </div>
 
         {/* 04. Venv */}
         <div className="flex flex-col">
-          <button
-            onClick={() => {
-              toggleMenu("venv");
-              rolarParaSecao("venv");
-            }}
-            className="w-full text-left flex items-center justify-between px-4 py-3 text-slate-300 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all duration-200 group border border-transparent hover:border-slate-700 cursor-pointer"
-          >
-            <div className="flex items-center gap-3 overflow-hidden">
-              <span className="font-semibold text-sm text-blue-400 ">
-                04. Criação de Ambiente Virtual (Venv) no Labrador
-              </span>
-            </div>
-            {abertos.venv ? (
-              <ChevronDown className="h-4 w-4 text-slate-500 shrink-0" />
-            ) : (
-              <ChevronRight className="h-4 w-4 text-slate-500 shrink-0" />
-            )}
-          </button>
+          <Link to="/documentacao/venv">
+            <button
+              onClick={() => {
+                toggleMenu("venv");
+                rolarParaSecao("venv");
+              }}
+              className="w-full text-left flex items-center justify-between px-4 py-3 text-slate-300 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all duration-200 group border border-transparent hover:border-slate-700 cursor-pointer"
+            >
+              <div className="flex items-center gap-3 overflow-hidden">
+                <span className="font-semibold text-sm text-blue-400 ">
+                  04. Criação de Ambiente Virtual (Venv) no Labrador
+                </span>
+              </div>
+              {abertos.venv ? (
+                <ChevronDown className="h-4 w-4 text-slate-500 shrink-0" />
+              ) : (
+                <ChevronRight className="h-4 w-4 text-slate-500 shrink-0" />
+              )}
+            </button>
+          </Link>
         </div>
 
         {/* 05. AutoStart */}
         <div className="flex flex-col">
-          <button
-            onClick={() => {
-              toggleMenu("autostart");
-              rolarParaSecao("autostart");
-            }}
-            className="w-full text-left flex items-center justify-between px-4 py-3 text-slate-300 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all duration-200 group border border-transparent hover:border-slate-700 cursor-pointer"
-          >
-            <div className="flex items-center gap-3 overflow-hidden">
-              <span className="font-semibold text-sm text-blue-400">
-                05. Criação de AutoStart File (Inicializacão de Sistema
-                automático)
-              </span>
-            </div>
-            {abertos.autostart ? (
-              <ChevronDown className="h-4 w-4 text-slate-500 shrink-0" />
-            ) : (
-              <ChevronRight className="h-4 w-4 text-slate-500 shrink-0" />
-            )}
-          </button>
+          <Link to="/documentacao/auto-start-file">
+            <button
+              onClick={() => {
+                toggleMenu("autostart");
+                rolarParaSecao("autostart");
+              }}
+              className="w-full text-left flex items-center justify-between px-4 py-3 text-slate-300 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all duration-200 group border border-transparent hover:border-slate-700 cursor-pointer"
+            >
+              <div className="flex items-center gap-3 overflow-hidden">
+                <span className="font-semibold text-sm text-blue-400">
+                  05. Criação de AutoStart File (Inicializacão de Sistema
+                  automático)
+                </span>
+              </div>
+              {abertos.autostart ? (
+                <ChevronDown className="h-4 w-4 text-slate-500 shrink-0" />
+              ) : (
+                <ChevronRight className="h-4 w-4 text-slate-500 shrink-0" />
+              )}
+            </button>
+          </Link>
         </div>
       </nav>
 
