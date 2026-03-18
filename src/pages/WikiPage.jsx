@@ -23,47 +23,48 @@ const DiagramTabs = ({ diagramaImg }) => {
 
   return (
     <div className="w-full mb-6">
-      {/* Botões de abas */}
-      <div className="flex space-x-2 mb-4 border-b border-slate-700 pb-4">
+      {/* Botões de abas corrigidos: flex-wrap para celular e sintaxe do Tailwind arrumada */}
+      <div className="flex flex-wrap gap-2 md:gap-4 mb-4 border-b border-slate-700 pb-4">
         <button
           onClick={() => setAbaAtiva("diagrama")}
-          className="`px-5 py-2.5 rounded-lg font-semibold transition-all duration-200 cursor-pointer flex gap-3 p-9 hover:border-blue-600 ${
-            abaAtiva === 'diagrama'
-              ? 'bg-blue-600 text-white shadow-lg shadow-blue-900/20'
-              : 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border border-slate-700'
-              `}"
+          className={`px-4 py-2 rounded-lg font-semibold transition-all duration-200 cursor-pointer flex-1 md:flex-none justify-center text-center text-sm md:text-base border hover:border-blue-600 ${
+            abaAtiva === "diagrama"
+              ? "bg-blue-600 text-white shadow-lg shadow-blue-900/20 border-blue-600"
+              : "bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border-slate-700"
+          }`}
         >
-          Arquitetura
+          Diagrama
         </button>
         <button
           onClick={() => setAbaAtiva("fluxograma")}
-          className="`px-5 py-2.5 rounded-lg font-semibold transition-all duration-200 cursor-pointer flex gap-3 p-9 hover:border-blue-600 ${
-            abaAtiva === 'fluxograma'
-              ? 'bg-blue-600 text-white shadow-lg shadow-blue-900/20'
-              : 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border border-slate-700'
-              }`"
+          className={`px-4 py-2 rounded-lg font-semibold transition-all duration-200 cursor-pointer flex-1 md:flex-none justify-center text-center text-sm md:text-base border hover:border-blue-600 ${
+            abaAtiva === "fluxograma"
+              ? "bg-blue-600 text-white shadow-lg shadow-blue-900/20 border-blue-600"
+              : "bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border-slate-700"
+          }`}
         >
           Fluxograma
         </button>
         <button
           onClick={() => setAbaAtiva("arquitetura")}
-          className="`px-5 py-2.5 rounded-lg font-semibold transition-all duration-200 cursor-pointer flex gap-3 p-9 hover:border-blue-600 ${
-            abaAtiva === 'arquitetura'
-              ? 'bg-blue-600 text-white shadow-lg shadow-blue-900/20'
-              : 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border border-slate-700'
-              }`"
+          className={`px-4 py-2 rounded-lg font-semibold transition-all duration-200 cursor-pointer flex-1 md:flex-none justify-center text-center text-sm md:text-base border hover:border-blue-600 ${
+            abaAtiva === "arquitetura"
+              ? "bg-blue-600 text-white shadow-lg shadow-blue-900/20 border-blue-600"
+              : "bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border-slate-700"
+          }`}
         >
           Arquitetura
         </button>
       </div>
-      {/* Área de exibição da imagem */}
-      <div className="w-full min-h-75 bg-slate-900 border border-slate-700 border-dashed rounded-xl flex items-center justify-center p-4">
+
+      {/* Área de exibição da imagem corrigida: max-w-full garante que a imagem não vaze a tela */}
+      <div className="w-full min-h-[200px] md:min-h-[300px] bg-slate-900 border border-slate-700 border-dashed rounded-xl flex items-center justify-center p-2 md:p-4 overflow-hidden">
         {abaAtiva === "diagrama" && (
           <div className="w-full flex flex-col items-center animate-in fade-in duration-300">
             <img
               src={Diagrama}
               alt="Diagrama do Sistema"
-              className="max-h-full h-auto rounded"
+              className="max-w-full h-auto rounded object-contain"
             />
           </div>
         )}
@@ -73,7 +74,7 @@ const DiagramTabs = ({ diagramaImg }) => {
             <img
               src={Fluxograma}
               alt="Fluxograma do Sistema"
-              className="max-w-full h-auto rounded"
+              className="max-w-full h-auto rounded object-contain"
             />
           </div>
         )}
@@ -83,7 +84,7 @@ const DiagramTabs = ({ diagramaImg }) => {
             <img
               src={Arquitetura}
               alt="Arquitetura do Sistema"
-              className="max-h-full h-auto rounded"
+              className="max-w-full h-auto rounded object-contain"
             />
           </div>
         )}
@@ -94,7 +95,7 @@ const DiagramTabs = ({ diagramaImg }) => {
 
 // Componente do Card da Wiki
 const WikiCard = ({ icon, title, description }) => (
-  <button className="text-left p-6 rounded-xl bg-slate-800 border border-slate-700 hover:border-blue-500 hover:bg-slate-800/80 transition-all group cursor-pointer">
+  <button className="text-left p-6 w-full rounded-xl bg-slate-800 border border-slate-700 hover:border-blue-500 hover:bg-slate-800/80 transition-all group cursor-pointer">
     <div className="mb-4 p-2 bg-slate-900 inline-block rounded-lg group-hover:scale-110 transition-transform">
       {icon}
     </div>
@@ -107,25 +108,25 @@ const WikiCard = ({ icon, title, description }) => (
 
 const WikiPage = () => {
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-300 p-8 lg:p-12 font-sans">
-      {/* <OverlayDesenvolvimento /> */}
+    <div className="min-h-screen bg-slate-900 text-slate-300 p-4 md:p-8 lg:p-12 font-sans overflow-x-hidden">
       <div className="max-w-6xl mx-auto">
         {/* Header da Wiki */}
-        <header className="mb-12 border-b border-slate-800 pb-8">
-          <h1 className="text-4xl font-bold text-white mb-4">
+        <header className="mb-12 border-b border-slate-800 pb-8 mt-16 md:mt-0">
+          <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Wiki do Projeto
           </h1>
-          <p className="text-lg text-slate-400 max-w-2xl">
+          <p className="text-base md:text-lg text-slate-400 max-w-2xl">
             Guias de montagem, configuração de ambiente, modelagem do case e
             referências teóricas para a construção do Totem de Reconhecimento
             Facial.
           </p>
         </header>
-        <h3 className="text-center font-bold text-2xl mb-12">
+
+        <h3 className="text-center font-bold text-xl md:text-2xl mb-8">
           Recursos do projeto (Fornecidos pelo Autor).
         </h3>
         {/* Grid de Artigos */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {/* Card de Hardware */}
           <Link to="/cir" className="block cursor-pointer">
             <WikiCard
@@ -145,7 +146,7 @@ const WikiPage = () => {
           </Link>
 
           {/* Card de IA */}
-          <Link to="/org">
+          <Link to="/org" className="block cursor-pointer">
             <WikiCard
               icon={<Camera className="text-blue-400 h-6 w-6" />}
               title="Organização de arquivos"
@@ -153,15 +154,16 @@ const WikiPage = () => {
             />
           </Link>
         </div>
-        <h3 className="text-center font-bold text-2xl">
-          Recursos do SBC LABRADOR (Fornecidos oficialmente pela org Caninos
-          Loucos).
+
+        <h3 className="text-center font-bold text-xl md:text-2xl mb-8">
+          Recursos do SBC LABRADOR (Fornecidos oficialmente).
         </h3>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           <Link
             to="https://canisinc.com.br/lojas/caninosloucos/conteudo/midias/folder-labrador32-v22.pdf"
             rel="external"
-            target="blank"
+            target="_blank"
+            className="block cursor-pointer"
           >
             <WikiCard
               icon={<Book className="text-purple-400 h-6 w-6" />}
@@ -172,18 +174,20 @@ const WikiPage = () => {
           <Link
             to="https://caninosloucos.octoserver.com.br/lojas/caninosloucos/conteudo/midias/labrador32-datasheet.pdf"
             rel="external"
-            target="blank"
+            target="_blank"
+            className="block cursor-pointer"
           >
             <WikiCard
               icon={<FileSpreadsheet className="text-purple-400 h-6 w-6" />}
-              title="DATASHEAT - Caninos Loucos"
+              title="DATASHEET - Caninos Loucos"
               description="Documento sobre as métricas e questões de Hardware referentes ao SBC Labrador"
             />
           </Link>
           <Link
             to="https://caninosloucos.octoserver.com.br/lojas/caninosloucos/conteudo/midias/labrador-base-mv21-sch.pdf"
             rel="external"
-            target="blank"
+            target="_blank"
+            className="block cursor-pointer"
           >
             <WikiCard
               icon={<Layers className="text-purple-400 h-6 w-6" />}
@@ -193,21 +197,19 @@ const WikiPage = () => {
           </Link>
         </div>
 
-        {/* Área de Leitura de Artigo (Placeholder para o texto do TCC) */}
-        <article className="bg-slate-800/50 rounded-2xl p-8 border border-slate-700">
+        {/* Área de Leitura de Artigo: padding ajustado para mobile */}
+        <article className="bg-slate-800/50 rounded-2xl p-5 md:p-8 border border-slate-700 break-words">
           <div className="flex items-center gap-3 mb-6">
-            <FileText className="text-white h-8 w-8 p-1.5 bg-blue-600 rounded-lg" />
-            <h2 className="text-3xl font-bold text-white">
+            <FileText className="text-white h-8 w-8 p-1.5 bg-blue-600 rounded-lg shrink-0" />
+            <h2 className="text-2xl md:text-3xl font-bold text-white">
               Artigo em Destaque: Arquitetura Geral
             </h2>
           </div>
 
           <div className="prose prose-invert max-w-none text-slate-300">
-            <h3 className="text-xl font-semibold text-white mt-6 mb-3">
-              <p className="flex gap-3">
-                <FcSportsMode className="h-8.5 w-8.5" />
-                1. Introdução
-              </p>
+            <h3 className="text-xl font-semibold text-white mt-6 mb-3 flex items-center gap-3">
+              <FcSportsMode className="h-8 w-8 shrink-0" />
+              <span>1. Introdução</span>
             </h3>
             <p className="mb-4 leading-relaxed">
               A motivação deste projeto surge da necessidade de tornar mais
@@ -228,34 +230,55 @@ const WikiPage = () => {
               e validar, de forma científica, seu impacto no ambiente clínico.
             </p>
 
-            <h3 className="text-xl font-semibold text-white mt-8 mb-3">
-              <p className="flex gap-3">
-                <FcElectronics className="h-8.5 w-8.5" />
-                2. Compentes Utilizados
-              </p>
+            <h3 className="text-xl font-semibold text-white mt-8 mb-3 flex items-center gap-3">
+              <FcElectronics className="h-8 w-8 shrink-0" />
+              <span>2. Componentes Utilizados</span>
             </h3>
             <ul className="list-disc pl-5 mb-4 space-y-2">
               <li>
                 SBC - Labrador (Unidade principal de processamento){" "}
                 <a
-                  className="to-blue-300"
+                  className="text-blue-400 hover:text-blue-300 underline"
                   href="https://canisinc.com.br/labrador-32-bits"
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   Link
                 </a>
               </li>
-              <li>ESPCAM ov2640 (Cam para reconhecimento)</li>
-              <li>Painel IPS 7P (Interface interação usuário)</li>
+              <li>
+                ESPCAM ov2640 (Cam para reconhecimento){" "}
+                <a
+                  className="text-blue-400 hover:text-blue-300 underline"
+                  href="https://shopee.com.br/M%C3%B3dulo-ESP32-CAM-Wifi-Bluetooth-C%C3%A2mera-OV2640-M%C3%B3dulo-ESP32-CAM-MB-i.992479881.23295612783?extraParams=%7B%22display_model_id%22%3A219568906002%2C%22model_selection_logic%22%3A3%7D&sp_atk=abe8daea-adc3-4d24-85c8-48029ca27503&xptdk=abe8daea-adc3-4d24-85c8-48029ca27503"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Link
+                </a>
+              </li>
+              <li>
+                Painel IPS 7P (Interface interação usuário){" "}
+                <a
+                  className="text-blue-400 hover:text-blue-300 underline"
+                  href="https://shopee.com.br/Tela-Sens%C3%ADvel-Ao-Toque-7-Polegadas-IPS-Para-Raspberry-Pi-4-1024X600-Monitor-LCD-Capacitivo-Port%C3%A1til-3-B--i.860393632.18369999813
+              "
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Link
+                </a>
+              </li>
               <li>Case Totem (Modelo 3D)</li>
             </ul>
 
-            <h3 className="text-xl font-semibold text-white mt-8 mb-3">
-              <p className="flex gap-3">
-                <FcWorkflow className="h-8.5 w-8.5" />
-                3. Diagrama de Sistemas
-              </p>
+            <h3 className="text-xl font-semibold text-white mt-8 mb-3 flex items-center gap-3">
+              <FcWorkflow className="h-8 w-8 shrink-0" />
+              <span>3. Diagrama de Sistemas</span>
             </h3>
+
             <DiagramTabs diagramaImg={Diagrama} />
+
             <p className="mb-4 leading-relaxed">
               A arquitetura de hardware do projeto é dividida em estágios de
               captura e processamento. O nó de captura na borda da rede utiliza

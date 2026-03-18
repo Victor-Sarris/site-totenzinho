@@ -68,7 +68,7 @@ WantedBy=multi-user.target`;
     <div className="min-h-screen bg-slate-900 text-slate-300 flex font-sans">
       <SidebarDocs />
 
-      <main className="flex-1 md:ml-72 p-8 lg:p-12 max-w-4xl pt-24">
+      <main className="flex-1 w-full max-w-3x1 md:ml-72 p-4 md:p-8 lg:p-12 max-w-3xl mx-auto overflow-x-hidden">
         {/* Título Principal */}
         <div className="mb-10 border-b border-slate-800 pb-8">
           <h1 className="text-3xl font-bold text-white mb-4">

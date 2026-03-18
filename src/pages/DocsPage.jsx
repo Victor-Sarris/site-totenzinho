@@ -846,12 +846,12 @@ const DocsPage = () => {
       {/* Sidebar de Navegação */}
       <SidebarDocs />
       {/* Área de Conteúdo Principal */}
-      <main className="flex-1 md:ml-64 p-8 lg:p-12 max-w-4xl">
+      <main className="flex-1 w-full max-w-3x1 md:ml-72 p-4 md:p-8 lg:p-12 max-w-3xl mx-auto overflow-x-hidden">
         <div className="mb-10" id="intro">
-          <h1 className="text-4xl font-bold text-white mb-4">
+          <h1 className="text-2xl font-bold text-white mb-4 md:text-4xl">
             Documentação do Código
           </h1>
-          <p className="text-lg text-slate-400 mb-6">
+          <p className="text-[20px] text-slate-400 mb-6 md:text-lg">
             Abaixo estão os módulos principais do sistema. Utilize o menu
             lateral para navegar entre a lógica de IA e o firmware do
             microcontrolador.

@@ -82,7 +82,7 @@ const TotemLandingPage = () => {
         </div>
         <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
           Reconhecimento Facial <br />
-          <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-cyan-300">
+          <span className="text-transparent text-2xl bg-clip-text bg-linear-to-r from-blue-400 to-cyan-300 md:text-6xl">
             Inteligente e Autônomo
           </span>
         </h1>
@@ -162,33 +162,30 @@ const TotemLandingPage = () => {
       </section>
       <section className="py-16">
         {" "}
-        {/* Adicionei um padding vertical para dar um respiro */}
         <div className="flex flex-col items-center gap-6">
           {" "}
-          {/* items-center centraliza tudo, gap-6 dá espaçamento */}
           <img
             src="https://avatars.githubusercontent.com/u/178488451?v=4"
             alt="Victor Sarrís"
             className="h-64 w-64 rounded-full border-4 border-blue-800 object-cover"
-            /* Mudei h-65/w-65 para 64 (padrão do Tailwind), aumentei a borda para 4 e adicionei object-cover */
           />
-          <h1 className="font-bold text-center text-3xl text-blue-400">
+          <h1 className="font-bold text-center text-2xl text-blue-400 md:text-3xl">
             Desenvolvedor: <span className="text-blue-200">Victor Sarrís</span>
           </h1>
           <div>
-            <p className="flex items-center justify-center gap-2 text-center font-bold text-lg text-slate-300">
+            <p className="flex items-center justify-center gap-2 text-center font-bold  text-slate-300 text-[13px] md:text-lg">
               Fique à vontade para conhecer minhas redes sociais
               <TbHandFingerDown className="h-6 w-6 text-blue-400 animate-bounce" />{" "}
               {/* Animação e cor no ícone */}
             </p>
-            <div className="flex m-10 gap-5">
+            <div className="flex gap-4 mt-8 justify-center md:justify-start">
               <a
                 href="https://www.instagram.com/victorsax7_/"
                 target="blank"
                 rel="external"
-                className="flex pt-3 pb-3 pl-2 pr-2 cursor-pointer rounded-2xl hover:border border-amber-50 "
+                className="flex pt-3 pb-3 pl-2 pr-2 md:cursor-pointer rounded-2xl hover:border border-amber-50"
               >
-                <p className="flex text-center gap-3">
+                <p className="flex text-center gap-3 justify-center">
                   <FaInstagramSquare className="w-9 h-9" />
                   Instagram
                 </p>
@@ -199,7 +196,7 @@ const TotemLandingPage = () => {
                 rel="external"
                 className="flex pt-3 pb-3 pl-2 pr-2 cursor-pointer rounded-2xl hover:border border-amber-50 "
               >
-                <p className="flex text-center gap-3">
+                <p className="flex text-center gap-3 justify-center">
                   <FaGithubSquare className="w-9 h-9" />
                   GitHub
                 </p>
@@ -210,7 +207,7 @@ const TotemLandingPage = () => {
                 rel="external"
                 className="flex pt-3 pb-3 pl-2 pr-2 cursor-pointer rounded-2xl hover:border border-amber-50 "
               >
-                <p className="flex text-center gap-3">
+                <p className="flex text-center gap-3 justify-center">
                   <FaLinkedin className="w-9 h-9" />
                   Linkedin
                 </p>
