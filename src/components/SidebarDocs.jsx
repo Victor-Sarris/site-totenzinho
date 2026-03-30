@@ -140,12 +140,33 @@ const SidebarDocs = () => {
             </button>
           </Link>
         </div>
-        {/* 06. Configuração de ip estático */}
+        <p className="mb-3 mt-3 font-bold">Configuracoes adicionais</p>
+        {/* 01. Monitoramento de Arquivo .Log */}
+        <div className="flex flex-col">
+          <Link to="/documentacao/log-monitoring" onClick={fecharMenuMobile}>
+            <button className="w-full text-left flex items-center justify-between pl-2 pr-4 py-3 text-slate-300 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all duration-200 group border border-transparent hover:border-slate-700 cursor-pointer">
+              <span className="font-semibold text-sm text-blue-400">
+                01. Monitoramento de Arquivo .Log
+              </span>
+            </button>
+          </Link>
+        </div>
+        {/* 02. Rotas do Sistema */}
+        <div className="flex flex-col">
+          <Link to="/documentacao/routes" onClick={fecharMenuMobile}>
+            <button className="w-full text-left flex items-center justify-between pl-2 pr-4 py-3 text-slate-300 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all duration-200 group border border-transparent hover:border-slate-700 cursor-pointer">
+              <span className="font-semibold text-sm text-blue-400">
+                02. Rotas do Sistema
+              </span>
+            </button>
+          </Link>
+        </div>
+        {/* 03. Configuração de ip estático */}
         <div className="flex flex-col">
           <Link to="/documentacao/ip-config" onClick={fecharMenuMobile}>
             <button className="w-full text-left flex items-center justify-between pl-2 pr-4 py-3 text-slate-300 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all duration-200 group border border-transparent hover:border-slate-700 cursor-pointer">
               <span className="font-semibold text-sm text-blue-400">
-                06. Configuração de ip estático
+                03. Configuração de ip estático
               </span>
             </button>
           </Link>
@@ -164,7 +185,7 @@ const SidebarDocs = () => {
       {/* Botão Flutuante (FAB) */}
       <button
         onClick={() => setMenuMobileAberto(!menuMobileAberto)}
-        className="md:hidden fixed bottom-6 right-6 z-[60] bg-blue-600 hover:bg-blue-500 text-white p-4 rounded-full shadow-2xl transition-all duration-300 flex items-center justify-center focus:outline-none"
+        className="md:hidden fixed bottom-6 right-6 z-60 bg-blue-600 hover:bg-blue-500 text-white p-4 rounded-full shadow-2xl transition-all duration-300 flex items-center justify-center focus:outline-none"
       >
         {menuMobileAberto ? (
           <X className="h-6 w-6" />

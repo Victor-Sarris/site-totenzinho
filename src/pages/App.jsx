@@ -17,6 +17,8 @@ import RemoteLabrador from "./DocsPage/RemoteLabrador.jsx";
 import Venv from "./DocsPage/VenvCreat.jsx";
 import AutoStart from "./DocsPage/AutoStartFile.jsx";
 import IpConfig from "./DocsPage/IpConfig.jsx";
+import Log from "./DocsPage/Log.jsx";
+import LabradorRoutes from "./DocsPage/Rotas.jsx";
 
 function App() {
   return (
@@ -53,6 +55,8 @@ function App() {
               element={<AutoStart />}
             />
             <Route path="/documentacao/ip-config" element={<IpConfig />} />
+            <Route path="/documentacao/log-monitoring" element={<Log />} />
+            <Route path="/documentacao/routes" element={<LabradorRoutes />} />
           </Routes>
         </div>
       </HashRouter>
