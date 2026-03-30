@@ -154,7 +154,12 @@ const TotemLandingPage = () => {
           </div>
           <h4 className="mt-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             Link do repositório geral:{" "}
-            <a href="" className="text-blue-200 font-bold cursor-pointer">
+            <a
+              href="https://github.com/Victor-Sarris/Totem-Reconhecimento-Facial"
+              rel="external"
+              target="blank"
+              className="text-blue-200 font-bold cursor-pointer"
+            >
               face-recognion
             </a>
           </h4>
