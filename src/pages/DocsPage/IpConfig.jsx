@@ -3,11 +3,13 @@ import { Copy, Check } from "lucide-react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import SidebarDocs from "../../components/SidebarDocs";
+import { Link } from "react-router-dom";
 
 // importacoes de imagens
 import img1 from "../../assets/img/Docs/IpConfig/1.png";
 import img2 from "../../assets/img/Docs/IpConfig/2.png";
 import img4 from "../../assets/img/Docs/IpConfig/4.png";
+import img5 from "../../assets/img/Docs/IpConfig/5.png";
 
 const CodeBlock = ({ language, code }) => {
   const [copiado, setCopiado] = useState(false);
@@ -134,6 +136,30 @@ const IpConfig = () => {
               language="bash"
               code="sudo nmcli connection modify <NOME_DA_REDE> ipv4.method manual ipv4.addresses <IP_PREFERIDO>/24 ipv4.gateway <IP_REDE> ipv4.dns 8.8.8.8"
             />
+          </div>
+        </section>
+        {/* Configurando Ip da EspCAM */}
+        <section className="bm-16 mt-16">
+          <h2 className="text-2xl font-bold text-white mb-4">
+            Configurando Ip da EspCAM
+          </h2>
+          <div className="bg-slate-800/30 p-4 rounded-xl border border-slate-800 mt-6">
+            <img
+              src={img5}
+              alt="Configuração de Rede"
+              className="w-full rounded-lg shadow-md mb-4 border border-slate-700"
+            />
+            <p className="text-slate-300 mb-6 leading-relaxed">
+              Basta copiar e colar essa parte do algoritmo no espcam.ino que a
+              configuração de ip seja feita!
+            </p>
+            <p className="text-slate-300 mb-6 mt-6 leading-relaxed">
+              Vá para a página de{" "}
+              <Link to="/documentacao" className="text-blue-400 underline">
+                documentação
+              </Link>{" "}
+              para copiar o script inteiro!
+            </p>
           </div>
         </section>
       </main>
