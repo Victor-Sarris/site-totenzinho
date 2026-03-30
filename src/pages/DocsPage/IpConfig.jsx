@@ -62,18 +62,19 @@ const IpConfig = () => {
       <main className="flex-1 md:ml-72 p-8 lg:p-12 max-w-4xl pt-24">
         <div className="mb-10 border-b border-slate-800 pb-8">
           <h1 className="text-3xl font-bold text-white mb-4">
-            06. Configuração de Ip estático
+            06. Configuração de IP Estático
           </h1>
           <p className="text-lg text-slate-400">
-            Aprenda a configurar o ip do labrador e da EspCAM para terem o mesmo
-            ip em uma rede wifi comercial. Isso facilita na conexão automatica
-            dos componentes
+            Aprenda a fixar o endereço de IP da placa Labrador e da ESP-CAM na
+            sua rede Wi-Fi. Ter um IP fixo (estático) garante que os componentes
+            do projeto se encontrem automaticamente na rede, sem que você
+            precise caçar o IP toda vez que reiniciá-los.
           </p>
         </div>
 
         <section className="bm-16">
           <h2 className="text-2xl font-bold text-white mb-4">
-            Configurando Ip do Labrador
+            Configurando o IP do Labrador
           </h2>
           <div className="bg-slate-800/30 p-4 rounded-xl border border-slate-800 mt-6">
             <img
@@ -82,18 +83,21 @@ const IpConfig = () => {
               className="w-full rounded-lg shadow-md mb-4 border border-slate-700"
             />
             <p className="text-slate-300 mb-6 leading-relaxed">
-              Abra as configurações de rede do dispositivo, selecione uma rede
-              de sua preferência e clique na engrenagem "editar" no canto
-              inferior esquerdo (o seu caso pode estar levemente diferente, mas
-              o fluxo é o mesmo). Depois disso, vá para{" "}
-              <span className="text-red-500">"Configuração IPv4"</span>
+              Abra as configurações de rede do sistema, selecione a sua rede
+              Wi-Fi e clique no ícone de engrenagem para editar (a interface
+              pode variar um pouco, mas o caminho é este). Em seguida, acesse a
+              aba{" "}
+              <span className="text-red-500 font-medium">
+                Configuração IPv4
+              </span>
+              .
             </p>
           </div>
         </section>
 
         <section className="bm-16 mt-16">
           <h2 className="text-2xl font-bold text-white mb-4">
-            Configurações de IPv4
+            Ajustando as Rotas do IPv4
           </h2>
           <div className="bg-slate-800/30 p-4 rounded-xl border border-slate-800 mt-6">
             <img
@@ -102,17 +106,23 @@ const IpConfig = () => {
               className="w-full rounded-lg shadow-md mb-4 border border-slate-700"
             />
             <p className="text-slate-300 mb-6 leading-relaxed">
-              Aperte em "editar" e adicione as configurações de sua preferência.
-              No primeiro bloco, coloque o ip que você quer que o Labrador
-              assuma. No segundo coloque a porta do ip, geralmente o linux
-              aceita a porta 24 com aliase da porta 255.255.255.0 . Por fim,
-              coloque o ip da sua rede (ou seja, do seu wifi. No meu caso era:
-              192.168.18.1)
+              Mude o método para "Manual" e preencha os campos com os dados da
+              sua rede:
+              <br />
+              <br />• <strong>Endereço:</strong> O IP fixo que você escolheu
+              para o Labrador.
+              <br />• <strong>Máscara de rede:</strong> Geralmente usamos o
+              prefixo <strong>24</strong> (que equivale a 255.255.255.0).
+              <br />• <strong>Gateway:</strong> O IP do seu roteador (o mesmo
+              que fornece o Wi-Fi. Ex: 192.168.18.1).
             </p>
           </div>
         </section>
+
         <section className="bm-16 mt-16">
-          <h2 className="text-2xl font-bold text-white mb-4">Rota de Fuga!</h2>
+          <h2 className="text-2xl font-bold text-white mb-4">
+            Plano B: Via Terminal
+          </h2>
           <div className="bg-slate-800/30 p-4 rounded-xl border border-slate-800 mt-6">
             <img
               src={img4}
@@ -120,17 +130,17 @@ const IpConfig = () => {
               className="w-full rounded-lg shadow-md mb-4 border border-slate-700"
             />
             <p className="text-slate-300 mb-6 leading-relaxed">
-              Caso as alternativas acima deem errado, vamos apelar para os
-              Scrips de terminal!
+              Se a interface gráfica der dor de cabeça, vamos resolver direto no
+              terminal! Abra o terminal do Labrador e rode o comando abaixo.
             </p>
-            <p className="text-slate-300 mb-6 leading-relaxed">
-              Basta abrir o{" "}
-              <span className="text-green-500">cmd do labrador</span> e colocar
-              o script a baixo{" "}
-              <span className="font-bold">
-                (lembre de modificar o comando para o nome da rede e o ip
-                correspondentes a sua rede)
-              </span>
+            <p className="text-slate-300 mb-6 leading-relaxed bg-yellow-900/20 p-3 rounded border border-yellow-700/50">
+              <span className="font-bold text-yellow-500">Atenção:</span>{" "}
+              Lembre-se de substituir as tags
+              <code className="text-yellow-400 mx-1">&lt;NOME_DA_REDE&gt;</code>
+              ,
+              <code className="text-yellow-400 mx-1">&lt;IP_PREFERIDO&gt;</code>{" "}
+              e<code className="text-yellow-400 mx-1">&lt;IP_REDE&gt;</code>
+              pelos dados reais da sua conexão.
             </p>
             <CodeBlock
               language="bash"
@@ -138,10 +148,10 @@ const IpConfig = () => {
             />
           </div>
         </section>
-        {/* Configurando Ip da EspCAM */}
+
         <section className="bm-16 mt-16">
           <h2 className="text-2xl font-bold text-white mb-4">
-            Configurando Ip da EspCAM
+            Configurando o IP da ESP-CAM
           </h2>
           <div className="bg-slate-800/30 p-4 rounded-xl border border-slate-800 mt-6">
             <img
@@ -149,16 +159,23 @@ const IpConfig = () => {
               alt="Configuração de Rede"
               className="w-full rounded-lg shadow-md mb-4 border border-slate-700"
             />
-            <p className="text-slate-300 mb-6 leading-relaxed">
-              Basta copiar e colar essa parte do algoritmo no espcam.ino que a
-              configuração de ip seja feita!
+            <p className="text-slate-300 mb-4 leading-relaxed">
+              Para a ESP-CAM, a configuração é feita direto no código C++. Basta
+              adicionar as rotinas de IP estático no seu arquivo{" "}
+              <code className="bg-slate-900 px-1 py-0.5 rounded text-slate-400">
+                espcam.ino
+              </code>
+              .
             </p>
-            <p className="text-slate-300 mb-6 mt-6 leading-relaxed">
+            <p className="text-slate-300 mb-2 leading-relaxed">
               Vá para a página de{" "}
-              <Link to="/documentacao" className="text-blue-400 underline">
+              <Link
+                to="/documentacao"
+                className="text-blue-400 hover:text-blue-300 underline transition-colors"
+              >
                 documentação
               </Link>{" "}
-              para copiar o script inteiro!
+              para copiar o script completo!
             </p>
           </div>
         </section>
