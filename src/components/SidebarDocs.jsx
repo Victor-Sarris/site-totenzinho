@@ -140,6 +140,16 @@ const SidebarDocs = () => {
             </button>
           </Link>
         </div>
+        {/* 06. Configuração de ip estático */}
+        <div className="flex flex-col">
+          <Link to="/documentacao/ip-config" onClick={fecharMenuMobile}>
+            <button className="w-full text-left flex items-center justify-between pl-2 pr-4 py-3 text-slate-300 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all duration-200 group border border-transparent hover:border-slate-700 cursor-pointer">
+              <span className="font-semibold text-sm text-blue-400">
+                06. Configuração de ip estático
+              </span>
+            </button>
+          </Link>
+        </div>
       </nav>
 
       <div className="mt-auto pb-8 text-center">

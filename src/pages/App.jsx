@@ -16,6 +16,7 @@ import Connection from "./DocsPage/ConnectionSsh.jsx";
 import RemoteLabrador from "./DocsPage/RemoteLabrador.jsx";
 import Venv from "./DocsPage/VenvCreat.jsx";
 import AutoStart from "./DocsPage/AutoStartFile.jsx";
+import IpConfig from "./DocsPage/IpConfig.jsx";
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
               path="/documentacao/auto-start-file"
               element={<AutoStart />}
             />
+            <Route path="/documentacao/ip-config" element={<IpConfig />} />
           </Routes>
         </div>
       </HashRouter>
