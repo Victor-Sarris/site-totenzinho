@@ -666,17 +666,14 @@ const cppCode = `#include "esp_camera.h"
 #include "soc/rtc_cntl_reg.h"
 #include "esp_http_server.h" 
 
-// ==========================================
-// 1. Configurações de Rede
-// ==========================================
-const char* ssid = "2.4";
-const char* password = "evabarros2025";
+// 1. configuracoes de Rede
+const char* ssid = "root";
+const char* password = "sarris2005";
 
 #define PART_BOUNDARY "123456789000000000000987654321"
 
-// ==========================================
+
 // 2. Pinagem (AI THINKER)
-// ==========================================
 #define PWDN_GPIO_NUM     32
 #define RESET_GPIO_NUM    -1
 #define XCLK_GPIO_NUM      0
@@ -696,12 +693,12 @@ const char* password = "evabarros2025";
 #define PCLK_GPIO_NUM     22
 
 static const char* _STREAM_CONTENT_TYPE = "multipart/x-mixed-replace;boundary=" PART_BOUNDARY;
-static const char* _STREAM_BOUNDARY = "\\r\\n--" PART_BOUNDARY "\\r\\n";
-static const char* _STREAM_PART = "Content-Type: image/jpeg\\r\\nContent-Length: %u\\r\\n\\r\\n";
+static const char* _STREAM_BOUNDARY = "\r\n--" PART_BOUNDARY "\r\n";
+static const char* _STREAM_PART = "Content-Type: image/jpeg\r\nContent-Length: %u\r\n\r\n";
 
 httpd_handle_t stream_httpd = NULL;
 
-// Função que gera o video contínuo
+// funcao que gera o video contínuo
 static esp_err_t stream_handler(httpd_req_t *req){
   camera_fb_t * fb = NULL;
   esp_err_t res = ESP_OK;
@@ -820,6 +817,17 @@ void setup() {
     return;
   }
 
+  // configuracao de ip fixo
+  IPAddress local_IP(192, 168, 18, 159); // O IP fixo para a ESP32
+  IPAddress gateway(192, 168, 18, 1);    // O IP roteador Wi-Fi
+  IPAddress subnet(255, 255, 255, 0);    // Máscara de rede padrão
+  IPAddress primaryDNS(8, 8, 8, 8);      // DNS do Google
+
+  if (!WiFi.config(local_IP, gateway, subnet, primaryDNS)) {
+    Serial.println("Falha ao configurar IP Fixo");
+  }
+  // ==========================================
+
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
@@ -836,7 +844,7 @@ void setup() {
 void loop() {
   delay(10000);
 
-  digitalWrite(FLASH_GPIO_NUM, HIGH); // liga o flash
+  digitalWrite(FLASH_GPIO_NUM, HIGH);
 }
 `;
 
