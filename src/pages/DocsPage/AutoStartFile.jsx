@@ -183,13 +183,13 @@ autologin-user-timeout=0
             reinicialização.
           </p>
           <p>Comandos:</p>
-          <CodeBlock language="bash" code="sudo contrab -e" />
+          <CodeBlock language="bash" code="crontab -e" />
           <p className="text-slate-300 mb-4 leading-relaxed">
             No final do arquivo, coloque:
           </p>
           <CodeBlock
             language="bash"
-            code="@reboot sleep 20 && cp /var/run/lightdm/root/:0 /home/caninos/.Xauthority && chown caninos:caninos /home/caninos/.Xauthority"
+            code="@reboot sleep 20 && sudo cp /var/run/lightdm/root/:0 /home/caninos/.Xauthority && sudo chown caninos:caninos /home/caninos/.Xauthority && /home/caninos/Desktop/Reconhecimento-Facial/Script/iniciar.sh > /home/caninos/log_erro.txt 2>&1"
           />
           <p>O que isso faz:</p>
           <ul className="list-disc ml-7 mt-2.5">
