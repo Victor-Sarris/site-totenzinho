@@ -90,41 +90,41 @@ const SidebarDocs = () => {
           </div>
         </div>
 
+        {/* 01. Venv Create */}
+        <div className="flex flex-col">
+          <Link to="/documentacao/venv" onClick={fecharMenuMobile}>
+            <button className="w-full text-left flex items-center justify-between pl-2 pr-4 py-3 text-slate-300 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all duration-200 group border border-transparent hover:border-slate-700 cursor-pointer">
+              <span className="font-semibold text-sm text-blue-400">
+                01. Criação de Ambiente Virtual (Venv)
+              </span>
+            </button>
+          </Link>
+        </div>
+
         {/* 02. SSH */}
         <div className="flex flex-col">
           <Link to="/documentacao/library-install" onClick={fecharMenuMobile}>
             <button className="w-full text-left flex items-center justify-between pl-2 pr-4 py-3 text-slate-300 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all duration-200 group border border-transparent hover:border-slate-700 cursor-pointer">
               <span className="font-semibold text-sm text-blue-400">
-                01. Instalacao de Bibliotecas
+                02. Instalacao de Bibliotecas
               </span>
             </button>
           </Link>
           <Link to="/documentacao/connection-ssh" onClick={fecharMenuMobile}>
             <button className="w-full text-left flex items-center justify-between pl-2 pr-4 py-3 text-slate-300 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all duration-200 group border border-transparent hover:border-slate-700 cursor-pointer">
               <span className="font-semibold text-sm text-blue-400">
-                02. Como conectar ao Labrador via Putty
+                03. Como conectar ao Labrador via Putty
               </span>
             </button>
           </Link>
         </div>
 
-        {/* 03. Controle Remoto */}
+        {/* 04. Controle Remoto */}
         <div className="flex flex-col">
           <Link to="/documentacao/remote-labrador" onClick={fecharMenuMobile}>
             <button className="w-full text-left flex items-center justify-between pl-2 pr-4 py-3 text-slate-300 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all duration-200 group border border-transparent hover:border-slate-700 cursor-pointer">
               <span className="font-semibold text-sm text-blue-400">
-                03. Como controlar remotamente pelo PC
-              </span>
-            </button>
-          </Link>
-        </div>
-
-        {/* 04. Venv */}
-        <div className="flex flex-col">
-          <Link to="/documentacao/venv" onClick={fecharMenuMobile}>
-            <button className="w-full text-left flex items-center justify-between pl-2 pr-4 py-3 text-slate-300 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all duration-200 group border border-transparent hover:border-slate-700 cursor-pointer">
-              <span className="font-semibold text-sm text-blue-400">
-                04. Criação de Ambiente Virtual (Venv)
+                04. Como controlar remotamente pelo PC
               </span>
             </button>
           </Link>
