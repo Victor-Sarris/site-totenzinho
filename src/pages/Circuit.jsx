@@ -6,9 +6,17 @@ import Receptorov2640 from "../assets/img/circuit/Receptor.png";
 import Sbc from "../assets/img/circuit/Labrador.png";
 import Painel from "../assets/img/circuit/Painel7P.png";
 import Case from "../assets/img/circuit/Case.png";
+import ModuleVL53L0X from "../assets/img/circuit/Modulovl53l0x.png";
 
 const Circuit = () => {
   const componentes = [
+    {
+      id: "Módulo VL530X",
+      nome: "Módulo de Distância VL530X",
+      descricao:
+        "Sensor de distância a laser VL53L0X utilizado para detectar a proximidade do usuário no TotemID. Realiza medições precisas em tempo real via comunicação I2C, permitindo ativar automaticamente o reconhecimento facial quando alguém se aproxima do sistema.",
+      imagem: ModuleVL53L0X,
+    },
     {
       id: "Esp32cam ov2640",
       nome: "Módulo ESP32-CAM",
@@ -130,33 +138,29 @@ const Circuit = () => {
                 acesso.
               </p>
 
-              {/* <ul className="space-y-3 mt-4">
+              <ul className="space-y-3 mt-4">
                 <li className="flex gap-3 text-slate-300 bg-slate-900/50 p-3 rounded-lg border border-slate-700/50">
-                  <span className="font-mono text-red-400 font-bold">5V</span>
+                  <span className="font-mono text-red-400 font-bold">
+                    Modulo VL53L0X
+                  </span>
                   <span>
-                    O pino 5V do ESP32-CAM e o VCC do Relé vão para o positivo
-                    da fonte.
+                    O módulo de distância a laser é conectado nos pinos do
+                    labrador. O VCC, SDATA e SCLK são conectados nos pinos 1, 3,
+                    e 5 (Respectivamente). Enquanto o GND do sensor é conectado
+                    no pino 9.
                   </span>
                 </li>
                 <li className="flex gap-3 text-slate-300 bg-slate-900/50 p-3 rounded-lg border border-slate-700/50">
                   <span className="font-mono text-slate-500 font-bold">
-                    GND
+                    ESPCAM
                   </span>
                   <span>
-                    O pino GND do ESP32-CAM e o GND do Relé vão para o negativo
-                    da fonte.
+                    A ESPCAM não precisa ser conectada diretamente no Labrador.
+                    Basta que o código certo esteja carregado no seu ambiente e
+                    conectado via usb em uma fonte de energia 5V.
                   </span>
                 </li>
-                <li className="flex gap-3 text-slate-300 bg-slate-900/50 p-3 rounded-lg border border-slate-700/50">
-                  <span className="font-mono text-indigo-400 font-bold">
-                    I/O 4
-                  </span>
-                  <span>
-                    Um pino digital (ex: GPIO 4 ou 12) vai para o pino "IN" do
-                    Relé para enviar o sinal de abertura.
-                  </span>
-                </li>
-              </ul> */}
+              </ul>
             </div>
           </div>
         </section>
