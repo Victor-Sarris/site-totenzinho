@@ -9,20 +9,28 @@ const Models3d = () => {
       titulo: "Case TotemID",
       descricao:
         "Estrutura principal desenhada no Blender para acomodar o ESP32-CAM e os componentes de controle de acesso do totem.",
-      // Copie apenas o 'src' do iframe fornecido pelo Sketchfab:
       embedUrl:
-        "https://sketchfab.com/models/7d38826c3a254b13beb0388611358954/embed?autospin=1&autostart=1&preload=1&ui_hint=2&ui_theme=dark",
+        "https://sketchfab.com/models/677ecfa4591f4de1a47767c8cefb16a5/embed?autospin=1&autostart=1&transparent=1&ui_theme=dark",
       linkOriginal: "https://skfb.ly/pH6nB",
     },
-    {
-      id: "totem2",
-      titulo: "Case Totem 2.0V",
-      descricao:
-        "Estrutura principal desenhada no Blender para acomodar o ESP32-CAM e os componentes de controle de acesso do totem.",
-      embedUrl:
-        "https://sketchfab.com/models/0524a229e9744797a4115b63733e1883/embed?autospin=1&autostart=1&preload=1&ui_theme=dark",
-      linkOriginal: "https://skfb.ly/pIxCW",
-    },
+    // {
+    //   id: "totem",
+    //   titulo: "Case TotemID",
+    //   descricao:
+    //     "Estrutura principal desenhada no Blender para acomodar o ESP32-CAM e os componentes de controle de acesso do totem.",
+    //   embedUrl:
+    //     "https://sketchfab.com/models/7d38826c3a254b13beb0388611358954/embed?autospin=1&autostart=1&preload=1&ui_hint=2&ui_theme=dark",
+    //   linkOriginal: "https://skfb.ly/pH6nB",
+    // },
+    // {
+    //   id: "ac-controler",
+    //   titulo: "Case AC-CONTROLER",
+    //   descricao:
+    //     "Invólucro modelado para o controlador inteligente de ar condicionado, focado em ventilação para os sensores térmicos.",
+    //   embedUrl:
+    //     "https://sketchfab.com/models/98b19d5503564b94b8c1cf35df45c84b/embed?autospin=1&autostart=1&ui_hint=0",
+    //   linkOriginal: "https://skfb.ly/pH6nR",
+    // },
   ];
 
   return (

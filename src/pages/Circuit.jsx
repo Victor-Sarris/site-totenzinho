@@ -7,6 +7,7 @@ import Sbc from "../assets/img/circuit/Labrador.png";
 import Painel from "../assets/img/circuit/Painel7P.png";
 import Case from "../assets/img/circuit/Case.png";
 import ModuleVL53L0X from "../assets/img/circuit/Modulovl53l0x.png";
+import Totem_Prototipo from "../assets/img/circuit/Totem-Prototipo.jpeg";
 
 const Circuit = () => {
   const componentes = [
@@ -121,7 +122,7 @@ const Circuit = () => {
             {/* Imagem do diagrama/protótipo */}
             <div className="w-full lg:w-1/2 aspect-4/3 bg-slate-900 rounded-xl border border-slate-700 overflow-hidden relative">
               <img
-                src="https://placehold.co/800x600/0f172a/64748b?text=Ainda+em+Desenvolvimento\nAguarde+mais+alguns+dias"
+                src={Totem_Prototipo}
                 alt="Diagrama do Circuito"
                 className="w-full h-full object-cover"
               />
