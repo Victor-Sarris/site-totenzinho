@@ -230,6 +230,53 @@ const TotemLandingPage = () => {
               </a> */}
             </div>
           </div>
+          <div className="mt-12 flex flex-col items-center border-t border-slate-800 pt-8 w-full max-w-2xl mx-auto animate-fade-in">
+            <h2 className="font-bold text-xl text-blue-400 mb-6">Apoio de:</h2>
+
+            <div className="flex flex-col md:flex-row gap-8 md:gap-16 text-center">
+              {/* Orientador */}
+              <div className="flex flex-col items-center">
+                <img
+                  src="https://avatars.githubusercontent.com/u/9063835?v=4"
+                  alt="Victor Sarrís"
+                  className="h-64 w-64 rounded-full border-4 border-blue-800 object-cover"
+                />
+                <span className="font-bold text-slate-300 text-lg">
+                  Orientador
+                </span>
+                <a
+                  href="https://github.com/profRonaldoIFPI"
+                  target="_blank"
+                  rel="external"
+                  className="text-slate-400 hover:text-white hover:scale-105 transition-all flex items-center gap-2 mt-2"
+                >
+                  <FaGithubSquare className="w-6 h-6" />
+                  Professor Ronaldo
+                </a>
+              </div>
+
+              {/* Parceiro de TCC */}
+              <div className="flex flex-col items-center">
+                <img
+                  src="https://avatars.githubusercontent.com/u/141072429?v=4"
+                  alt="Victor Sarrís"
+                  className="h-64 w-64 rounded-full border-4 border-blue-800 object-cover"
+                />
+                <span className="font-bold text-slate-300 text-lg">
+                  Parceiro de TCC
+                </span>
+                <a
+                  href="https://github.com/cleberhdev"
+                  target="_blank"
+                  rel="external"
+                  className="text-slate-400 hover:text-white hover:scale-105 transition-all flex items-center gap-2 mt-2"
+                >
+                  <FaGithubSquare className="w-6 h-6" />
+                  Cleber Henrique Lacerda Duarte
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
