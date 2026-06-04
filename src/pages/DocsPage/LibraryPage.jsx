@@ -185,6 +185,23 @@ const LibraryPage = () => {
               <CodeBlock language="bash" code="pip install requests" />
               <CodeBlock language="bash" code="sudo apt install cmake -y" />
               <CodeBlock language="bash" code="pip install flask" />
+              <CodeBlock
+                language="bash"
+                code="sudo apt-get install i2c-tools python3-smbus"
+              />
+              <CodeBlock
+                language="bash"
+                code="pip install opencv-python --extra-index-url https://www.piwheels.org/simple --prefer-binary"
+              />
+              <CodeBlock
+                language="bash"
+                code="pip3 install adafruit-circuitpython-vl53l0x"
+              />
+              <CodeBlock language="bash" code="sudo apt-get update" />
+              <CodeBlock
+                language="bash"
+                code="sudo apt-get install libgtk2.0-dev libgtk-3-dev libcanberra-gtk-module -y"
+              />
             </div>
 
             <div>

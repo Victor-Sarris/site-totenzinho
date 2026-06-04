@@ -3,7 +3,6 @@ import { Box, ExternalLink, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Models3d = () => {
-  // Substitua os links em 'embedUrl' pelos links gerados no botão "Embed" do Sketchfab
   const projetos3D = [
     {
       id: "totem",
