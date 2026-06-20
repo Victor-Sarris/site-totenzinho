@@ -42,7 +42,7 @@ const CodeBlock = ({ language, code }) => {
           margin: 0,
           padding: "1.25rem",
           fontSize: "0.875rem",
-          backgroundColor: "#0B1120", // Ajuste para fundo mais escuro
+          backgroundColor: "#0B1120",
         }}
       >
         {code}
@@ -107,8 +107,15 @@ const LibraryPage = () => {
         {/* Instalação no PC */}
         <section id="install-pc" className="mb-12">
           <h2 className="text-xl font-bold text-white mb-4">
-            Instalação de Bibliotecas (Se for fazer o teste no seu PC)
+            Instalação de Bibliotecas (Se for fazer o teste no Windows)
           </h2>
+          <p className="text-slate-300 mb-6 leading-relaxed bg-yellow-900/20 p-3 rounded border border-yellow-700/50">
+            <span className="font-bold text-yellow-500">Atenção:</span> Baixe o
+            Visual Studio Build Tools e instale
+            <code className="text-yellow-400 mx-1">
+              Desenvolvimento para Desktop com C++
+            </code>
+          </p>
           <div className="space-y-4">
             <CodeBlock
               language="bash"
