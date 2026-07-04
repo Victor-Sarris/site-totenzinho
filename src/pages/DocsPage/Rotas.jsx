@@ -1,62 +1,12 @@
-import React, { useState } from "react";
-import { Copy, Check } from "lucide-react";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
-import SidebarDocs from "../../components/SidebarDocs";
-
-const CodeBlock = ({ language, code }) => {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(code);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
-  return (
-    <div className="relative group rounded-md overflow-hidden my-4 bg-gray-800">
-      <button
-        onClick={handleCopy}
-        className="absolute top-2 right-2 p-1.5 rounded bg-gray-700 text-gray-300 hover:text-white transition-colors"
-        title="Copiar link"
-      >
-        {copied ? (
-          <Check size={16} className="text-green-400" />
-        ) : (
-          <Copy size={16} />
-        )}
-      </button>
-      <SyntaxHighlighter
-        language={language}
-        style={vscDarkPlus}
-        customStyle={{
-          margin: 0,
-          padding: "1.5rem 1rem 1rem 1rem",
-          fontSize: "0.875rem",
-        }}
-      >
-        {code}
-      </SyntaxHighlighter>
-    </div>
-  );
-};
+import DocsLayout from "../../components/DocsLayout";
+import CodeBlock from "../../components/CodeBlock";
 
 const LabradorRoutes = () => {
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-300 flex font-sans">
-      <SidebarDocs />
-
-      <main className="flex-1 w-full max-w-3xl md:ml-72 p-4 md:p-8 lg:p-12 mx-auto overflow-x-hidden">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-white mb-2">
-            Rotas do Labrador
-          </h1>
-          <p className="text-slate-400">
-            Abaixo estão listados os endpoints e links de acesso aos serviços
-            rodando no servidor do Labrador.
-          </p>
-        </div>
-
+    <DocsLayout
+      title="02. Rotas do Sistema"
+      description="Abaixo estão listados os endpoints e links de acesso aos serviços rodando no servidor do Labrador."
+    >
         {/* Rota de Video Feed */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
@@ -127,8 +77,7 @@ const LabradorRoutes = () => {
             menos que esteja configurado como IP estático.
           </p>
         </div>
-      </main>
-    </div>
+    </DocsLayout>
   );
 };
 

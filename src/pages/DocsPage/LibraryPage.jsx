@@ -1,64 +1,11 @@
-import React, { useState } from "react";
-import { Copy, Check, Terminal, Info, AlertTriangle } from "lucide-react";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
-import SidebarDocs from "../../components/SidebarDocs";
-
-// ===================== Componente de Bloco de Código com Copy =====================
-const CodeBlock = ({ language, code }) => {
-  const [copiado, setCopiado] = useState(false);
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(code);
-    setCopiado(true);
-
-    setTimeout(() => {
-      setCopiado(false);
-    }, 2000);
-  };
-
-  return (
-    <div className="bg-slate-950 rounded-xl border border-slate-800 overflow-hidden shadow-lg mb-6 group relative">
-      <button
-        onClick={handleCopy}
-        className="absolute top-3 right-3 flex items-center gap-1.5 text-xs text-slate-400 hover:text-white transition-colors cursor-pointer bg-slate-800/80 hover:bg-slate-700 px-3 py-1.5 rounded-md border border-slate-700 z-10 opacity-0 group-hover:opacity-100"
-      >
-        {copiado ? (
-          <>
-            <Check className="h-3.5 w-3.5 text-green-400" />
-            <span className="text-green-400 font-medium">Copiado!</span>
-          </>
-        ) : (
-          <>
-            <Copy className="h-3.5 w-3.5" />
-            <span className="font-medium">Copiar</span>
-          </>
-        )}
-      </button>
-      <SyntaxHighlighter
-        language={language}
-        style={vscDarkPlus}
-        customStyle={{
-          margin: 0,
-          padding: "1.25rem",
-          fontSize: "0.875rem",
-          backgroundColor: "#0B1120",
-        }}
-      >
-        {code}
-      </SyntaxHighlighter>
-    </div>
-  );
-};
+import DocsLayout from "../../components/DocsLayout";
+import CodeBlock from "../../components/CodeBlock";
 
 const LibraryPage = () => {
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-300 flex font-sans">
-      <SidebarDocs />
-
-      <main className="flex-1 w-full max-w-3x1 md:ml-72 p-4 md:p-8 lg:p-12 max-w-3xl mx-auto overflow-x-hidden">
+    <DocsLayout>
         {/* Título Principal */}
-        <div className="mb-10">
+        <div className="mb-10 border-b border-slate-800 pb-8">
           <h1 className="text-3xl font-bold text-white mb-6">
             É recomendado criar e ativar um ambiente de desenvolvimento:
           </h1>
@@ -326,8 +273,7 @@ const LibraryPage = () => {
             <CodeBlock language="bash" code="--break-system-packages" />
           </div>
         </section>
-      </main>
-    </div>
+    </DocsLayout>
   );
 };
 

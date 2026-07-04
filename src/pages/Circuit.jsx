@@ -1,6 +1,5 @@
-import React from "react";
-import { Cpu, ArrowLeft, Zap, Wrench } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Cpu, Zap, Wrench } from "lucide-react";
+import PageHeader from "../components/PageHeader";
 import Esp32ov2640 from "../assets/img/circuit/Ov2640.png";
 import Receptorov2640 from "../assets/img/circuit/Receptor.png";
 import Sbc from "../assets/img/circuit/Labrador.png";
@@ -59,24 +58,15 @@ const Circuit = () => {
     <div className="min-h-screen bg-slate-900 text-slate-300 p-8 lg:p-12 font-sans">
       <div className="max-w-6xl mx-auto">
         {/* Cabeçalho */}
-        <header className="mb-12 border-b border-slate-800 pb-8">
-          <Link
-            to="/wiki"
-            className="inline-flex items-center gap-2 text-blue-500 hover:text-blue-400 mb-6 transition-colors text-sm font-medium"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Voltar para a Wiki
-          </Link>
-          <h1 className="text-4xl font-bold text-white mb-4 flex items-center gap-3">
-            <Cpu className="text-indigo-400 h-10 w-10" />
-            Montagem do Circuito
-          </h1>
-          <p className="text-lg text-slate-400 max-w-3xl">
-            Lista de materiais utilizados e esquema de montagem do hardware do
-            TotemID. A arquitetura foi pensada para ser de baixo custo e fácil
-            de reproduzir.
-          </p>
-        </header>
+        <PageHeader
+          icon={Cpu}
+          iconColor="text-indigo-400"
+          title="Montagem do Circuito"
+          description="Lista de materiais utilizados e esquema de montagem do hardware do TotemID. A arquitetura foi pensada para ser de baixo custo e fácil de reproduzir."
+          descriptionMaxWidth="max-w-3xl"
+          backTo="/wiki"
+          backLabel="Voltar para a Wiki"
+        />
 
         {/* Seção 1: Lista de Componentes */}
         <section className="mb-16">

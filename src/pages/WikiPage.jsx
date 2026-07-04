@@ -1,24 +1,23 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   FileText,
   Box,
   Camera,
   Cpu,
-  Settings,
-  Wrench,
   Layers,
   FileSpreadsheet,
   Book,
 } from "lucide-react";
 import { FcSportsMode, FcElectronics, FcWorkflow } from "react-icons/fc";
+import PageHeader from "../components/PageHeader";
 import Diagrama from ".././assets/img/Wiki/Diagrama.png";
 import Fluxograma from ".././assets/img/Wiki/Fluxograma.png";
 import Arquitetura from ".././assets/img/Wiki/Arquitetura.png";
 
 // ===================== Componente de desenvolvimento =====================
 
-const DiagramTabs = ({ diagramaImg }) => {
+const DiagramTabs = () => {
   const [abaAtiva, setAbaAtiva] = useState("arquitetura");
 
   return (
@@ -110,17 +109,11 @@ const WikiPage = () => {
   return (
     <div className="min-h-screen bg-slate-900 text-slate-300 p-4 md:p-8 lg:p-12 font-sans overflow-x-hidden">
       <div className="max-w-6xl mx-auto">
-        {/* Header da Wiki */}
-        <header className="mb-12 border-b border-slate-800 pb-8 mt-16 md:mt-0">
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Wiki do Projeto
-          </h1>
-          <p className="text-base md:text-lg text-slate-400 max-w-2xl">
-            Guias de montagem, configuração de ambiente, modelagem do case e
-            referências teóricas para a construção do Totem de Reconhecimento
-            Facial.
-          </p>
-        </header>
+        <PageHeader
+          icon={Book}
+          title="Wiki do Projeto"
+          description="Guias de montagem, configuração de ambiente, modelagem do case e referências teóricas para a construção do Totem de Reconhecimento Facial."
+        />
 
         <h3 className="text-center font-bold text-xl md:text-2xl mb-8">
           Recursos do projeto (Fornecidos pelo Autor).
@@ -277,7 +270,7 @@ const WikiPage = () => {
               <span>3. Diagrama de Sistemas</span>
             </h3>
 
-            <DiagramTabs diagramaImg={Diagrama} />
+            <DiagramTabs />
 
             <p className="mb-4 leading-relaxed">
               A arquitetura de hardware do projeto é dividida em estágios de
