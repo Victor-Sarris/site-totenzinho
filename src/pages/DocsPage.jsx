@@ -1,65 +1,6 @@
-import React, { useState } from "react";
-import { Book, Code, Terminal, Cpu, Copy, Check } from "lucide-react";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { LuBrainCog } from "react-icons/lu";
-import SidebarDocs from "../components/SidebarDocs";
-
-// ===================== Componente de Bloco de Código com Copy =====================
-const CodeBlock = ({ language, code, fileName, iconColor }) => {
-  const [copiado, setCopiado] = useState(false);
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(code);
-    setCopiado(true);
-
-    setTimeout(() => {
-      setCopiado(false);
-    }, 2000);
-  };
-
-  return (
-    <div className="bg-slate-950 rounded-xl border border-slate-800 overflow-hidden shadow-lg">
-      <div className="flex items-center justify-between px-4 py-3 bg-[#1e1e1e] border-b border-[#2d2d2d] text-sm text-slate-300">
-        <div className="flex items-center">
-          <Code className={`h-4 w-4 mr-2 ${iconColor}`} /> {fileName}
-        </div>
-
-        {/* Botão de Copiar */}
-        <button
-          onClick={handleCopy}
-          className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-white transition-colors cursor-pointer bg-slate-800/50 hover:bg-slate-700 px-3 py-1.5 rounded-md border border-slate-700"
-        >
-          {copiado ? (
-            <>
-              <Check className="h-3.5 w-3.5 text-green-400" />
-              <span className="text-green-400 font-medium">Copiado!</span>
-            </>
-          ) : (
-            <>
-              <Copy className="h-3.5 w-3.5" />
-              <span className="font-medium">Copiar</span>
-            </>
-          )}
-        </button>
-      </div>
-
-      <SyntaxHighlighter
-        language={language}
-        style={vscDarkPlus}
-        showLineNumbers={true}
-        customStyle={{
-          margin: 0,
-          padding: "1rem",
-          maxHeight: "500px",
-          fontSize: "0.875rem",
-        }}
-      >
-        {code}
-      </SyntaxHighlighter>
-    </div>
-  );
-};
+import { Terminal, Cpu } from "lucide-react";
+import DocsLayout from "../components/DocsLayout";
+import CodeBlock from "../components/CodeBlock";
 
 // --- CÓDIGOS EXTRAÍDOS PARA MANTER O COMPONENTE LIMPO ---
 
@@ -1053,23 +994,19 @@ void loop() {
 
 const DocsPage = () => {
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-300 flex font-sans">
-      {/* Sidebar de Navegação */}
-      <SidebarDocs />
-      {/* Área de Conteúdo Principal */}
-      <main className="flex-1 w-full max-w-3x1 md:ml-72 p-4 md:p-8 lg:p-12 max-w-3xl mx-auto overflow-x-hidden">
-        <div className="mb-10" id="intro">
-          <h1 className="text-2xl font-bold text-white mb-4 md:text-4xl">
-            Documentação do Código
-          </h1>
-          <p className="text-[20px] text-slate-400 mb-6 md:text-lg">
-            Abaixo estão os módulos principais do sistema. Utilize o menu
-            lateral para navegar entre a lógica de IA e o firmware do
-            microcontrolador.
-          </p>
-        </div>
+    <DocsLayout>
+      <div className="mb-10 border-b border-slate-800 pb-8" id="intro">
+        <h1 className="text-2xl font-bold text-white mb-4 md:text-4xl">
+          Documentação do Código
+        </h1>
+        <p className="text-base text-slate-400 md:text-lg">
+          Abaixo estão os módulos principais do sistema. Utilize o menu
+          lateral para navegar entre a lógica de IA e o firmware do
+          microcontrolador.
+        </p>
+      </div>
 
-        {/* Seção de IA / Python */}
+      {/* Seção de IA / Python */}
         <section id="reconhecimento" className="mb-16">
           <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
             <Terminal className="text-cyan-400 h-6 w-6" />
@@ -1228,7 +1165,6 @@ const DocsPage = () => {
             Firmware do ESP32/ESP-CAM (C/C++)
           </h2>
           <div className="mb-4 text-justify">
-            <p className="mb-4 text-justify">
               <div className="mb-4 text-justify">
                 <div className="mb-3.5 text-justify">
                   <h4 className="font-bold text-indigo-400 gap-2.5 text-[18px]">
@@ -1304,10 +1240,8 @@ const DocsPage = () => {
                   pode ser útil para iluminar rostos em ambientes escuros.
                 </div>
               </div>
-            </p>
           </div>
 
-          {/* AQUI ESTÁ A CHAMADA CORRETA DO COMPONENTE */}
           <CodeBlock
             language="cpp"
             code={cppCode}
@@ -1315,8 +1249,7 @@ const DocsPage = () => {
             iconColor="text-indigo-400"
           />
         </section>
-      </main>
-    </div>
+    </DocsLayout>
   );
 };
 

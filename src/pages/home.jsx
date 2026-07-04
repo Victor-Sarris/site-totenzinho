@@ -1,33 +1,12 @@
-import React from "react";
 import { Link } from "react-router-dom";
-import { Camera, Cpu, Box, Github, Book, FileText } from "lucide-react";
+import { Camera, Cpu, Box, Book, FileText } from "lucide-react";
 import { TbHandFingerDown } from "react-icons/tb";
 import {
   FaInstagramSquare,
   FaGithubSquare,
   FaLinkedin,
-  FaDiscord,
 } from "react-icons/fa";
-// Componentes Auxiliares
-const ScanFace = (props) => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    {...props}
-  >
-    <path d="M3 7V5a2 2 0 0 1 2-2h2" />
-    <path d="M17 3h2a2 2 0 0 1 2 2v2" />
-    <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
-    <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
-    <path d="M8 14s1.5 2 4 2 4-2 4-2" />
-    <path d="M9 9h.01" />
-    <path d="M15 9h.01" />
-  </svg>
-);
+import ScanFace from "../components/icons/ScanFace";
 
 const FeatureCard = ({ icon, title, description }) => (
   <div className="p-6 rounded-2xl bg-slate-800 border border-slate-700 hover:border-blue-500/50 transition-colors group">
@@ -45,44 +24,50 @@ const TechBadge = ({ name }) => (
   </span>
 );
 
+const SocialLink = ({ href, icon, label }) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noreferrer"
+    className="flex items-center gap-2 px-5 py-3 rounded-2xl text-slate-300 hover:text-white hover:bg-slate-800 border border-transparent hover:border-slate-700 transition-all"
+  >
+    {icon}
+    <span className="font-semibold">{label}</span>
+  </a>
+);
+
+const Contributor = ({ avatar, role, name, href }) => (
+  <div className="flex flex-col items-center">
+    <img
+      src={avatar}
+      alt={name}
+      className="h-32 w-32 md:h-40 md:w-40 rounded-full border-4 border-blue-800 object-cover"
+    />
+    <span className="font-bold text-slate-300 text-lg mt-4">{role}</span>
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className="text-slate-400 hover:text-white hover:scale-105 transition-all flex items-center gap-2 mt-2"
+    >
+      <FaGithubSquare className="w-6 h-6" />
+      {name}
+    </a>
+  </div>
+);
+
 const TotemLandingPage = () => {
   return (
     <div className="min-h-screen bg-slate-900 text-slate-50 font-sans selection:bg-blue-500 selection:text-white">
-      {/* Header / Navbar */}
-      <header className="fixed w-full top-0 bg-slate-900/80 backdrop-blur-md border-b border-slate-800 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <ScanFace className="text-blue-500 h-8 w-8" />
-            <Link
-              to="/"
-              className="font-bold text-xl tracking-tight hover:opacity-80 transition-opacity"
-            >
-              Totem<span className="text-blue-500">ID</span>
-            </Link>
-          </div>
-          <nav className="hidden md:flex gap-6 text-sm font-medium text-slate-300">
-            <Link
-              to="/documentacao"
-              className="hover:text-white transition-colors"
-            >
-              Documentação
-            </Link>
-            <Link to="/wiki" className="hover:text-white transition-colors">
-              Wiki
-            </Link>
-          </nav>
-        </div>
-      </header>
-
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col items-center text-center">
+      <section className="pt-12 md:pt-20 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col items-center text-center">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-sm font-medium mb-8 border border-blue-500/20">
           <span className="flex h-2 w-2 rounded-full bg-blue-500 animate-pulse"></span>
           Projeto Acadêmico - TCC
         </div>
-        <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
+        <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
           Reconhecimento Facial <br />
-          <span className="text-transparent text-2xl bg-clip-text bg-linear-to-r from-blue-400 to-cyan-300 md:text-6xl">
+          <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-cyan-300">
             Inteligente e Autônomo
           </span>
         </h1>
@@ -152,129 +137,68 @@ const TotemLandingPage = () => {
             <TechBadge name="C / C++" />
             <TechBadge name="Blender" />
           </div>
-          <h4 className="mt-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="mt-10 text-slate-400">
             Link do repositório geral:{" "}
             <a
               href="https://github.com/Victor-Sarris/Totem-Reconhecimento-Facial"
-              rel="external"
-              target="blank"
-              className="text-blue-200 font-bold cursor-pointer"
+              rel="noreferrer"
+              target="_blank"
+              className="text-blue-400 font-bold hover:text-blue-300 transition-colors"
             >
-              face-recognion
+              face-recognition
             </a>
-          </h4>
+          </p>
         </div>
       </section>
-      <section className="py-16">
-        {" "}
-        <div className="flex flex-col items-center gap-6">
-          {" "}
+
+      {/* Autor e Apoio */}
+      <section className="py-20 border-t border-slate-800">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-6 text-center">
           <img
             src="https://avatars.githubusercontent.com/u/178488451?v=4"
             alt="Victor Sarrís"
-            className="h-64 w-64 rounded-full border-4 border-blue-800 object-cover"
+            className="h-40 w-40 md:h-56 md:w-56 rounded-full border-4 border-blue-800 object-cover"
           />
-          <h1 className="font-bold text-center text-2xl text-blue-400 md:text-3xl">
+          <h2 className="font-bold text-2xl md:text-3xl text-blue-400">
             Desenvolvedor: <span className="text-blue-200">Victor Sarrís</span>
-          </h1>
-          <div>
-            <p className="flex items-center justify-center gap-2 text-center font-bold  text-slate-300 text-[13px] md:text-lg">
-              Fique à vontade para conhecer minhas redes sociais
-              <TbHandFingerDown className="h-6 w-6 text-blue-400 animate-bounce" />{" "}
-              {/* Animação e cor no ícone */}
-            </p>
-            <div className="flex gap-4 mt-8 justify-center md:justify-start">
-              <a
-                href="https://www.instagram.com/victorsax7_/"
-                target="blank"
-                rel="external"
-                className="flex pt-3 pb-3 pl-2 pr-2 md:cursor-pointer rounded-2xl hover:border border-amber-50"
-              >
-                <p className="flex text-center gap-3 justify-center">
-                  <FaInstagramSquare className="w-9 h-9" />
-                  Instagram
-                </p>
-              </a>
-              <a
-                href="https://github.com/Victor-Sarris"
-                target="blank"
-                rel="external"
-                className="flex pt-3 pb-3 pl-2 pr-2 cursor-pointer rounded-2xl hover:border border-amber-50 "
-              >
-                <p className="flex text-center gap-3 justify-center">
-                  <FaGithubSquare className="w-9 h-9" />
-                  GitHub
-                </p>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/victorsarris/"
-                target="blank"
-                rel="external"
-                className="flex pt-3 pb-3 pl-2 pr-2 cursor-pointer rounded-2xl hover:border border-amber-50 "
-              >
-                <p className="flex text-center gap-3 justify-center">
-                  <FaLinkedin className="w-9 h-9" />
-                  Linkedin
-                </p>
-              </a>
-              {/* <a
-                href="1351690649803427991"
-                target="blank"
-                rel="external"
-                className="flex pt-3 pb-3 pl-2 pr-2 cursor-pointer rounded-2xl hover:border border-amber-50 "
-              >
-                <p className="flex text-center gap-3">
-                  <FaDiscord className="w-9 h-9" />
-                  Discrod
-                </p>
-              </a> */}
-            </div>
+          </h2>
+          <p className="flex items-center justify-center gap-2 font-semibold text-slate-300">
+            Fique à vontade para conhecer minhas redes sociais
+            <TbHandFingerDown className="h-5 w-5 text-blue-400 animate-bounce" />
+          </p>
+          <div className="flex flex-wrap justify-center gap-2">
+            <SocialLink
+              href="https://www.instagram.com/victorsax7_/"
+              icon={<FaInstagramSquare className="w-6 h-6" />}
+              label="Instagram"
+            />
+            <SocialLink
+              href="https://github.com/Victor-Sarris"
+              icon={<FaGithubSquare className="w-6 h-6" />}
+              label="GitHub"
+            />
+            <SocialLink
+              href="https://www.linkedin.com/in/victorsarris/"
+              icon={<FaLinkedin className="w-6 h-6" />}
+              label="Linkedin"
+            />
           </div>
-          <div className="mt-12 flex flex-col items-center border-t border-slate-800 pt-8 w-full max-w-2xl mx-auto animate-fade-in">
-            <h2 className="font-bold text-xl text-blue-400 mb-6">Apoio de:</h2>
 
-            <div className="flex flex-col md:flex-row gap-8 md:gap-16 text-center">
-              {/* Orientador */}
-              <div className="flex flex-col items-center">
-                <img
-                  src="https://avatars.githubusercontent.com/u/9063835?v=4"
-                  alt="Victor Sarrís"
-                  className="h-64 w-64 rounded-full border-4 border-blue-800 object-cover"
-                />
-                <span className="font-bold text-slate-300 text-lg">
-                  Orientador
-                </span>
-                <a
-                  href="https://github.com/profRonaldoIFPI"
-                  target="_blank"
-                  rel="external"
-                  className="text-slate-400 hover:text-white hover:scale-105 transition-all flex items-center gap-2 mt-2"
-                >
-                  <FaGithubSquare className="w-6 h-6" />
-                  Professor Ronaldo
-                </a>
-              </div>
-
-              {/* Parceiro de TCC */}
-              <div className="flex flex-col items-center">
-                <img
-                  src="https://avatars.githubusercontent.com/u/141072429?v=4"
-                  alt="Victor Sarrís"
-                  className="h-64 w-64 rounded-full border-4 border-blue-800 object-cover"
-                />
-                <span className="font-bold text-slate-300 text-lg">
-                  Parceiro de TCC
-                </span>
-                <a
-                  href="https://github.com/cleberhdev"
-                  target="_blank"
-                  rel="external"
-                  className="text-slate-400 hover:text-white hover:scale-105 transition-all flex items-center gap-2 mt-2"
-                >
-                  <FaGithubSquare className="w-6 h-6" />
-                  Cleber Henrique Lacerda Duarte
-                </a>
-              </div>
+          <div className="mt-10 pt-10 border-t border-slate-800 w-full flex flex-col items-center">
+            <h3 className="font-bold text-xl text-blue-400 mb-8">Apoio de:</h3>
+            <div className="flex flex-col md:flex-row gap-10 md:gap-20">
+              <Contributor
+                avatar="https://avatars.githubusercontent.com/u/9063835?v=4"
+                role="Orientador"
+                name="Professor Ronaldo"
+                href="https://github.com/profRonaldoIFPI"
+              />
+              <Contributor
+                avatar="https://avatars.githubusercontent.com/u/141072429?v=4"
+                role="Parceiro de TCC"
+                name="Cleber Henrique Lacerda Duarte"
+                href="https://github.com/cleberhdev"
+              />
             </div>
           </div>
         </div>

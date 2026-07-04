@@ -1,6 +1,5 @@
-import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 // Importacoes de Paginas principais
-import "./App.css";
 import Index from "./Index.jsx";
 import Home from "./home.jsx";
 import DocsPage from "./DocsPage.jsx";

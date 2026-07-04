@@ -1,8 +1,5 @@
-import React, { useState } from "react";
-import { Copy, Check } from "lucide-react";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
-import SidebarDocs from "../../components/SidebarDocs";
+import DocsLayout from "../../components/DocsLayout";
+import CodeBlock from "../../components/CodeBlock";
 
 // Imports das imagens do tutorial SSH
 import img2 from "../../assets/img/Docs/ConnectionSsh/2.png";
@@ -14,67 +11,12 @@ import img7 from "../../assets/img/Docs/ConnectionSsh/7.png";
 import img8 from "../../assets/img/Docs/ConnectionSsh/8.png";
 import img9 from "../../assets/img/Docs/ConnectionSsh/9.png";
 
-// ===================== Componente de Bloco de Código com Copy =====================
-const CodeBlock = ({ language, code }) => {
-  const [copiado, setCopiado] = useState(false);
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(code);
-    setCopiado(true);
-    setTimeout(() => setCopiado(false), 2000);
-  };
-
-  return (
-    <div className="bg-slate-950 rounded-xl border border-slate-800 overflow-hidden shadow-lg mb-6 group relative">
-      <button
-        onClick={handleCopy}
-        className="absolute top-3 right-3 flex items-center gap-1.5 text-xs text-slate-400 hover:text-white transition-colors cursor-pointer bg-slate-800/80 hover:bg-slate-700 px-3 py-1.5 rounded-md border border-slate-700 z-10 opacity-0 group-hover:opacity-100"
-      >
-        {copiado ? (
-          <>
-            <Check className="h-3.5 w-3.5 text-green-400" />
-            <span className="text-green-400 font-medium">Copiado!</span>
-          </>
-        ) : (
-          <>
-            <Copy className="h-3.5 w-3.5" />
-            <span className="font-medium">Copiar</span>
-          </>
-        )}
-      </button>
-      <SyntaxHighlighter
-        language={language}
-        style={vscDarkPlus}
-        customStyle={{
-          margin: 0,
-          padding: "1.25rem",
-          fontSize: "0.875rem",
-          backgroundColor: "#0B1120",
-        }}
-      >
-        {code}
-      </SyntaxHighlighter>
-    </div>
-  );
-};
-
 const ConnectionSsh = () => {
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-300 flex font-sans">
-      <SidebarDocs />
-
-      <main className="flex-1 md:ml-72 p-8 lg:p-12 max-w-4xl pt-24">
-        {/* Título Principal */}
-        <div className="mb-10 border-b border-slate-800 pb-8">
-          <h1 className="text-3xl font-bold text-white mb-4">
-            02. Como conectar ao Labrador via SSH
-          </h1>
-          <p className="text-lg text-slate-400">
-            Aprenda a acessar o SBC Labrador remotamente através do seu
-            computador usando o Putty.
-          </p>
-        </div>
-
+    <DocsLayout
+      title="03. Como conectar ao Labrador via SSH"
+      description="Aprenda a acessar o SBC Labrador remotamente através do seu computador usando o Putty."
+    >
         {/* Passo 1: Download do Putty */}
         <section className="mb-16">
           <h2 className="text-2xl font-bold text-white mb-6">
@@ -211,8 +153,7 @@ const ConnectionSsh = () => {
             </div>
           </div>
         </section>
-      </main>
-    </div>
+    </DocsLayout>
   );
 };
 
