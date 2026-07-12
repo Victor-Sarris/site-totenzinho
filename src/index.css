@@ -1,29 +1,54 @@
 @import "tailwindcss";
 
-@layer utilities {
-  .custom-scrollbar {
-    scrollbar-width: thin;
-    scrollbar-color: #334155 transparent;
-  }
-  .custom-scrollbar::-webkit-scrollbar {
-    width: 6px;
-  }
-  .custom-scrollbar::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  .custom-scrollbar::-webkit-scrollbar-thumb {
-    background-color: #334155;
-    border-radius: 9999px;
-  }
-  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background-color: #475569;
-  }
-
-  .animate-fade-in {
-    animation: fade-in 0.5s ease-out both;
-  }
+@theme {
+  --font-sans:
+    "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --shadow-glow: 0 0 0 1px rgba(59, 130, 246, 0.15), 0 8px 30px -8px rgba(59, 130, 246, 0.35);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-slate-900);
+}
+
+/* Scrollbar usada na sidebar de documentação e no restante do site */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-slate-700) transparent;
+}
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--color-slate-700);
+  border-radius: 999px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-slate-600);
+}
+
+::selection {
+  background-color: rgba(59, 130, 246, 0.35);
+  color: #fff;
+}
+
+/* Fundo com grid técnico sutil, usado em heros/headers */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(148, 163, 184, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.07) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Animações leves usadas em várias páginas (substituem classes de plugin inexistente) */
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -32,5 +57,124 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out both;
+}
+.animate-in {
+  animation: fade-in 0.4s ease-out both;
+}
+
+@keyframes fade-in-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.animate-fade-in-scale {
+  animation: fade-in-scale 0.35s ease-out both;
+}
+
+/* Efeitos "elétricos" usados no card do desenvolvedor (home) */
+@keyframes electric-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-electric-spin {
+  animation: electric-spin 2.4s linear infinite;
+}
+
+/* Arco de luz correndo ao redor da borda de um card */
+.electric-border {
+  isolation: isolate;
+}
+.electric-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  padding: 2px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    #7dd3fc 6%,
+    #38bdf8 10%,
+    transparent 20%,
+    transparent 100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.55));
+  animation: electric-spin 3.5s linear infinite;
+}
+
+/* Halo pulsante atrás do avatar, como uma descarga de energia */
+@keyframes electric-pulse-ring {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 0 rgba(56, 189, 248, 0.5),
+      0 0 18px 4px rgba(56, 189, 248, 0.2);
+  }
+  50% {
+    box-shadow:
+      0 0 0 6px rgba(56, 189, 248, 0),
+      0 0 34px 10px rgba(125, 211, 252, 0.45);
+  }
+}
+.animate-electric-pulse-ring {
+  border-radius: 9999px;
+  animation: electric-pulse-ring 2s ease-in-out infinite;
+}
+
+/* Raios que piscam ao redor do avatar, como pequenas descargas elétricas */
+@keyframes lightning-flicker {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  2% {
+    opacity: 1;
+  }
+  4% {
+    opacity: 0.15;
+  }
+  6% {
+    opacity: 1;
+  }
+  9% {
+    opacity: 0;
+  }
+  58% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  63% {
+    opacity: 0;
+  }
+}
+.animate-lightning-flicker {
+  opacity: 0;
+  animation: lightning-flicker 2.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .electric-border::before,
+  .animate-electric-spin,
+  .animate-electric-pulse-ring,
+  .animate-lightning-flicker {
+    animation: none;
   }
 }

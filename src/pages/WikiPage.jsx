@@ -1,237 +1,206 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   FileText,
   Box,
   Camera,
   Cpu,
-  Layers,
-  FileSpreadsheet,
   Book,
+  FileSpreadsheet,
+  Layers,
+  GraduationCap,
 } from "lucide-react";
 import { FcSportsMode, FcElectronics, FcWorkflow } from "react-icons/fc";
-import PageHeader from "../components/PageHeader";
-import Diagrama from ".././assets/img/Wiki/Diagrama.png";
-import Fluxograma from ".././assets/img/Wiki/Fluxograma.png";
-import Arquitetura from ".././assets/img/Wiki/Arquitetura.png";
-
-// ===================== Componente de desenvolvimento =====================
+import Container from "../components/ui/Container";
+import Diagrama from "../assets/img/Wiki/Diagrama.png";
+import Fluxograma from "../assets/img/Wiki/Fluxograma.png";
+import Arquitetura from "../assets/img/Wiki/Arquitetura.png";
 
 const DiagramTabs = () => {
   const [abaAtiva, setAbaAtiva] = useState("arquitetura");
 
+  const tabs = [
+    { id: "diagrama", label: "Diagrama", img: Diagrama, alt: "Diagrama do Sistema" },
+    { id: "fluxograma", label: "Fluxograma", img: Fluxograma, alt: "Fluxograma do Sistema" },
+    { id: "arquitetura", label: "Arquitetura", img: Arquitetura, alt: "Arquitetura do Sistema" },
+  ];
+
+  const ativa = tabs.find((t) => t.id === abaAtiva);
+
   return (
-    <div className="w-full mb-6">
-      {/* Botões de abas corrigidos: flex-wrap para celular e sintaxe do Tailwind arrumada */}
-      <div className="flex flex-wrap gap-2 md:gap-4 mb-4 border-b border-slate-700 pb-4">
-        <button
-          onClick={() => setAbaAtiva("diagrama")}
-          className={`px-4 py-2 rounded-lg font-semibold transition-all duration-200 cursor-pointer flex-1 md:flex-none justify-center text-center text-sm md:text-base border hover:border-blue-600 ${
-            abaAtiva === "diagrama"
-              ? "bg-blue-600 text-white shadow-lg shadow-blue-900/20 border-blue-600"
-              : "bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border-slate-700"
-          }`}
-        >
-          Diagrama
-        </button>
-        <button
-          onClick={() => setAbaAtiva("fluxograma")}
-          className={`px-4 py-2 rounded-lg font-semibold transition-all duration-200 cursor-pointer flex-1 md:flex-none justify-center text-center text-sm md:text-base border hover:border-blue-600 ${
-            abaAtiva === "fluxograma"
-              ? "bg-blue-600 text-white shadow-lg shadow-blue-900/20 border-blue-600"
-              : "bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border-slate-700"
-          }`}
-        >
-          Fluxograma
-        </button>
-        <button
-          onClick={() => setAbaAtiva("arquitetura")}
-          className={`px-4 py-2 rounded-lg font-semibold transition-all duration-200 cursor-pointer flex-1 md:flex-none justify-center text-center text-sm md:text-base border hover:border-blue-600 ${
-            abaAtiva === "arquitetura"
-              ? "bg-blue-600 text-white shadow-lg shadow-blue-900/20 border-blue-600"
-              : "bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border-slate-700"
-          }`}
-        >
-          Arquitetura
-        </button>
+    <div className="not-prose mb-6 w-full">
+      <div className="mb-4 flex flex-wrap gap-2 border-b border-slate-700 pb-4 md:gap-3">
+        {tabs.map((tab) => (
+          <button
+            key={tab.id}
+            onClick={() => setAbaAtiva(tab.id)}
+            className={`flex-1 cursor-pointer rounded-lg border px-4 py-2 text-center text-sm font-semibold transition-all duration-200 hover:border-blue-600 md:flex-none md:text-base ${
+              abaAtiva === tab.id
+                ? "border-blue-600 bg-blue-600 text-white shadow-lg shadow-blue-900/20"
+                : "border-slate-700 bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white"
+            }`}
+          >
+            {tab.label}
+          </button>
+        ))}
       </div>
 
-      {/* Área de exibição da imagem corrigida: max-w-full garante que a imagem não vaze a tela */}
-      <div className="w-full min-h-[200px] md:min-h-[300px] bg-slate-900 border border-slate-700 border-dashed rounded-xl flex items-center justify-center p-2 md:p-4 overflow-hidden">
-        {abaAtiva === "diagrama" && (
-          <div className="w-full flex flex-col items-center animate-in fade-in duration-300">
-            <img
-              src={Diagrama}
-              alt="Diagrama do Sistema"
-              className="max-w-full h-auto rounded object-contain"
-            />
-          </div>
-        )}
-
-        {abaAtiva === "fluxograma" && (
-          <div className="w-full flex flex-col items-center animate-in fade-in duration-300">
-            <img
-              src={Fluxograma}
-              alt="Fluxograma do Sistema"
-              className="max-w-full h-auto rounded object-contain"
-            />
-          </div>
-        )}
-
-        {abaAtiva === "arquitetura" && (
-          <div className="w-full flex flex-col items-center animate-in fade-in duration-300">
-            <img
-              src={Arquitetura}
-              alt="Arquitetura do Sistema"
-              className="max-w-full h-auto rounded object-contain"
-            />
-          </div>
-        )}
+      <div className="flex min-h-[200px] w-full items-center justify-center overflow-hidden rounded-xl border border-dashed border-slate-700 bg-slate-900 p-2 md:min-h-[300px] md:p-4">
+        <div key={ativa.id} className="animate-fade-in flex w-full flex-col items-center">
+          <img
+            src={ativa.img}
+            alt={ativa.alt}
+            className="h-auto max-w-full rounded object-contain"
+          />
+        </div>
       </div>
     </div>
   );
 };
 
-// Componente do Card da Wiki
 const WikiCard = ({ icon, title, description }) => (
-  <button className="text-left p-6 w-full rounded-xl bg-slate-800 border border-slate-700 hover:border-blue-500 hover:bg-slate-800/80 transition-all group cursor-pointer">
-    <div className="mb-4 p-2 bg-slate-900 inline-block rounded-lg group-hover:scale-110 transition-transform">
+  <div className="group h-full w-full rounded-xl border border-slate-700 bg-slate-800 p-6 text-left transition-all hover:border-blue-500 hover:bg-slate-800/80">
+    <div className="mb-4 inline-block rounded-lg bg-slate-900 p-2 transition-transform group-hover:scale-110">
       {icon}
     </div>
-    <h3 className="text-lg font-bold text-white mb-2">{title}</h3>
+    <h3 className="mb-2 text-lg font-bold text-white">{title}</h3>
     <p className="text-sm text-slate-400">{description}</p>
-  </button>
+  </div>
 );
-
-// ===================== Fim do Componente de desenvolvimento =====================
 
 const WikiPage = () => {
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-300 p-4 md:p-8 lg:p-12 font-sans overflow-x-hidden">
-      <div className="max-w-6xl mx-auto">
-        <PageHeader
-          icon={Book}
-          title="Wiki do Projeto"
-          description="Guias de montagem, configuração de ambiente, modelagem do case e referências teóricas para a construção do Totem de Reconhecimento Facial."
-        />
+    <div className="min-h-screen bg-slate-900 py-8 font-sans text-slate-300 md:py-12">
+      <Container size="xl">
+        <header className="mb-12 border-b border-slate-800 pb-8">
+          <h1 className="mb-4 text-3xl font-bold text-white md:text-4xl">
+            Wiki do Projeto
+          </h1>
+          <p className="max-w-2xl text-base text-slate-400 md:text-lg">
+            Guias de montagem, configuração de ambiente, modelagem do case e
+            referências teóricas para a construção do Totem de
+            Reconhecimento Facial.
+          </p>
+        </header>
 
-        <h3 className="text-center font-bold text-xl md:text-2xl mb-8">
-          Recursos do projeto (Fornecidos pelo Autor).
-        </h3>
-        {/* Grid de Artigos */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {/* Card de Hardware */}
-          <Link to="/cir" className="block cursor-pointer">
+        <h2 className="mb-8 text-center text-xl font-bold md:text-2xl">
+          Recursos do projeto (fornecidos pelo autor)
+        </h2>
+        <div className="mb-14 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <Link to="/cir" className="block">
             <WikiCard
-              icon={<Cpu className="text-indigo-400 h-6 w-6" />}
+              icon={<Cpu className="h-6 w-6 text-indigo-400" />}
               title="Montagem do Circuito"
               description="Esquema elétrico, pinagem do ESP-CAM e integração com o sistema de controle de acesso."
             />
           </Link>
-
-          {/* Card de Modelagem 3D */}
-          <Link to="/models" className="block cursor-pointer">
+          <Link to="/models" className="block">
             <WikiCard
-              icon={<Box className="text-emerald-400 h-6 w-6" />}
+              icon={<Box className="h-6 w-6 text-emerald-400" />}
               title="Modelagem e Impressão 3D"
-              description="Arquivos do Blender (.blend) e parâmetros fatiador (STL) para a impressão do case."
+              description="Arquivos do Blender (.blend) e parâmetros de fatiador (STL) para a impressão do case."
             />
           </Link>
-
-          {/* Card de IA */}
-          <Link to="/org" className="block cursor-pointer">
+          <Link to="/org" className="block">
             <WikiCard
-              icon={<Camera className="text-blue-400 h-6 w-6" />}
-              title="Organização de arquivos"
-              description="Como ficheiros foram organizados e os pesos da rede neural foram ajustados."
+              icon={<Camera className="h-6 w-6 text-blue-400" />}
+              title="Organização de Arquivos"
+              description="Como os arquivos foram organizados e os pesos da rede neural foram ajustados."
+            />
+          </Link>
+          <Link to="/resultados" className="block">
+            <WikiCard
+              icon={<GraduationCap className="h-6 w-6 text-amber-400" />}
+              title="Resultados do TCC"
+              description="Métricas de desempenho, comparação com o processo manual e fotos da defesa do artigo científico."
             />
           </Link>
         </div>
 
-        <h3 className="text-center font-bold text-xl md:text-2xl mb-8">
-          Recursos do SBC LABRADOR (Fornecidos oficialmente).
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          <Link
-            to="https://canisinc.com.br/lojas/caninosloucos/conteudo/midias/folder-labrador32-v22.pdf"
-            rel="external"
+        <h2 className="mb-8 text-center text-xl font-bold md:text-2xl">
+          Recursos do SBC Labrador (fornecidos oficialmente)
+        </h2>
+        <div className="mb-14 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <a
+            href="https://canisinc.com.br/lojas/caninosloucos/conteudo/midias/folder-labrador32-v22.pdf"
             target="_blank"
-            className="block cursor-pointer"
+            rel="noreferrer"
+            className="block"
           >
             <WikiCard
-              icon={<Book className="text-purple-400 h-6 w-6" />}
-              title="Folder de especificação"
-              description="Alguns dados e detalhes sobre o SBC Labrador e sua pinagem para projetos complexos"
+              icon={<Book className="h-6 w-6 text-purple-400" />}
+              title="Folder de Especificação"
+              description="Alguns dados e detalhes sobre o SBC Labrador e sua pinagem para projetos complexos."
             />
-          </Link>
-          <Link
-            to="https://caninosloucos.octoserver.com.br/lojas/caninosloucos/conteudo/midias/labrador32-datasheet.pdf"
-            rel="external"
+          </a>
+          <a
+            href="https://caninosloucos.octoserver.com.br/lojas/caninosloucos/conteudo/midias/labrador32-datasheet.pdf"
             target="_blank"
-            className="block cursor-pointer"
+            rel="noreferrer"
+            className="block"
           >
             <WikiCard
-              icon={<FileSpreadsheet className="text-purple-400 h-6 w-6" />}
-              title="DATASHEET - Caninos Loucos"
-              description="Documento sobre as métricas e questões de Hardware referentes ao SBC Labrador"
+              icon={<FileSpreadsheet className="h-6 w-6 text-purple-400" />}
+              title="Datasheet — Caninos Loucos"
+              description="Documento sobre as métricas e questões de hardware referentes ao SBC Labrador."
             />
-          </Link>
-          <Link
-            to="https://caninosloucos.octoserver.com.br/lojas/caninosloucos/conteudo/midias/labrador-base-mv21-sch.pdf"
-            rel="external"
+          </a>
+          <a
+            href="https://caninosloucos.octoserver.com.br/lojas/caninosloucos/conteudo/midias/labrador-base-mv21-sch.pdf"
             target="_blank"
-            className="block cursor-pointer"
+            rel="noreferrer"
+            className="block"
           >
             <WikiCard
-              icon={<Layers className="text-purple-400 h-6 w-6" />}
-              title="Schematics - Caninos Loucos"
-              description="Documento que apresenta detalhadamente o circuito Elétrico do SBC Labrador"
+              icon={<Layers className="h-6 w-6 text-purple-400" />}
+              title="Schematics — Caninos Loucos"
+              description="Documento que apresenta detalhadamente o circuito elétrico do SBC Labrador."
             />
-          </Link>
+          </a>
         </div>
 
-        {/* Área de Leitura de Artigo: padding ajustado para mobile */}
-        <article className="bg-slate-800/50 rounded-2xl p-5 md:p-8 border border-slate-700 break-words">
-          <div className="flex items-center gap-3 mb-6">
-            <FileText className="text-white h-8 w-8 p-1.5 bg-blue-600 rounded-lg shrink-0" />
-            <h2 className="text-2xl md:text-3xl font-bold text-white">
+        <article className="rounded-2xl border border-slate-700 bg-slate-800/50 p-5 md:p-8">
+          <div className="mb-6 flex items-center gap-3">
+            <FileText className="h-8 w-8 shrink-0 rounded-lg bg-blue-600 p-1.5 text-white" />
+            <h2 className="text-2xl font-bold text-white md:text-3xl">
               Artigo em Destaque: Arquitetura Geral
             </h2>
           </div>
 
-          <div className="prose prose-invert max-w-none text-slate-300">
-            <h3 className="text-xl font-semibold text-white mt-6 mb-3 flex items-center gap-3">
+          <div className="max-w-none text-slate-300">
+            <h3 className="mb-3 mt-6 flex items-center gap-3 text-xl font-semibold text-white">
               <FcSportsMode className="h-8 w-8 shrink-0" />
               <span>1. Introdução</span>
             </h3>
             <p className="mb-4 leading-relaxed">
               A motivação deste projeto surge da necessidade de tornar mais
-              eficiente e seguro o processo de controle de acesso em clínicas de
-              saúde. Atualmente, o credenciamento de pacientes é, em muitos
-              casos, realizado de forma manual, o que o torna suscetível a
-              falhas humanas, filas e retrabalho, além de gerar estresse para
-              pacientes e colaboradores.
-              <br />
-              <br />
-              Com o avanço da visão computacional e do reconhecimento facial —
-              especialmente por meio de técnicas modernas baseadas em embeddings
-              — tornou-se viável implementar sistemas capazes de realizar
-              verificações rápidas e precisas. Diante desse cenário, o projeto
-              propõe o desenvolvimento e a avaliação de um sistema automatizado
-              de check-in baseado em reconhecimento facial, com o objetivo de
-              reduzir o tempo de atendimento, aumentar a eficiência operacional
-              e validar, de forma científica, seu impacto no ambiente clínico.
+              eficiente e seguro o processo de controle de acesso em
+              clínicas de saúde. Atualmente, o credenciamento de pacientes
+              é, em muitos casos, realizado de forma manual, o que o torna
+              suscetível a falhas humanas, filas e retrabalho, além de gerar
+              estresse para pacientes e colaboradores.
+            </p>
+            <p className="mb-4 leading-relaxed">
+              Com o avanço da visão computacional e do reconhecimento
+              facial — especialmente por meio de técnicas modernas baseadas
+              em embeddings — tornou-se viável implementar sistemas capazes
+              de realizar verificações rápidas e precisas. Diante desse
+              cenário, o projeto propõe o desenvolvimento e a avaliação de
+              um sistema automatizado de check-in baseado em reconhecimento
+              facial, com o objetivo de reduzir o tempo de atendimento,
+              aumentar a eficiência operacional e validar, de forma
+              científica, seu impacto no ambiente clínico.
             </p>
 
-            <h3 className="text-xl font-semibold text-white mt-8 mb-3 flex items-center gap-3">
+            <h3 className="mb-3 mt-8 flex items-center gap-3 text-xl font-semibold text-white">
               <FcElectronics className="h-8 w-8 shrink-0" />
               <span>2. Componentes Utilizados</span>
             </h3>
-            <ul className="list-disc pl-5 mb-4 space-y-2">
+            <ul className="mb-4 list-disc space-y-2 pl-5">
               <li>
-                SBC - Labrador (Unidade principal de processamento){" "}
+                SBC — Labrador (Unidade principal de processamento){" "}
                 <a
-                  className="text-blue-400 hover:text-blue-300 underline"
+                  className="text-blue-400 underline hover:text-blue-300"
                   href="https://canisinc.com.br/labrador-32-bits"
                   target="_blank"
                   rel="noreferrer"
@@ -240,10 +209,10 @@ const WikiPage = () => {
                 </a>
               </li>
               <li>
-                ESPCAM ov2640 (Cam para reconhecimento){" "}
+                ESP32-CAM OV2640 (Câmera para reconhecimento){" "}
                 <a
-                  className="text-blue-400 hover:text-blue-300 underline"
-                  href="https://shopee.com.br/M%C3%B3dulo-ESP32-CAM-Wifi-Bluetooth-C%C3%A2mera-OV2640-M%C3%B3dulo-ESP32-CAM-MB-i.992479881.23295612783?extraParams=%7B%22display_model_id%22%3A219568906002%2C%22model_selection_logic%22%3A3%7D&sp_atk=abe8daea-adc3-4d24-85c8-48029ca27503&xptdk=abe8daea-adc3-4d24-85c8-48029ca27503"
+                  className="text-blue-400 underline hover:text-blue-300"
+                  href="https://shopee.com.br/M%C3%B3dulo-ESP32-CAM-Wifi-Bluetooth-C%C3%A2mera-OV2640-M%C3%B3dulo-ESP32-CAM-MB-i.992479881.23295612783"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -251,11 +220,10 @@ const WikiPage = () => {
                 </a>
               </li>
               <li>
-                Painel IPS 7P (Interface interação usuário){" "}
+                Painel IPS 7" (Interface de interação do usuário){" "}
                 <a
-                  className="text-blue-400 hover:text-blue-300 underline"
-                  href="https://shopee.com.br/Tela-Sens%C3%ADvel-Ao-Toque-7-Polegadas-IPS-Para-Raspberry-Pi-4-1024X600-Monitor-LCD-Capacitivo-Port%C3%A1til-3-B--i.860393632.18369999813
-              "
+                  className="text-blue-400 underline hover:text-blue-300"
+                  href="https://shopee.com.br/Tela-Sens%C3%ADvel-Ao-Toque-7-Polegadas-IPS-Para-Raspberry-Pi-4-1024X600-Monitor-LCD-Capacitivo-Port%C3%A1til-3-B--i.860393632.18369999813"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -265,7 +233,7 @@ const WikiPage = () => {
               <li>Case Totem (Modelo 3D)</li>
             </ul>
 
-            <h3 className="text-xl font-semibold text-white mt-8 mb-3 flex items-center gap-3">
+            <h3 className="mb-3 mt-8 flex items-center gap-3 text-xl font-semibold text-white">
               <FcWorkflow className="h-8 w-8 shrink-0" />
               <span>3. Diagrama de Sistemas</span>
             </h3>
@@ -274,22 +242,22 @@ const WikiPage = () => {
 
             <p className="mb-4 leading-relaxed">
               A arquitetura de hardware do projeto é dividida em estágios de
-              captura e processamento. O nó de captura na borda da rede utiliza
-              um microcontrolador da família ESP32 (módulo ESP32-CAM), escolhido
-              devido à sua conectividade sem fio nativa, baixo consumo
-              energético e capacidade de integração com periféricos. O
-              microcontrolador é dedicado à captura do fluxo contínuo de vídeo e
-              à execução física dos comandos de bloqueio ou liberação de acesso.
-              Os dados capturados na borda são transmitidos a um microcomputador
-              local (placa Labrador), que atua como a unidade de processamento
-              intermediária. Este microcomputador é responsável por orquestrar a
-              comunicação de forma segura, recebendo o fluxo de imagem do
-              microcontrolador e repassando-o ao servidor central para
-              validação,
+              captura e processamento. O nó de captura na borda da rede
+              utiliza um microcontrolador da família ESP32 (módulo
+              ESP32-CAM), escolhido devido à sua conectividade sem fio
+              nativa, baixo consumo energético e capacidade de integração
+              com periféricos. O microcontrolador é dedicado à captura do
+              fluxo contínuo de vídeo e à execução física dos comandos de
+              bloqueio ou liberação de acesso. Os dados capturados na borda
+              são transmitidos a um microcomputador local (placa Labrador),
+              que atua como a unidade de processamento intermediária. Este
+              microcomputador é responsável por orquestrar a comunicação de
+              forma segura, recebendo o fluxo de imagem do microcontrolador
+              e repassando-o ao servidor central para validação.
             </p>
           </div>
         </article>
-      </div>
+      </Container>
     </div>
   );
 };

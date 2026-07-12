@@ -1,59 +1,42 @@
+import React from "react";
 import { Box, ExternalLink } from "lucide-react";
-import PageHeader from "../components/PageHeader";
+import Container from "../components/ui/Container";
+import PageHeader from "../components/ui/PageHeader";
+
+const projetos3D = [
+  {
+    id: "totem",
+    titulo: "Case TotemID",
+    descricao:
+      "Estrutura principal desenhada no Blender para acomodar o ESP32-CAM e os componentes de controle de acesso do totem.",
+    embedUrl:
+      "https://sketchfab.com/models/677ecfa4591f4de1a47767c8cefb16a5/embed?autospin=1&autostart=1&transparent=1&ui_theme=dark",
+    linkOriginal: "https://skfb.ly/pH6nB",
+  },
+];
 
 const Models3d = () => {
-  const projetos3D = [
-    {
-      id: "totem",
-      titulo: "Case TotemID",
-      descricao:
-        "Estrutura principal desenhada no Blender para acomodar o ESP32-CAM e os componentes de controle de acesso do totem.",
-      embedUrl:
-        "https://sketchfab.com/models/677ecfa4591f4de1a47767c8cefb16a5/embed?autospin=1&autostart=1&transparent=1&ui_theme=dark",
-      linkOriginal: "https://skfb.ly/pH6nB",
-    },
-    // {
-    //   id: "totem",
-    //   titulo: "Case TotemID",
-    //   descricao:
-    //     "Estrutura principal desenhada no Blender para acomodar o ESP32-CAM e os componentes de controle de acesso do totem.",
-    //   embedUrl:
-    //     "https://sketchfab.com/models/7d38826c3a254b13beb0388611358954/embed?autospin=1&autostart=1&preload=1&ui_hint=2&ui_theme=dark",
-    //   linkOriginal: "https://skfb.ly/pH6nB",
-    // },
-    // {
-    //   id: "ac-controler",
-    //   titulo: "Case AC-CONTROLER",
-    //   descricao:
-    //     "Invólucro modelado para o controlador inteligente de ar condicionado, focado em ventilação para os sensores térmicos.",
-    //   embedUrl:
-    //     "https://sketchfab.com/models/98b19d5503564b94b8c1cf35df45c84b/embed?autospin=1&autostart=1&ui_hint=0",
-    //   linkOriginal: "https://skfb.ly/pH6nR",
-    // },
-  ];
-
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-300 p-8 lg:p-12 font-sans">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-slate-900 py-8 font-sans text-slate-300 md:py-12">
+      <Container size="2xl">
         <PageHeader
           icon={Box}
-          title="Galeria de Modelagem 3D"
-          description="Visualize interativamente os cases e estruturas impressas em 3D. Os modelos estão hospedados e renderizados via Sketchfab."
           backTo="/wiki"
           backLabel="Voltar para a Wiki"
+          title="Galeria de Modelagem 3D"
+          description="Visualize interativamente os cases e estruturas impressas em 3D. Os modelos estão hospedados e renderizados via Sketchfab."
         />
 
         <div className="grid gap-10">
           {projetos3D.map((projeto) => (
             <div
               key={projeto.id}
-              className="bg-slate-800/50 rounded-2xl border border-slate-700 overflow-hidden flex flex-col shadow-xl"
+              className="flex flex-col overflow-hidden rounded-2xl border border-slate-700 bg-slate-800/50 shadow-xl"
             >
-              {/* Contêiner do Iframe do Sketchfab */}
-              <div className="w-full aspect-video bg-slate-950 relative">
+              <div className="relative aspect-video w-full bg-slate-950">
                 <iframe
                   title={`Modelo 3D - ${projeto.titulo}`}
-                  className="w-full h-full border-0"
+                  className="h-full w-full border-0"
                   src={projeto.embedUrl}
                   allow="autoplay; fullscreen; xr-spatial-tracking"
                   allowFullScreen
@@ -63,21 +46,20 @@ const Models3d = () => {
                 ></iframe>
               </div>
 
-              {/* Informações do Modelo */}
-              <div className="p-6 flex-1 flex flex-col">
-                <h2 className="text-2xl font-bold text-white mb-3">
+              <div className="flex flex-1 flex-col p-6">
+                <h2 className="mb-3 text-2xl font-bold text-white">
                   {projeto.titulo}
                 </h2>
-                <p className="text-slate-400 mb-6 flex-1 leading-relaxed">
+                <p className="mb-6 flex-1 leading-relaxed text-slate-400">
                   {projeto.descricao}
                 </p>
 
-                <div className="pt-4 border-t border-slate-700 mt-auto">
+                <div className="mt-auto border-t border-slate-700 pt-4">
                   <a
                     href={projeto.linkOriginal}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors font-medium"
+                    className="inline-flex items-center gap-2 font-medium text-blue-400 transition-colors hover:text-blue-300"
                   >
                     <ExternalLink className="h-4 w-4" />
                     Ver no Sketchfab
@@ -87,7 +69,7 @@ const Models3d = () => {
             </div>
           ))}
         </div>
-      </div>
+      </Container>
     </div>
   );
 };

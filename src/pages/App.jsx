@@ -1,4 +1,4 @@
-import { HashRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
 // Importacoes de Paginas principais
 import Index from "./Index.jsx";
 import Home from "./home.jsx";
@@ -8,6 +8,7 @@ import Navbar from "../components/Navbar.jsx";
 import Models3d from "./Models3d.jsx";
 import Organization from "./Organization.jsx";
 import Circuit from "./Circuit.jsx";
+import Resultados from "./Resultados.jsx";
 
 // Importacoes de paginas da documentacao
 import LibraryPage from "./DocsPage/LibraryPage.jsx";
@@ -34,6 +35,7 @@ function App() {
             <Route path="/models" element={<Models3d />} />
             <Route path="/org" element={<Organization />} />
             <Route path="/cir" element={<Circuit />} />
+            <Route path="/resultados" element={<Resultados />} />
 
             {/* Paginas de Documentacao */}
             <Route
