@@ -1,6 +1,16 @@
+import React from "react";
 import { Terminal, Cpu } from "lucide-react";
-import DocsLayout from "../components/DocsLayout";
-import CodeBlock from "../components/CodeBlock";
+import DocsLayout from "../components/ui/DocsLayout";
+import CodeBlock from "../components/ui/CodeBlock";
+
+// Bloco de explicação com destaque lateral, usado para descrever cada
+// responsabilidade de um módulo (substitui os antigos parágrafos "justificados").
+const Topic = ({ label, color = "border-blue-500 text-blue-200", children }) => (
+  <div className={`border-l-2 py-1 pl-4 ${color.split(" ")[0]}`}>
+    <span className={`font-semibold ${color.split(" ")[1]}`}>{label}</span>{" "}
+    <span className="text-slate-400">{children}</span>
+  </div>
+);
 
 // --- CÓDIGOS EXTRAÍDOS PARA MANTER O COMPONENTE LIMPO ---
 
@@ -809,7 +819,7 @@ const cppCode = `#include "esp_camera.h"
 #include "Arduino.h"
 #include "soc/soc.h"
 #include "soc/rtc_cntl_reg.h"
-#include "esp_http_server.h" 
+#include "esp_http_server.h"
 
 // 1. configuracoes de Rede
 const char* ssid = "root";
@@ -907,7 +917,7 @@ void startCameraServer(){
   httpd_uri_t stream_uri = {
     .uri       = "/stream",
     .method    = HTTP_GET,
-    .handler   = stream_handler, 
+    .handler   = stream_handler,
     .user_ctx  = NULL
   };
 
@@ -920,10 +930,10 @@ void setup() {
   pinMode(FLASH_GPIO_NUM, OUTPUT);
   digitalWrite(FLASH_GPIO_NUM, LOW); // flash desligado
 
-  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0); 
+  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);
   Serial.begin(115200);
   Serial.setDebugOutput(false);
-  
+
   camera_config_t config;
   config.ledc_channel = LEDC_CHANNEL_0;
   config.ledc_timer = LEDC_TIMER_0;
@@ -945,7 +955,7 @@ void setup() {
   config.pin_reset = RESET_GPIO_NUM;
   config.xclk_freq_hz = 20000000;
   config.pixel_format = PIXFORMAT_JPEG;
-  
+
   if(psramFound()){
     config.frame_size = FRAMESIZE_VGA;
     config.jpeg_quality = 10;
@@ -955,7 +965,7 @@ void setup() {
     config.jpeg_quality = 12;
     config.fb_count = 1;
   }
-  
+
   esp_err_t err = esp_camera_init(&config);
   if (err != ESP_OK) {
     Serial.printf("Camera init failed with error 0x%x", err);
@@ -982,7 +992,7 @@ void setup() {
   Serial.print("Camera Ready! Use: http://");
   Serial.print(WiFi.localIP());
   Serial.println("/stream");
-  
+
   startCameraServer();
 }
 
@@ -995,11 +1005,11 @@ void loop() {
 const DocsPage = () => {
   return (
     <DocsLayout>
-      <div className="mb-10 border-b border-slate-800 pb-8" id="intro">
-        <h1 className="text-2xl font-bold text-white mb-4 md:text-4xl">
+      <div className="mb-12 border-b border-slate-800 pb-8" id="intro">
+        <h1 className="mb-4 text-3xl font-bold text-white md:text-4xl">
           Documentação do Código
         </h1>
-        <p className="text-base text-slate-400 md:text-lg">
+        <p className="max-w-2xl text-base leading-relaxed text-slate-400 md:text-lg">
           Abaixo estão os módulos principais do sistema. Utilize o menu
           lateral para navegar entre a lógica de IA e o firmware do
           microcontrolador.
@@ -1007,248 +1017,155 @@ const DocsPage = () => {
       </div>
 
       {/* Seção de IA / Python */}
-        <section id="reconhecimento" className="mb-16">
-          <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
-            <Terminal className="text-cyan-400 h-6 w-6" />
-            Módulo de Visão Computacional (Python)
-          </h2>
-          <div className="mb-4 text-justify">
-            <div className="mb-3.5 text-justify">
-              <h4 className="font-bold text-blue-400 gap-2.5 text-[18px]">
-                1. Módulo de Visão Computacional (Python - 03_reconhecer.py)
-                Este guião é o "cérebro" do sistema, responsável por processar
-                as imagens, identificar rostos e gerir os acessos. Ele está
-                dividido nas seguintes componentes principais:
-              </h4>
-            </div>
-            <div className="mb-3.5">
-              <span className="font-bold text-blue-200">
-                Captura de Vídeo Assíncrona (VideoStream):
-              </span>{" "}
-              A classe VideoStream liga-se ao IP da câmara{" "}
-              <span className="text-red-500">(ESP-CAM)</span> e obtém o fluxo de
-              vídeo (MJPEG) através da biblioteca requests. Este processo corre
-              numa thread separada (segundo plano), garantindo que a captura de
-              frames não bloqueia o processamento da interface nem da{" "}
-              <span className="text-blue-500 font-bold">
-                Inteligência Artificial
-              </span>
-              , resultando num sistema muito mais fluido e sem atrasos.
-            </div>
+      <section id="reconhecimento" className="mb-16 scroll-mt-24">
+        <h2 className="mb-1 flex items-center gap-2 text-2xl font-semibold text-white">
+          <Terminal className="h-6 w-6 text-cyan-400" />
+          Módulo de Visão Computacional (Python)
+        </h2>
+        <p className="mb-6 text-sm text-slate-500">
+          03_reconhecer.py — o "cérebro" do sistema, responsável por
+          processar as imagens, identificar rostos e gerir os acessos.
+        </p>
 
-            <div className="mb-3.5">
-              <span className="font-bold text-blue-200">
-                Inteligência Artificial e Reconhecimento:
-              </span>{" "}
-              No loop_principal, o sistema utiliza a biblioteca face_recognition{" "}
-              <span className="font-bold text-red-500">(baseada em dlib)</span>{" "}
-              para detetar a localização dos rostos na imagem e extrair os seus
-              "encodings" (vetores faciais). Estes vetores são então comparados
-              com a lista de utilizadores conhecidos guardada em ficheiro{" "}
-              <span className="font-bold text-red-500">(encodings.pickle)</span>
-              . Se a distância matemática entre o rosto detetado e um rosto
-              conhecido for inferior a 0.5 (alta confiança), o sistema reconhece
-              o utilizador e liberta o acesso, iniciando um período de
-              "cooldown" (pausa) para não registar a mesma pessoa repetidamente
-              em curtos espaços de tempo.
-            </div>
-            <div className="mb-3.5">
-              <span className="font-bold text-blue-200">
-                Base de Dados e Auditoria SQLite:
-              </span>{" "}
-              A função iniciar_banco cria uma base de dados local{" "}
-              <span className="font-bold text-amber-500">(totem_banco.db)</span>{" "}
-              com duas tabelas: Usuarios e Logs_Acesso. Sempre que um utilizador
-              é reconhecido, a função{" "}
-              <span className=" text-amber-500">registrar_acesso_db</span> é
-              chamada, guardando não só o nome e a hora, mas também o nível de
-              confiança da IA e uma fotografia exata do momento do acesso,
-              servindo como auditoria de segurança.
-            </div>
-            <div className="mb-3.5">
-              <span className="font-bold text-blue-200">
-                Interface Gráfica (OpenCV) e API Web (Flask):
-              </span>
-              O sistema desenha a sua própria interface em ecrã inteiro com a
-              biblioteca <span className="text-green-400">OpenCV</span>,
-              possuindo botões interativos para registar novos utilizadores no
-              próprio local. Adicionalmente, o módulo levanta um servidor web em{" "}
-              <span className="text-green-400">Flask</span> na porta 5000. Esta
-              API permite o registo remoto de rostos{" "}
-              <span className="font-bold text-green-400">
-                (/api/cadastrar_direto)
-              </span>
-              , a visualização do relatório de acessos em{" "}
-              <span className="text-green-400">
-                formato JSON (/api/relatorio)
-              </span>{" "}
-              e também a retransmissão do vídeo processado (com os quadrados à
-              volta das caras) através da rota{" "}
-              <span className="text-green-400">/video_feed</span>.
-            </div>
-          </div>
-          <CodeBlock
-            language="python"
-            code={pythonCodeReconhecer}
-            fileName="03_reconhecer.py"
-            iconColor="text-cyan-400"
-          />
-        </section>
-        <section id="cadastro-remoto" className="mb-16">
-          <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
-            <Terminal className="text-emerald-400 h-6 w-6" />
-            Script de Cadastro Remoto (Python)
-          </h2>
-          <div className="mb-4 text-justify">
-            <div className="mb-3.5 text-justify">
-              <h4 className="font-bold text-emerald-400 gap-2.5 text-[18px]">
-                2. Envio em Massa de Fotos (Python - cadastrar_remoto.py)
-              </h4>
-              <p className="mt-2 text-slate-400">
-                Este script auxiliar serve para automatizar o cadastro de novos
-                usuários, realizando o envio em lote de imagens diretamente para
-                a API Flask do totem. Ele é essencial para popular a base de
-                dados de reconhecimento facial rapidamente, sem precisar
-                capturar rosto por rosto fisicamente no local.
-              </p>
-            </div>
+        <div className="mb-6 space-y-4 rounded-xl border border-slate-800 bg-slate-800/30 p-5">
+          <Topic label="Captura de Vídeo Assíncrona (VideoStream):" color="border-blue-500 text-blue-200">
+            A classe VideoStream liga-se ao IP da câmara (ESP-CAM) e obtém o
+            fluxo de vídeo (MJPEG) através da biblioteca requests. Este
+            processo corre numa thread separada (segundo plano), garantindo
+            que a captura de frames não bloqueia o processamento da interface
+            nem da Inteligência Artificial, resultando num sistema muito mais
+            fluido e sem atrasos.
+          </Topic>
+          <Topic label="Inteligência Artificial e Reconhecimento:" color="border-blue-500 text-blue-200">
+            No loop_principal, o sistema utiliza a biblioteca
+            face_recognition (baseada em dlib) para detetar a localização dos
+            rostos na imagem e extrair os seus "encodings" (vetores faciais).
+            Estes vetores são comparados com a lista de utilizadores
+            conhecidos guardada em encodings.pickle. Se a distância
+            matemática entre o rosto detetado e um rosto conhecido for
+            inferior a 0.5 (alta confiança), o sistema reconhece o utilizador
+            e liberta o acesso, iniciando um "cooldown" para não registar a
+            mesma pessoa repetidamente em curtos espaços de tempo.
+          </Topic>
+          <Topic label="Base de Dados e Auditoria SQLite:" color="border-amber-500 text-amber-200">
+            A função iniciar_banco cria uma base de dados local
+            (totem_banco.db) com duas tabelas: Usuarios e Logs_Acesso.
+            Sempre que um utilizador é reconhecido, registrar_acesso_db é
+            chamada, guardando o nome, a hora, o nível de confiança da IA e
+            uma fotografia exata do momento do acesso, servindo como
+            auditoria de segurança.
+          </Topic>
+          <Topic label="Interface Gráfica (OpenCV) e API Web (Flask):" color="border-emerald-500 text-emerald-200">
+            O sistema desenha a sua própria interface em ecrã inteiro com
+            OpenCV, com botões interativos para registar novos utilizadores
+            no local. O módulo também levanta um servidor Flask na porta
+            5000, com rotas para registo remoto de rostos
+            (/api/cadastrar_direto), relatório de acessos em JSON
+            (/api/relatorio) e retransmissão do vídeo processado
+            (/video_feed).
+          </Topic>
+        </div>
 
-            <div className="mb-3.5">
-              <span className="font-bold text-emerald-200">
-                Processamento de Diretório:
-              </span>{" "}
-              O código varre uma pasta local{" "}
-              <span className="font-bold text-orange-400">
-                (ex: dataset/admin)
-              </span>{" "}
-              e faz a triagem garantindo que apenas arquivos de imagem com
-              extensões válidas (.jpg, .jpeg, .png) sejam processados.
-            </div>
+        <CodeBlock
+          language="python"
+          code={pythonCodeReconhecer}
+          fileName="03_reconhecer.py"
+          iconColor="text-cyan-400"
+          showLineNumbers
+        />
+      </section>
 
-            <div className="mb-3.5">
-              <span className="font-bold text-emerald-200">
-                Comunicação com a API Rest:
-              </span>{" "}
-              Para cada imagem identificada, o script utiliza a biblioteca{" "}
-              <span className="text-green-400">requests</span> para disparar uma
-              requisição POST para o endpoint{" "}
-              <span className="font-bold text-green-400">
-                /api/cadastrar_direto
-              </span>
-              . O envio empacota o arquivo em formato binário
-              (multipart/form-data) junto com o nome designado para o usuário.
-            </div>
+      {/* Script de cadastro remoto */}
+      <section id="cadastro-remoto" className="mb-16 scroll-mt-24">
+        <h2 className="mb-1 flex items-center gap-2 text-2xl font-semibold text-white">
+          <Terminal className="h-6 w-6 text-emerald-400" />
+          Script de Cadastro Remoto (Python)
+        </h2>
+        <p className="mb-6 text-sm text-slate-500">
+          cadastrar_remoto.py — automatiza o envio em lote de fotos para
+          popular a base de reconhecimento facial.
+        </p>
 
-            <div className="mb-3.5">
-              <span className="font-bold text-emerald-200">
-                Tratamento de Respostas e Logs:
-              </span>{" "}
-              Durante a execução, ele gera um log no terminal detalhando o
-              progresso (ex: <code>[1/10] Enviando...</code>). Se a API retornar
-              sucesso (Status 201), ele contabiliza; se falhar (ex: por não
-              encontrar um rosto na imagem), ele captura o JSON de erro do
-              servidor e exibe o motivo exato, permitindo fácil depuração.
-            </div>
-          </div>
-          <CodeBlock
-            language="python"
-            code={pythonCodeCadastroRemoto}
-            fileName="cadastrar_remoto.py"
-            iconColor="text-emerald-400"
-          />
-        </section>
+        <div className="mb-6 space-y-4 rounded-xl border border-slate-800 bg-slate-800/30 p-5">
+          <Topic label="Processamento de Diretório:" color="border-emerald-500 text-emerald-200">
+            O código varre uma pasta local (ex: dataset/admin) e faz a
+            triagem, garantindo que apenas arquivos de imagem com extensões
+            válidas (.jpg, .jpeg, .png) sejam processados.
+          </Topic>
+          <Topic label="Comunicação com a API REST:" color="border-emerald-500 text-emerald-200">
+            Para cada imagem identificada, o script utiliza a biblioteca
+            requests para disparar uma requisição POST para o endpoint
+            /api/cadastrar_direto, empacotando o arquivo em
+            multipart/form-data junto com o nome do usuário.
+          </Topic>
+          <Topic label="Tratamento de Respostas e Logs:" color="border-emerald-500 text-emerald-200">
+            Durante a execução, gera um log no terminal detalhando o
+            progresso (ex: [1/10] Enviando...). Se a API retornar sucesso
+            (Status 201), contabiliza; se falhar, captura o JSON de erro e
+            exibe o motivo exato, facilitando a depuração.
+          </Topic>
+        </div>
 
-        {/* Seção do Embarcado / C++ */}
-        <section id="esp32" className="mb-16">
-          <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
-            <Cpu className="text-indigo-400 h-6 w-6" />
-            Firmware do ESP32/ESP-CAM (C/C++)
-          </h2>
-          <div className="mb-4 text-justify">
-              <div className="mb-4 text-justify">
-                <div className="mb-3.5 text-justify">
-                  <h4 className="font-bold text-indigo-400 gap-2.5 text-[18px]">
-                    2. Firmware de Captura na Borda (C++ - espcam.ino)
-                  </h4>
-                  <p className="mt-2 text-slate-400">
-                    Este código é compilado e gravado no microcontrolador
-                    ESP32-CAM. Ele atua como o "olho" do sistema (Edge Device),
-                    dedicado exclusivamente a capturar o ambiente em tempo real
-                    e fornecer as imagens para a rede. O firmware divide-se nas
-                    seguintes lógicas:
-                  </p>
-                </div>
+        <CodeBlock
+          language="python"
+          code={pythonCodeCadastroRemoto}
+          fileName="cadastrar_remoto.py"
+          iconColor="text-emerald-400"
+          showLineNumbers
+        />
+      </section>
 
-                <div className="mb-3.5">
-                  <span className="font-bold text-indigo-200">
-                    Configuração de Hardware e Pinagem:
-                  </span>{" "}
-                  O código define mapeamentos precisos de pinos{" "}
-                  <code>(GPIOs)</code> específicos para o modelo de placa{" "}
-                  <span className="font-bold text-orange-400">AI Thinker</span>.
-                  Uma etapa crítica de estabilidade no <code>setup()</code> é a
-                  desativação do "Brownout Detector"{" "}
-                  <code>(RTC_CNTL_BROWN_OUT_REG)</code>, o que impede que o
-                  ESP32 reinicie sozinho devido aos picos de consumo de corrente
-                  gerados pela inicialização do sensor de imagem e do Wi-Fi.
-                </div>
+      {/* Seção do Embarcado / C++ */}
+      <section id="esp32" className="mb-4 scroll-mt-24">
+        <h2 className="mb-1 flex items-center gap-2 text-2xl font-semibold text-white">
+          <Cpu className="h-6 w-6 text-indigo-400" />
+          Firmware do ESP32/ESP-CAM (C/C++)
+        </h2>
+        <p className="mb-6 text-sm text-slate-500">
+          espcam.ino — o "olho" do sistema (Edge Device), dedicado a capturar
+          o ambiente em tempo real e fornecer as imagens para a rede.
+        </p>
 
-                <div className="mb-3.5">
-                  <span className="font-bold text-indigo-200">
-                    Servidor de Streaming de Vídeo (MJPEG):
-                  </span>{" "}
-                  Através da biblioteca <code>esp_http_server.h</code>, o
-                  microcontrolador levanta um servidor web na porta 80. A função{" "}
-                  <span className="text-orange-400">stream_handler</span> é o
-                  coração deste processo: ela captura quadros (frames)
-                  ininterruptamente, os converte para JPEG e os transmite pela
-                  rota <code>/stream</code> usando a técnica de cabeçalho{" "}
-                  <span className="font-bold text-indigo-300">
-                    multipart/x-mixed-replace
-                  </span>
-                  . É exatamente esta rota que o nosso sistema em Python acessa
-                  para "puxar" o vídeo.
-                </div>
+        <div className="mb-6 space-y-4 rounded-xl border border-slate-800 bg-slate-800/30 p-5">
+          <Topic label="Configuração de Hardware e Pinagem:" color="border-indigo-500 text-indigo-200">
+            O código define mapeamentos precisos de pinos (GPIOs) para o
+            modelo de placa AI Thinker. Uma etapa crítica de estabilidade no
+            setup() é a desativação do "Brownout Detector"
+            (RTC_CNTL_BROWN_OUT_REG), o que impede que o ESP32 reinicie
+            sozinho devido aos picos de consumo de corrente gerados pela
+            inicialização do sensor de imagem e do Wi-Fi.
+          </Topic>
+          <Topic label="Servidor de Streaming de Vídeo (MJPEG):" color="border-indigo-500 text-indigo-200">
+            Através da biblioteca esp_http_server.h, o microcontrolador
+            levanta um servidor web na porta 80. A função stream_handler
+            captura quadros ininterruptamente, converte para JPEG e
+            transmite pela rota /stream usando multipart/x-mixed-replace —
+            exatamente a rota que o sistema em Python acessa para "puxar" o
+            vídeo.
+          </Topic>
+          <Topic label="Otimização de Memória (PSRAM):" color="border-indigo-500 text-indigo-200">
+            Durante a inicialização da câmera (esp_camera_init), o código
+            verifica se a placa possui PSRAM externa. Se possuir, aumenta a
+            resolução do vídeo para VGA e melhora a qualidade do JPEG; caso
+            contrário, ajusta para resoluções menores (SVGA) para não
+            sobrecarregar a memória interna.
+          </Topic>
+          <Topic label="Conectividade e Iluminação:" color="border-indigo-500 text-indigo-200">
+            O ESP32-CAM conecta-se à rede Wi-Fi local e imprime o seu
+            endereço IP no Monitor Serial. O pino do Flash LED (GPIO 4)
+            inicia desligado, mas pode ser ativado no loop() para iluminar
+            rostos em ambientes escuros.
+          </Topic>
+        </div>
 
-                <div className="mb-3.5">
-                  <span className="font-bold text-indigo-200">
-                    Otimização de Memória (PSRAM):
-                  </span>{" "}
-                  Durante a inicialização da câmera{" "}
-                  <code>(esp_camera_init)</code>, o código verifica
-                  automaticamente se a placa possui memória PSRAM externa. Se
-                  possuir, ele aumenta a resolução do vídeo para{" "}
-                  <span className="font-bold text-green-400">VGA</span> e
-                  melhora a qualidade do JPEG. Caso não tenha, ele ajusta para
-                  resoluções menores (
-                  <span className="text-green-400">SVGA</span>) para não
-                  sobrecarregar a memória interna.
-                </div>
-
-                <div className="mb-3.5">
-                  <span className="font-bold text-indigo-200">
-                    Conectividade e Iluminação:
-                  </span>{" "}
-                  O ESP32-CAM conecta-se à rede Wi-Fi local configurada e
-                  imprime o seu endereço IP no Monitor Serial. Além disso, o
-                  pino responsável pelo{" "}
-                  <span className="font-bold text-yellow-200">
-                    Flash LED (GPIO 4)
-                  </span>{" "}
-                  foi configurado. Ele inicia desligado, mas o laço principal{" "}
-                  <code>loop()</code> contém a instrução para ativá-lo, o que
-                  pode ser útil para iluminar rostos em ambientes escuros.
-                </div>
-              </div>
-          </div>
-
-          <CodeBlock
-            language="cpp"
-            code={cppCode}
-            fileName="espcam.ino"
-            iconColor="text-indigo-400"
-          />
-        </section>
+        <CodeBlock
+          language="cpp"
+          code={cppCode}
+          fileName="espcam.ino"
+          iconColor="text-indigo-400"
+          showLineNumbers
+        />
+      </section>
     </DocsLayout>
   );
 };

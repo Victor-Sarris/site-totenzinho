@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   Book,
   Terminal,
@@ -9,152 +9,119 @@ import {
   X,
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
-
-// Módulos principais, na ordem em que aparecem no menu.
-const NAV_ITEMS = [
-  { to: "/documentacao/venv", label: "01. Ambiente Virtual (Venv)" },
-  { to: "/documentacao/library-install", label: "02. Instalação de Bibliotecas" },
-  { to: "/documentacao/connection-ssh", label: "03. Conectar via SSH (Putty)" },
-  { to: "/documentacao/remote-labrador", label: "04. Controle Remoto pelo PC" },
-  { to: "/documentacao/auto-start-file", label: "05. Criação de AutoStart File" },
-];
-
-const CONFIG_ITEMS = [
-  { to: "/documentacao/log-monitoring", label: "01. Monitoramento de Log" },
-  { to: "/documentacao/routes", label: "02. Rotas do Sistema" },
-  { to: "/documentacao/ip-config", label: "03. Configuração de IP Estático" },
-];
-
-const NavLink = ({ to, label, onClick, isActive }) => (
-  <Link to={to} onClick={onClick}>
-    <button
-      className={`w-full text-left flex items-center justify-between pl-3 pr-4 py-2.5 rounded-xl transition-all duration-200 cursor-pointer border text-sm font-semibold ${
-        isActive
-          ? "bg-blue-600/10 text-blue-400 border-blue-600/40"
-          : "text-slate-300 border-transparent hover:text-white hover:bg-slate-800/50 hover:border-slate-700"
-      }`}
-    >
-      {label}
-    </button>
-  </Link>
-);
+import { docsNav } from "../data/docsNav";
 
 const SidebarDocs = () => {
   const location = useLocation();
-  const [introAberta, setIntroAberta] = useState(true);
+  const [introducaoAberta, setIntroducaoAberta] = useState(true);
   const [menuMobileAberto, setMenuMobileAberto] = useState(false);
 
-  const isActive = (path) => location.pathname === path;
   const fecharMenuMobile = () => setMenuMobileAberto(false);
 
   const rolarParaSecao = (id) => {
     const elemento = document.getElementById(id);
     if (elemento) {
       elemento.scrollIntoView({ behavior: "smooth", block: "start" });
-      fecharMenuMobile();
     }
+    fecharMenuMobile();
   };
+
+  const linkClasses = (path) =>
+    `w-full text-left flex items-center justify-between pl-2.5 pr-3 py-2.5 rounded-lg text-sm font-semibold transition-colors duration-150 border ${
+      location.pathname === path
+        ? "bg-blue-500/10 text-blue-400 border-blue-500/20"
+        : "text-slate-300 border-transparent hover:text-white hover:bg-slate-800/60 hover:border-slate-700"
+    }`;
 
   const ConteudoSidebar = (
     <>
       <div className="mb-8 shrink-0">
-        <h3 className="text-xl font-bold text-white flex items-center gap-2">
+        <h3 className="flex items-center gap-2 text-xl font-bold text-white">
           <Book className="h-5 w-5 text-blue-500" />
           Navegação
         </h3>
-        <p className="text-xs text-slate-500 mt-2">
+        <p className="mt-2 text-xs text-slate-500">
           Guia de Módulos e Configuração
         </p>
       </div>
 
-      <nav className="flex-1 space-y-2 pb-24">
-        {/* Introdução / Visão geral do código */}
-        <div className="flex flex-col">
-          <div
-            className={`flex items-center justify-between rounded-xl border transition-all duration-200 ${
-              isActive("/documentacao")
-                ? "bg-blue-600/10 border-blue-600/40"
-                : "border-transparent hover:bg-slate-800/50 hover:border-slate-700"
-            }`}
-          >
-            <Link
-              to="/documentacao"
-              onClick={fecharMenuMobile}
-              className={`flex-1 pl-3 py-3 text-sm font-semibold ${
-                isActive("/documentacao") ? "text-blue-400" : "text-blue-400/90"
-              }`}
-            >
-              Introdução
-            </Link>
+      <nav className="flex-1 space-y-6 pb-24">
+        {/* Introdução (Documentação do código) */}
+        <div>
+          <p className="mb-1.5 px-2 text-xs font-semibold tracking-wide text-slate-500 uppercase">
+            Documentação do Código
+          </p>
+          <Link to="/documentacao" onClick={fecharMenuMobile}>
             <button
-              onClick={() => setIntroAberta((prev) => !prev)}
-              aria-label={introAberta ? "Recolher seção" : "Expandir seção"}
-              className="p-3 text-slate-500 hover:text-white transition-colors cursor-pointer"
+              onClick={() => setIntroducaoAberta((v) => !v)}
+              className={linkClasses("/documentacao")}
             >
-              {introAberta ? (
-                <ChevronDown className="h-4 w-4" />
+              <span>Introdução</span>
+              {introducaoAberta ? (
+                <ChevronDown className="h-4 w-4 text-slate-500" />
               ) : (
-                <ChevronRight className="h-4 w-4" />
+                <ChevronRight className="h-4 w-4 text-slate-500" />
               )}
             </button>
-          </div>
+          </Link>
           <div
             className={`space-y-1 overflow-hidden transition-all duration-300 ease-in-out ${
-              introAberta ? "max-h-40 opacity-100 py-1" : "max-h-0 opacity-0"
+              introducaoAberta ? "mt-1 max-h-40 py-1 opacity-100" : "max-h-0 opacity-0"
             }`}
           >
             <button
               onClick={() => rolarParaSecao("reconhecimento")}
-              className="w-full text-left flex items-center gap-3 pl-8 pr-4 py-2 text-slate-400 hover:text-white hover:bg-slate-800/30 rounded-xl transition-all duration-200 text-xs cursor-pointer group"
+              className="group flex w-full cursor-pointer items-center gap-3 rounded-lg py-2 pr-4 pl-8 text-left text-xs font-medium text-slate-400 transition-colors duration-150 hover:bg-slate-800/40 hover:text-white"
             >
-              <Terminal className="h-3.5 w-3.5 text-cyan-400 group-hover:scale-110 transition-transform" />
-              <span className="font-medium">IA (Python)</span>
+              <Terminal className="h-3.5 w-3.5 text-cyan-400 transition-transform group-hover:scale-110" />
+              IA (Python)
             </button>
             <button
               onClick={() => rolarParaSecao("esp32")}
-              className="w-full text-left flex items-center gap-3 pl-8 pr-4 py-2 text-slate-400 hover:text-white hover:bg-slate-800/30 rounded-xl transition-all duration-200 text-xs cursor-pointer group"
+              className="group flex w-full cursor-pointer items-center gap-3 rounded-lg py-2 pr-4 pl-8 text-left text-xs font-medium text-slate-400 transition-colors duration-150 hover:bg-slate-800/40 hover:text-white"
             >
-              <Cpu className="h-3.5 w-3.5 text-indigo-400 group-hover:scale-110 transition-transform" />
-              <span className="font-medium">Firmware (C++)</span>
+              <Cpu className="h-3.5 w-3.5 text-indigo-400 transition-transform group-hover:scale-110" />
+              Firmware (C++)
             </button>
           </div>
         </div>
 
-        {NAV_ITEMS.map((item) => (
-          <NavLink
-            key={item.to}
-            {...item}
-            onClick={fecharMenuMobile}
-            isActive={isActive(item.to)}
-          />
-        ))}
-
-        <p className="pt-4 pb-1 pl-3 text-xs font-bold uppercase tracking-wider text-slate-500">
-          Configurações adicionais
-        </p>
-        {CONFIG_ITEMS.map((item) => (
-          <NavLink
-            key={item.to}
-            {...item}
-            onClick={fecharMenuMobile}
-            isActive={isActive(item.to)}
-          />
+        {/* Grupos data-driven */}
+        {docsNav.map((grupo) => (
+          <div key={grupo.group}>
+            <p className="mb-1.5 px-2 text-xs font-semibold tracking-wide text-slate-500 uppercase">
+              {grupo.group}
+            </p>
+            <div className="space-y-1">
+              {grupo.items.map((item) => (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  onClick={fecharMenuMobile}
+                >
+                  <button className={linkClasses(item.path)}>
+                    <span className="truncate">{item.title}</span>
+                  </button>
+                </Link>
+              ))}
+            </div>
+          </div>
         ))}
       </nav>
 
       <div className="mt-auto pb-8 text-center">
-        <p className="text-xs text-slate-600 font-medium">TotemID v1.0</p>
+        <p className="text-xs font-medium text-slate-600">TotemID v1.0</p>
       </div>
     </>
   );
 
   return (
     <>
-      {/* ===================== MOBILE LAYER ===================== */}
+      {/* Botão Flutuante Mobile */}
       <button
-        onClick={() => setMenuMobileAberto(!menuMobileAberto)}
-        aria-label={menuMobileAberto ? "Fechar menu" : "Abrir menu de navegação"}
-        className="md:hidden fixed bottom-6 right-6 z-60 bg-blue-600 hover:bg-blue-500 text-white p-4 rounded-full shadow-2xl transition-all duration-300 flex items-center justify-center focus:outline-none"
+        onClick={() => setMenuMobileAberto((v) => !v)}
+        aria-label={menuMobileAberto ? "Fechar navegação" : "Abrir navegação"}
+        className="fixed right-6 bottom-6 z-60 flex items-center justify-center rounded-full bg-blue-600 p-4 text-white shadow-2xl transition-all duration-300 hover:bg-blue-500 focus:outline-none md:hidden"
       >
         {menuMobileAberto ? (
           <X className="h-6 w-6" />
@@ -163,23 +130,25 @@ const SidebarDocs = () => {
         )}
       </button>
 
+      {/* Overlay Mobile */}
       {menuMobileAberto && (
         <div
-          className="md:hidden fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-40 transition-opacity"
+          className="fixed inset-0 z-40 bg-slate-950/60 backdrop-blur-sm transition-opacity md:hidden"
           onClick={fecharMenuMobile}
         />
       )}
 
+      {/* Sidebar Mobile */}
       <aside
-        className={`md:hidden flex flex-col w-72 h-screen bg-slate-950 border-r border-slate-800 pt-10 px-4 z-50 overflow-y-auto custom-scrollbar fixed top-0 left-0 transition-transform duration-300 ease-in-out ${
+        className={`custom-scrollbar fixed top-0 left-0 z-50 flex h-screen w-72 flex-col overflow-y-auto border-r border-slate-800 bg-slate-950 px-4 pt-10 transition-transform duration-300 ease-in-out md:hidden ${
           menuMobileAberto ? "translate-x-0 shadow-2xl" : "-translate-x-full"
         }`}
       >
         {ConteudoSidebar}
       </aside>
 
-      {/* ===================== DESKTOP LAYER ===================== */}
-      <aside className="hidden md:flex flex-col w-72 h-screen bg-slate-950 border-r border-slate-800 pt-10 px-4 z-10 overflow-y-auto custom-scrollbar sticky top-0 shrink-0">
+      {/* Sidebar Desktop */}
+      <aside className="custom-scrollbar sticky top-16 z-10 hidden h-[calc(100vh-4rem)] w-72 shrink-0 flex-col overflow-y-auto border-r border-slate-800 bg-slate-950 px-4 pt-8 md:flex">
         {ConteudoSidebar}
       </aside>
     </>
