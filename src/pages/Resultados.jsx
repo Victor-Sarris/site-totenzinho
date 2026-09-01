@@ -445,13 +445,13 @@ const Resultados = () => {
               Repositório no GitHub
             </a>
             <a
-              href="https://face-recognition-totem.netlify.app/"
+              href="https://bia.ifpi.edu.br/jspui/bitstream/123456789/5776/8/2026_tcc_vsssantos.pdf"
               target="_blank"
               rel="noreferrer"
               className="flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-2.5 font-medium text-white shadow-lg shadow-blue-900/30 transition-colors hover:bg-blue-700"
             >
               <ExternalLink className="h-4 w-4" />
-              Ver documentação do sistema
+              Ver Tcc
             </a>
           </div>
         </section>
