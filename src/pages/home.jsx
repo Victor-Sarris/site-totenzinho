@@ -178,32 +178,21 @@ const TotemLandingPage = () => {
             <TechBadge name="C / C++" />
             <TechBadge name="Blender" />
           </div>
-          <p className="mt-8 text-slate-400">
-            Repositório completo do projeto:{" "}
-            <a
-              href="https://github.com/Victor-Sarris/Totem-Reconhecimento-Facial"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1 font-semibold text-blue-400 transition-colors hover:text-blue-300"
-            >
-              face-recognition
-              <ArrowRight className="h-4 w-4" />
-            </a>
-          </p>
         </Container>
       </section>
 
       {/* Equipe / Créditos */}
       <section className="border-t border-slate-800/80 bg-slate-800/20 py-20">
         <Container className="flex flex-col items-center">
-          <div className="electric-border relative flex w-full max-w-xl flex-col items-center rounded-3xl border border-slate-800/70 bg-slate-900/40 px-6 py-12 md:px-12">
+          <div className="relative flex w-full max-w-xl flex-col items-center rounded-3xl border border-slate-800/70 bg-slate-900/40 px-6 py-12 md:px-12">
             <ElectricAvatar
               src="https://avatars.githubusercontent.com/u/178488451?v=4"
               alt="Victor Sarrís"
               imgClassName="h-40 w-40 rounded-full border-4 border-blue-700 object-cover md:h-48 md:w-48"
             />
             <h2 className="mt-6 text-center text-2xl font-bold text-blue-400 md:text-3xl">
-              Desenvolvedor: <span className="text-blue-200">Victor Sarrís</span>
+              Desenvolvedor:{" "}
+              <span className="text-blue-200">Victor Sarrís</span>
             </h2>
             <p className="mt-3 text-center text-sm text-slate-400 md:text-base">
               Fique à vontade para conhecer minhas redes sociais

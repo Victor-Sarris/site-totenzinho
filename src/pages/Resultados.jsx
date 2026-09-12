@@ -451,7 +451,16 @@ const Resultados = () => {
               className="flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-2.5 font-medium text-white shadow-lg shadow-blue-900/30 transition-colors hover:bg-blue-700"
             >
               <ExternalLink className="h-4 w-4" />
-              Ver Tcc
+              Ler Tcc
+            </a>
+            <a
+              href="https://www.youtube.com/watch?v=DL1EyE6-ypg"
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-2 rounded-lg bg-red-600 px-5 py-2.5 font-medium text-white shadow-lg shadow-red-900/30 transition-colors hover:bg-red-700"
+            >
+              <ExternalLink className="h-4 w-4" />
+              Vídeo de Demonstração
             </a>
           </div>
         </section>
