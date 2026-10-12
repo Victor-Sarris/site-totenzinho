@@ -9,6 +9,7 @@ import {
   FileSpreadsheet,
   Layers,
   GraduationCap,
+  Projector,
 } from "lucide-react";
 import { FcSportsMode, FcElectronics, FcWorkflow } from "react-icons/fc";
 import Container from "../components/ui/Container";
@@ -20,9 +21,24 @@ const DiagramTabs = () => {
   const [abaAtiva, setAbaAtiva] = useState("arquitetura");
 
   const tabs = [
-    { id: "diagrama", label: "Diagrama", img: Diagrama, alt: "Diagrama do Sistema" },
-    { id: "fluxograma", label: "Fluxograma", img: Fluxograma, alt: "Fluxograma do Sistema" },
-    { id: "arquitetura", label: "Arquitetura", img: Arquitetura, alt: "Arquitetura do Sistema" },
+    {
+      id: "diagrama",
+      label: "Diagrama",
+      img: Diagrama,
+      alt: "Diagrama do Sistema",
+    },
+    {
+      id: "fluxograma",
+      label: "Fluxograma",
+      img: Fluxograma,
+      alt: "Fluxograma do Sistema",
+    },
+    {
+      id: "arquitetura",
+      label: "Arquitetura",
+      img: Arquitetura,
+      alt: "Arquitetura do Sistema",
+    },
   ];
 
   const ativa = tabs.find((t) => t.id === abaAtiva);
@@ -46,7 +62,10 @@ const DiagramTabs = () => {
       </div>
 
       <div className="flex min-h-[200px] w-full items-center justify-center overflow-hidden rounded-xl border border-dashed border-slate-700 bg-slate-900 p-2 md:min-h-[300px] md:p-4">
-        <div key={ativa.id} className="animate-fade-in flex w-full flex-col items-center">
+        <div
+          key={ativa.id}
+          className="animate-fade-in flex w-full flex-col items-center"
+        >
           <img
             src={ativa.img}
             alt={ativa.alt}
@@ -78,8 +97,8 @@ const WikiPage = () => {
           </h1>
           <p className="max-w-2xl text-base text-slate-400 md:text-lg">
             Guias de montagem, configuração de ambiente, modelagem do case e
-            referências teóricas para a construção do Totem de
-            Reconhecimento Facial.
+            referências teóricas para a construção do Totem de Reconhecimento
+            Facial.
           </p>
         </header>
 
@@ -106,6 +125,13 @@ const WikiPage = () => {
               icon={<Camera className="h-6 w-6 text-blue-400" />}
               title="Organização de Arquivos"
               description="Como os arquivos foram organizados e os pesos da rede neural foram ajustados."
+            />
+          </Link>
+          <Link to="/canvas" className="block">
+            <WikiCard
+              icon={<Projector className="h-6 w-6 text-amber-400" />}
+              title="CANVAS"
+              description="Métricas de desempenho, comparação com o processo manual e fotos da defesa do artigo científico."
             />
           </Link>
           <Link to="/resultados" className="block">
@@ -174,22 +200,21 @@ const WikiPage = () => {
             </h3>
             <p className="mb-4 leading-relaxed">
               A motivação deste projeto surge da necessidade de tornar mais
-              eficiente e seguro o processo de controle de acesso em
-              clínicas de saúde. Atualmente, o credenciamento de pacientes
-              é, em muitos casos, realizado de forma manual, o que o torna
-              suscetível a falhas humanas, filas e retrabalho, além de gerar
-              estresse para pacientes e colaboradores.
+              eficiente e seguro o processo de controle de acesso em clínicas de
+              saúde. Atualmente, o credenciamento de pacientes é, em muitos
+              casos, realizado de forma manual, o que o torna suscetível a
+              falhas humanas, filas e retrabalho, além de gerar estresse para
+              pacientes e colaboradores.
             </p>
             <p className="mb-4 leading-relaxed">
-              Com o avanço da visão computacional e do reconhecimento
-              facial — especialmente por meio de técnicas modernas baseadas
-              em embeddings — tornou-se viável implementar sistemas capazes
-              de realizar verificações rápidas e precisas. Diante desse
-              cenário, o projeto propõe o desenvolvimento e a avaliação de
-              um sistema automatizado de check-in baseado em reconhecimento
-              facial, com o objetivo de reduzir o tempo de atendimento,
-              aumentar a eficiência operacional e validar, de forma
-              científica, seu impacto no ambiente clínico.
+              Com o avanço da visão computacional e do reconhecimento facial —
+              especialmente por meio de técnicas modernas baseadas em embeddings
+              — tornou-se viável implementar sistemas capazes de realizar
+              verificações rápidas e precisas. Diante desse cenário, o projeto
+              propõe o desenvolvimento e a avaliação de um sistema automatizado
+              de check-in baseado em reconhecimento facial, com o objetivo de
+              reduzir o tempo de atendimento, aumentar a eficiência operacional
+              e validar, de forma científica, seu impacto no ambiente clínico.
             </p>
 
             <h3 className="mb-3 mt-8 flex items-center gap-3 text-xl font-semibold text-white">
@@ -242,18 +267,18 @@ const WikiPage = () => {
 
             <p className="mb-4 leading-relaxed">
               A arquitetura de hardware do projeto é dividida em estágios de
-              captura e processamento. O nó de captura na borda da rede
-              utiliza um microcontrolador da família ESP32 (módulo
-              ESP32-CAM), escolhido devido à sua conectividade sem fio
-              nativa, baixo consumo energético e capacidade de integração
-              com periféricos. O microcontrolador é dedicado à captura do
-              fluxo contínuo de vídeo e à execução física dos comandos de
-              bloqueio ou liberação de acesso. Os dados capturados na borda
-              são transmitidos a um microcomputador local (placa Labrador),
-              que atua como a unidade de processamento intermediária. Este
-              microcomputador é responsável por orquestrar a comunicação de
-              forma segura, recebendo o fluxo de imagem do microcontrolador
-              e repassando-o ao servidor central para validação.
+              captura e processamento. O nó de captura na borda da rede utiliza
+              um microcontrolador da família ESP32 (módulo ESP32-CAM), escolhido
+              devido à sua conectividade sem fio nativa, baixo consumo
+              energético e capacidade de integração com periféricos. O
+              microcontrolador é dedicado à captura do fluxo contínuo de vídeo e
+              à execução física dos comandos de bloqueio ou liberação de acesso.
+              Os dados capturados na borda são transmitidos a um microcomputador
+              local (placa Labrador), que atua como a unidade de processamento
+              intermediária. Este microcomputador é responsável por orquestrar a
+              comunicação de forma segura, recebendo o fluxo de imagem do
+              microcontrolador e repassando-o ao servidor central para
+              validação.
             </p>
           </div>
         </article>

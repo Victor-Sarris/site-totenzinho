@@ -9,6 +9,7 @@ import Models3d from "./Models3d.jsx";
 import Organization from "./Organization.jsx";
 import Circuit from "./Circuit.jsx";
 import Resultados from "./Resultados.jsx";
+import Canvas from "./Canvas.jsx";
 
 // Importacoes de paginas da documentacao
 import LibraryPage from "./DocsPage/LibraryPage.jsx";
@@ -36,6 +37,7 @@ function App() {
             <Route path="/org" element={<Organization />} />
             <Route path="/cir" element={<Circuit />} />
             <Route path="/resultados" element={<Resultados />} />
+            <Route path="/canvas" element={<Canvas />} />
 
             {/* Paginas de Documentacao */}
             <Route
