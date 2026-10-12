@@ -130,7 +130,7 @@ const WikiPage = () => {
           <Link to="/canvas" className="block">
             <WikiCard
               icon={<Projector className="h-6 w-6 text-amber-400" />}
-              title="CANVAS"
+              title="Canvas"
               description="Slides e Documentação feita pelo autor que foram indispensáveis para concretizar o projeto."
             />
           </Link>
