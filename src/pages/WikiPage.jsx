@@ -131,7 +131,7 @@ const WikiPage = () => {
             <WikiCard
               icon={<Projector className="h-6 w-6 text-amber-400" />}
               title="CANVAS"
-              description="Métricas de desempenho, comparação com o processo manual e fotos da defesa do artigo científico."
+              description="Slides e Documentação feita pelo autor que foram indispensáveis para concretizar o projeto."
             />
           </Link>
           <Link to="/resultados" className="block">
